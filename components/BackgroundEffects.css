@@ -1,0 +1,103 @@
+.bg-effects {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  user-select: none;
+  z-index: 0;
+  background-color: #0b0d13;
+}
+
+.hero-glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+}
+
+.glow-magenta {
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, #ec4899 0%, transparent 70%);
+  top: 10%;
+  left: -10%;
+}
+
+.glow-purple {
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, #8b5cf6 0%, transparent 70%);
+  bottom: 10%;
+  left: 20%;
+}
+
+.glow-blue {
+  width: 40%;
+  height: 40%;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+  top: 20%;
+  right: -5%;
+}
+
+.grid-plane {
+  position: absolute;
+  bottom: 0;
+  left: -20%;
+  right: -20%;
+  height: 80%;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(1000px) rotateX(70deg);
+  mask-image: linear-gradient(to top, black, transparent);
+  -webkit-mask-image: linear-gradient(to top, black, transparent);
+  opacity: 0.3;
+}
+
+/* 3D Shapes Simulation */
+.floating-shape {
+  position: absolute;
+  z-index: 1;
+}
+
+.shape-capsule {
+  top: 20%;
+  left: 5%;
+  width: 60px;
+  height: 20px;
+  background: linear-gradient(90deg, #ec4899, #8b5cf6);
+  border-radius: 999px;
+  transform: rotate(-30deg);
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+  animation: float 6s ease-in-out infinite;
+}
+
+.shape-spiral {
+  bottom: 25%;
+  right: 5%;
+  width: 100px;
+  height: 100px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #3b82f6 0px,
+    #3b82f6 10px,
+    #8b5cf6 10px,
+    #8b5cf6 20px
+  );
+  mask-image: radial-gradient(circle, black 40%, transparent 60%);
+  -webkit-mask-image: radial-gradient(circle, black 40%, transparent 60%);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-30deg); }
+  50% { transform: translateY(-20px) rotate(-25deg); }
+}

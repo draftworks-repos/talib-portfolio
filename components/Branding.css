@@ -1,0 +1,106 @@
+.branding-container {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  padding: 0 1rem;
+}
+
+/* ---------------- Title ---------------- */
+
+.branding-title {
+  font-family: var(--font-sora);
+  font-size: 1.875rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+  margin: 0 0 0.75rem 0;
+
+  /* Gradient text */
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.6) 120%
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  /* 🔥 REQUIRED */
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Italic emphasis — NO opacity */
+.branding-italic {
+  font-family: var(--font-lora);
+  font-style: italic;
+
+  /* subtle emphasis without breaking gradient */
+  letter-spacing: -0.01em;
+}
+
+/* ---------------- Description ---------------- */
+
+.branding-description {
+  font-family: var(--font-inter);
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  max-width: 28rem;
+  margin: 0 auto;
+  line-height: 1.625;
+}
+
+/* ---------------- Breakpoints ---------------- */
+
+@media (min-width: 640px) {
+  .branding-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .branding-title {
+    font-size: 3rem;
+  }
+
+  .branding-description {
+    font-size: 0.875rem;
+    max-width: 32rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .branding-title {
+    font-size: 3.75rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .branding-title {
+    font-size: 3.25rem;
+  }
+
+  .branding-description {
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .branding-container {
+    padding: 0 0.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .branding-title {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .branding-description {
+    font-size: 0.7rem;
+    max-width: 22rem;
+    line-height: 1.55;
+  }
+}

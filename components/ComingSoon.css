@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
+/* ---------- Overlay ---------- */
+
+.cs-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 18, 0.2);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: csFade 0.25s ease forwards;
+}
+
+/* ---------- Modal ---------- */
+
+.cs-modal {
+  font-family: "Inter", sans-serif;
+  background: rgba(20, 24, 38, 0.88);
+  border-radius: 18px;
+  padding: 34px 36px;
+  width: min(420px, 90%);
+  text-align: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+
+  animation: csPop 0.42s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ---------- Content ---------- */
+
+.cs-badge {
+  font-size: 32px;
+  margin-bottom: 14px;
+}
+
+.cs-title {
+  font-size: 21px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  color: #f1f5f9;
+}
+
+.cs-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #9ca3af;
+  margin-bottom: 26px;
+}
+
+/* ---------- Button ---------- */
+
+.cs-btn {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  background: rgba(255, 255, 255, 0.06);
+  color: #e5e7eb;
+
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+.cs-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* ---------- Animations ---------- */
+
+@keyframes csFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes csPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.92) translateY(12px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.015) translateY(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

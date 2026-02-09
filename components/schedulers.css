@@ -1,0 +1,20 @@
+.cursor-cal-wrapper {
+  width: 100%;
+  min-width: 100%;
+  height: 660px;
+
+  clip-path: inset(0 0 60px 0);
+  margin-bottom: -100px;
+  margin-top: -20px;
+
+  overflow: visible;
+}
+
+/* Tablet + Mobile */
+@media (max-width: 1024px) {
+  .cursor-cal-wrapper {
+    height: auto;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+}
