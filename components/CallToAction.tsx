@@ -9,19 +9,25 @@ export const CallToAction: React.FC = () => {
       <div className="cta-gradient-bg"></div>
 
       <div className="cta-container">
-        <h2 className="cta-title">Get started with Niche Geeky today</h2>
+        <h2 className="cta-title">
+          Crafting clean, scalable web applications.
+        </h2>
         <p className="cta-subtitle">
-          Join 13k+ teams who have streamlined the way they manage
+          Join teams who build modern web products and fast-growing startups.
           <br className="desktop-br" />
-          projects and collaborate remotely.
+          that grow without sacrificing code quality.
         </p>
 
-        <button className="cta-main-button">
+        <a
+          href="/contact"
+          className="cta-main-button"
+          style={{ textDecoration: "none" }}
+        >
           <span className="cta-button-label">Get Started- It's Free</span>
           <div className="cta-button-icon-wrapper">
             <ArrowUpRight size={18} />
           </div>
-        </button>
+        </a>
 
         {/* 3D Globe Visual Integration */}
         <div className="cta-visual-decoration">
