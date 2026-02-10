@@ -150,19 +150,28 @@ export const Navbar: React.FC = () => {
 
         {/* CTA Section */}
         <div className="nav-actions">
-          <button className="whatsapp-btn">
+          <a
+            href="https://wa.me/+918759475316"
+            target="_blank"
+            className="whatsapp-btn"
+            style={{ textDecoration: "none" }}
+          >
             <img
               src="/images/whatsapp.svg"
               alt="WhatsApp"
               width={20}
               height={20}
             />
-          </button>
+          </a>
 
-          <button className="btn-pill">
+          <a
+            href="/contact"
+            className="btn-pill"
+            style={{ textDecoration: "none" }}
+          >
             <span>Schedule a Call</span>
             <ArrowUpRight size={16} />
-          </button>
+          </a>
         </div>
       </nav>
     </div>
