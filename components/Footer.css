@@ -49,7 +49,7 @@
   pointer-events: none;
 }
 
-.footer-container {
+.site-footer-container {
   max-width: 85rem;
   margin: 0 auto;
   position: relative;
@@ -133,11 +133,8 @@
 .footer-subscribe-box {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 9999px;
   padding: 0.4rem;
-  padding-left: 1.75rem;
   width: 100%;
   max-width: 480px;
   position: relative;
@@ -202,11 +199,13 @@
   border-radius: 50%;
   width: 42px;
   height: 42px;
+  transform: rotate(-45deg);
   transition: transform 0.3s ease;
+  will-change: transform;
 }
 
 .footer-demo-btn:hover .demo-btn-arrow {
-  transform: rotate(45deg);
+  transform: rotate(0deg);
   background: rgba(255, 255, 255, 0.25);
 }
 
