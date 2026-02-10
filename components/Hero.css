@@ -312,6 +312,9 @@
   transform: translateY(-2px);
 }
 
+.btn-quote-link {
+  text-decoration: none;
+}
 .btn-quote {
   display: flex;
   align-items: center;
@@ -323,6 +326,7 @@
   color: white;
   font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
   box-shadow: 0 10px 40px rgba(109, 40, 217, 0.3);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }

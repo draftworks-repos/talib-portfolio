@@ -94,15 +94,14 @@ export const Hero: React.FC = () => {
               className="anim-spring-in"
               style={{ animationDelay: "1.35s" } as React.CSSProperties}
             >
-              <button
-                className="btn-quote"
-                onClick={() => window.open("#contact")}
-              >
-                <span>Book a Call</span>
-                <div className="hero-btn-icon-wrapper">
-                  <ArrowUpRight size={15} />
-                </div>
-              </button>
+              <a href="/contact" className="btn-quote-link">
+                <button className="btn-quote">
+                  <span>Book a Call</span>
+                  <div className="hero-btn-icon-wrapper">
+                    <ArrowUpRight size={15} />
+                  </div>
+                </button>
+              </a>
             </div>
           </div>
         </div>
