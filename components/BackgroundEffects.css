@@ -45,7 +45,7 @@
   left: -20%;
   right: -20%;
   height: 80%;
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -61,7 +61,7 @@
   z-index: 1;
 }
 
-.shape-capsule {
+/* .shape-capsule {
   top: 20%;
   left: 5%;
   width: 60px;
@@ -71,8 +71,90 @@
   transform: rotate(-30deg);
   box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
   animation: float 6s ease-in-out infinite;
+} */
+.shape-code-brackets {
+  top: 20%;
+  left: 5%;
+  width: 70px;
+  height: 50px;
+  position: absolute;
+  transform: rotate(-20deg);
+  animation: float 6s ease-in-out infinite;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
 }
 
+/* Left bracket < (two lines forming V shape pointing left) */
+.bracket-left {
+  position: relative;
+  width: 18px;
+  height: 22px;
+}
+
+.bracket-left::before,
+.bracket-left::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 3px;
+  background: #8b5cf6;
+  left: 0;
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.6);
+}
+
+.bracket-left::before {
+  top: 0;
+  transform-origin: left center;
+  transform: rotate(35deg);
+}
+
+.bracket-left::after {
+  bottom: 0;
+  transform-origin: left center;
+  transform: rotate(-35deg);
+}
+
+/* Slash / in middle */
+.slash {
+  width: 3px;
+  height: 38px;
+  background: linear-gradient(180deg, #8b5cf6, #ec4899);
+  transform: rotate(20deg);
+  box-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+/* Right bracket > (two lines forming V shape pointing right) */
+.bracket-right {
+  position: relative;
+  width: 18px;
+  height: 22px;
+}
+
+.bracket-right::before,
+.bracket-right::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 3px;
+  background: #ec4899;
+  right: 0;
+  box-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
+}
+
+.bracket-right::before {
+  top: 0;
+  transform-origin: right center;
+  transform: rotate(-35deg);
+}
+
+.bracket-right::after {
+  bottom: 0;
+  transform-origin: right center;
+  transform: rotate(35deg);
+}
+/* 
 .shape-spiral {
   bottom: 25%;
   right: 5%;
@@ -90,14 +172,73 @@
   border-radius: 50%;
   opacity: 0.6;
   animation: rotate 10s linear infinite;
+} */
+
+.shape-video-timeline {
+  bottom: 25%;
+  right: 5%;
+  width: 90px;
+  height: 40px;
+  position: absolute;
+  transform: rotate(12deg);
+  animation: float 7s ease-in-out infinite;
+}
+
+/* Timeline track */
+.shape-video-timeline::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+/* Playhead (vertical indicator) */
+.shape-video-timeline .playhead {
+  position: absolute;
+  left: 35%;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+  z-index: 2;
+}
+
+/* Playhead triangle at top */
+.shape-video-timeline .playhead::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid #fff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
 }
 
 @keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-30deg); }
-  50% { transform: translateY(-20px) rotate(-25deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(-30deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-25deg);
+  }
 }
