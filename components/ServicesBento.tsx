@@ -400,12 +400,16 @@ export const ServicesBento: React.FC = () => {
             className="anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.1s" }}
           >
-            <button className="cta-main-button">
+            <a
+              href="/contact"
+              className="cta-main-button"
+              style={{ textDecoration: "none" }}
+            >
               <span className="cta-button-label">Get Started- It's Free</span>
               <div className="cta-button-icon-wrapper">
                 <ArrowUpRight size={18} />
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </div>
