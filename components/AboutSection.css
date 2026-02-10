@@ -30,7 +30,7 @@
   right: -5%;
 }
 
-.about-container {
+.about-page-container {
   max-width: 80rem;
   margin: 0 auto;
   display: grid;
@@ -51,22 +51,18 @@
 .collage-grid {
   position: relative;
   width: 100%;
-  max-width: 550px;
   height: 550px;
 }
 
 .person-frame-wrapper {
   position: absolute;
-  width: 300px;
+  width: 400px;
   height: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: rgba(255, 255, 255, 0.03);
   padding: 0.7rem;
   border-radius: 4rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
   z-index: 10;
 }
 
@@ -202,24 +198,25 @@
 }
 
 .element-1 {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   border: 1px dashed rgba(255, 255, 255, 0.2);
-  top: 5%;
-  right: 15%;
+  top: -5%;
+  right: 10%;
   animation: rotate 20s linear infinite;
 }
 
 .element-2 {
-  width: 150px;
-  height: 150px;
-  background: radial-gradient(
-    circle,
-    rgba(139, 92, 246, 0.1) 0%,
-    transparent 70%
-  );
-  bottom: 10%;
-  left: -5%;
+  position: absolute;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  opacity: 1;
+  background: radial-gradient(circle at center, #090909 50%, transparent 70%);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* filter: blur(50px); */
 }
 
 @keyframes rotate {
@@ -370,7 +367,7 @@
 .about-actions {
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 1rem;
 }
 
 .about-primary-btn {
@@ -395,7 +392,7 @@
 
 .trusted-by-mini {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -405,11 +402,17 @@
 }
 
 .mini-avatars img {
-  width: 28px;
-  height: 28px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  border: 2px solid #0b0d13;
+  border: 2px solid #fff;
   margin-left: -8px;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+}
+.mini-avatars img:hover {
+  border-color: #d946ef;
+  transform: translateY(-5px);
 }
 
 .mini-avatars img:first-child {
@@ -417,8 +420,8 @@
 }
 
 .avatar-plus {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #1e1e1e;
   border: 2px solid #0b0d13;
@@ -429,6 +432,8 @@
   font-weight: 800;
   margin-left: -8px;
   color: #8b5cf6;
+  border: 2px solid #8b5cf6;
+  z-index: 2;
 }
 
 .trusted-by-mini span {
@@ -442,7 +447,7 @@
   .about-section {
     padding: 8rem 2rem;
   }
-  .about-container {
+  .about-page-container {
     grid-template-columns: 1fr;
     gap: 8rem;
     text-align: center;

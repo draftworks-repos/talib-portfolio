@@ -37,7 +37,7 @@ export const AboutSection: React.FC = () => {
       <div className="about-bg-glow glow-1"></div>
       <div className="about-bg-glow glow-2"></div>
 
-      <div className="about-container">
+      <div className="about-page-container">
         {/* Left Side: Enhanced Visual Collage */}
         <div className="about-visuals">
           <div className="collage-grid">
@@ -83,25 +83,25 @@ export const AboutSection: React.FC = () => {
                   {/* Area */}
                   <path
                     d="
-        M 0 78
-        C 12.5 66, 25 42, 37.5 52
-        S 62.5 72, 75 48
-        S 87.5 34, 100 40
-        L 100 100
-        L 0 100
-        Z
-      "
+                    M 0 78
+                    C 12.5 66, 25 42, 37.5 52
+                    S 62.5 72, 75 48
+                    S 87.5 34, 100 40
+                    L 100 100
+                    L 0 100
+                    Z
+                  "
                     fill="rgba(255,190,77,0.15)"
                   />
 
                   {/* Line */}
                   <path
                     d="
-        M 0 78
-        C 12.5 66, 25 42, 37.5 52
-        S 62.5 72, 75 48
-        S 87.5 34, 100 40
-      "
+                        M 0 78
+                        C 12.5 66, 25 42, 37.5 52
+                        S 62.5 72, 75 48
+                        S 87.5 34, 100 40
+                      "
                     fill="none"
                     stroke="#ffbe4d"
                     strokeWidth="2"
@@ -130,7 +130,7 @@ export const AboutSection: React.FC = () => {
               style={{ transitionDelay: "1s" }}
             ></div>
             <div
-              className="decorative-element element-2 anim-on-scroll reveal-fade"
+              className="decorative-element element-2 "
               style={{ transitionDelay: "1.2s" }}
             ></div>
           </div>
@@ -189,14 +189,14 @@ export const AboutSection: React.FC = () => {
             style={{ transitionDelay: "0.6s" }}
           >
             <button className="about-primary-btn">
-              <span>Our Full Story</span>
+              <span>Read more</span>
               <Users size={18} />
             </button>
             <div className="trusted-by-mini">
               <div className="mini-avatars">
-                <img src="https://i.pravatar.cc/100?img=12" alt="c1" />
-                <img src="https://i.pravatar.cc/100?img=32" alt="c2" />
-                <img src="https://i.pravatar.cc/100?img=44" alt="c3" />
+                <img src="images/1.png" alt="c1" />
+                <img src="images/2.png" alt="c2" />
+                <img src="images/3.png" alt="c3" />
                 <div className="avatar-plus">+50</div>
               </div>
               <span>Trusted by Industry Leaders</span>
