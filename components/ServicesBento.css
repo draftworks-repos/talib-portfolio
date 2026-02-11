@@ -477,17 +477,18 @@
   flex: 1;
   background: linear-gradient(to top, #8b5cf6, #3b82f6);
   border-radius: 4px 4px 0 0;
-  animation: growBar 2s ease-out infinite alternate;
+  animation: growBar 4s ease-in-out infinite alternate;
+  will-change: height;
 }
 
 .chart-bar:nth-child(2) {
-  animation-delay: 0.2s;
+  animation-delay: 1.6s;
 }
 .chart-bar:nth-child(3) {
-  animation-delay: 0.4s;
+  animation-delay: 1s;
 }
 .chart-bar:nth-child(4) {
-  animation-delay: 0.6s;
+  animation-delay: 0.2s;
 }
 .chart-bar:nth-child(5) {
   animation-delay: 0.8s;
@@ -495,11 +496,13 @@
 
 @keyframes growBar {
   from {
-    transform: scaleY(0.8);
+    /* transform: scaleY(0.8); */
+    height: 10%;
     opacity: 0.6;
   }
   to {
-    transform: scaleY(1);
+    /* transform: scaleY(1); */
+    height: 75%;
     opacity: 1;
   }
 }
@@ -1066,6 +1069,71 @@
   background: rgba(255, 255, 255, 0.25);
 }
 
+.clip-block.p3.wave {
+  width: 100%;
+  background-color: #27c93f32;
+  margin-left: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.clip-block.p3.wave::before {
+  content: "";
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+  height: 55%;
+
+  background: #ffffff50;
+
+  clip-path: polygon(
+    0% 5%,
+    5% 30%,
+    10% 25%,
+    15% 23%,
+    20% 25%,
+    25% 0%,
+    30% 35%,
+    35% 40%,
+    40% 103%,
+    45% 45%,
+    50% 43%,
+    55% 40%,
+    60% 35%,
+    65% 30%,
+    70% 25%,
+    75% 3%,
+    80% 25%,
+    85% 30%,
+    90% 5%,
+    95% 100%,
+    100% 45%,
+    100% 100%,
+    0% 100%
+  );
+}
+
+@media (max-width: 1536px) {
+  .section-title-main {
+    font-size: 2.8rem;
+  }
+  .section-title-sub {
+    font-size: 0.9rem;
+    max-width: 40rem;
+  }
+  .cta-main-button {
+    padding: 0.3rem 0.3rem 0.3rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .cta-button-label {
+    font-size: 1rem;
+  }
+  .cta-button-icon-wrapper {
+    width: 42px;
+    height: 42px;
+  }
+}
 @media (max-width: 1024px) {
   .services-section {
     padding: 6rem 1.5rem;
@@ -1086,8 +1154,14 @@
   .card-heading {
     font-size: 1.35rem;
   }
-  .card-illustration {
-    transform: scale(0.9);
+  .ui-mockup-container {
+    width: 100%;
+  }
+  .code-window {
+    width: 100%;
+  }
+  .services-bento-grid > *:last-child {
+    grid-column: 1 / -1;
   }
 }
 
@@ -1124,7 +1198,6 @@
   .card-illustration {
     margin-top: 1.5rem;
     height: 180px;
-    transform: scale(0.85);
     order: 2;
   }
   .card-content {
@@ -1136,5 +1209,26 @@
   .cart-window,
   .grid-ui-mockup {
     width: 100%;
+  }
+  .cart-window,
+  .marketing-ui-mockup {
+    margin-bottom: 0;
+  }
+
+  /* btn */
+  .cta-main-button {
+    padding: 0.5rem;
+    padding-left: 1.25rem;
+    margin-bottom: 0rem;
+  }
+  .cta-button-label {
+    font-size: 0.9rem;
+  }
+  .cta-button-icon-wrapper {
+    width: 36px;
+    height: 36px;
+  }
+  .section-title-sub {
+    margin-top: 0.75rem;
   }
 }

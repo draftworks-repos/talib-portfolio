@@ -365,8 +365,7 @@ export const ServicesBento: React.FC = () => {
                     <div className="clip-block p2"></div>
                   </div>
                   <div className="track-row">
-                    <div className="clip-block p2"></div>
-                    <div className="clip-block p3"></div>
+                    <div className="clip-block p3 wave"></div>
                   </div>
                 </div>
                 <div className="playhead anim-timeline-scan"></div>
