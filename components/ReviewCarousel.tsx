@@ -5,12 +5,12 @@ import "./ReviewCarousel.css";
 const reviews = [
   {
     id: 1,
-    name: "Alex Morgan",
-    role: "Product Manager",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "Arun",
+    role: "Designleeway",
+    image: "images/2.png",
     rating: 5,
     review:
-      "Focused on continuous improvement, innovation, and long-term growth.",
+      "Working with WebMaak and Team Talib was an excellent experience. The communication throughout our fintech website development in Webflow was smooth and efficient. Their quick response to feedback and commitment to maintaining design integrity truly stood out. The team’s product animation skills and turnaround time were impressive. I’d love to collaborate with them on many more projects in the future.",
   },
   {
     id: 2,
