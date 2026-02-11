@@ -8,6 +8,16 @@ import {
   BarChart3,
   Play,
   Layers,
+  Check,
+  Code2,
+  Smartphone,
+  ShoppingCart,
+  TrendingUp,
+  CreditCard,
+  SearchCheck,
+  MonitorSmartphone,
+  Gauge,
+  FolderTree,
 } from "lucide-react";
 import "./ServicesBento.css";
 
@@ -67,14 +77,15 @@ export const ServicesBento: React.FC = () => {
             className="section-title-main anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.1s" }}
           >
-            Creative Solutions Hub
+            Core Expertise
           </h2>
           <p
             className="section-title-sub anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.2s" }}
           >
-            Talib Ali is a WordPress Designer and Developer with 7+ years of
-            experience, specializing in Elementor and WooCommerce.
+            I specialize in building scalable digital products and
+            high-performing web solutions. Designed for clarity, speed, and
+            measurable growth.
           </p>
         </div>
 
@@ -87,7 +98,7 @@ export const ServicesBento: React.FC = () => {
           >
             <div className="card-content">
               <h3 className="card-heading">Wordpress Design</h3>
-              <p className="card-desc">
+              <p className="service-card-desc">
                 I build pixel-perfect WordPress websites. Choose from 100+
                 templates or get a custom design tailored to your needs.
               </p>
@@ -138,11 +149,37 @@ export const ServicesBento: React.FC = () => {
             style={{ animationDelay: "0.15s" }}
           >
             <div className="card-content">
-              <h3 className="card-heading">Website Design & Development</h3>
-              <p className="card-desc">
-                Your website’s needs may vary in complexity and functionality,
-                and I’m here to design and develop the right solution.
+              <h3 className="card-heading">
+                Scalable Web & Mobile Applications
+              </h3>
+              <p className="service-card-desc">
+                Robust front-end and back-end builds for websites, PWAs, and
+                custom web/mobile apps performance-focused, secure, and built
+                for future growth.
               </p>
+              <div
+                className="service-card-desc"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  marginTop: "15px",
+                  marginLeft: "10px",
+                }}
+              >
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Code2 size={14} style={{ color: "#e3d7ffff" }} /> Custom web
+                  apps & API integrations for scale
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Smartphone size={14} style={{ color: "#e3d7ffff" }} /> Mobile
+                  apps & progressive web apps (PWA)
+                </span>
+              </div>
             </div>
             <div className="card-illustration code-preview">
               <div className="code-window glass">
@@ -204,6 +241,45 @@ export const ServicesBento: React.FC = () => {
             className="bento-card bento-small anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0s" }}
           >
+            <div className="card-content">
+              <h3 className="card-heading">
+                Revenue-Driven E-commerce & Platforms
+              </h3>
+              <p className="service-card-desc">
+                E-commerce and platform UX that reduces friction, improves
+                discovery, and increases transactions — from product pages to
+                checkout optimization.
+              </p>
+              <div
+                className="service-card-desc"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  marginTop: "15px",
+                  marginLeft: "10px",
+                }}
+              >
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <ShoppingCart size={14} style={{ color: "#e3d7ffff" }} />{" "}
+                  Shopify / WooCommerce implementation & customization
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <TrendingUp size={14} style={{ color: "#e3d7ffff" }} />{" "}
+                  Product discovery & conversion optimization
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <CreditCard size={14} style={{ color: "#e3d7ffff" }} />{" "}
+                  Checkout UX & funnel integration
+                </span>
+              </div>
+            </div>
             <div className="card-illustration ecommerce-preview">
               <div className="cart-window glass">
                 <div className="cart-header">
@@ -239,19 +315,79 @@ export const ServicesBento: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="card-content">
-              <h3 className="card-heading">WooCommerce & Shopify</h3>
-              <p className="card-desc">
-                With years of experience, we help businesses sell online
-                seamlessly.
-              </p>
-            </div>
           </div>
 
           <div
             className="bento-card bento-small centered-content anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.1s" }}
           >
+            <div className="card-content">
+              <h3 className="card-heading">
+                SEO-Optimized & Performance-Ready Websites
+              </h3>
+              <p className="service-card-desc">
+                Websites built with clean structure, fast loading speed, and
+                search engine best practices from the ground up.
+              </p>
+              <div
+                className="service-card-desc"
+                style={{
+                  display: "flex",
+                  gap: "20px",
+                  marginTop: "15px",
+                  marginLeft: "10px",
+                }}
+              >
+                <div>
+                  <span
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <SearchCheck size={14} style={{ color: "#e3d7ffff" }} />{" "}
+                    Technical SEO foundation
+                  </span>
+                  <span
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <MonitorSmartphone
+                      size={14}
+                      style={{ color: "#e3d7ffff" }}
+                    />{" "}
+                    Mobile responsiveness
+                  </span>
+                </div>
+
+                <div>
+                  <span
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <Gauge size={14} style={{ color: "#e3d7ffff" }} /> Page
+                    speed optimization
+                  </span>
+                  <span
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
+                  >
+                    <FolderTree size={14} style={{ color: "#e3d7ffff" }} />{" "}
+                    Structured content hierarchy
+                  </span>
+                </div>
+              </div>
+            </div>
             <div className="card-illustration seo-preview">
               <div className="seo-nodes">
                 <div className="node-center-wrapper">
@@ -295,16 +431,9 @@ export const ServicesBento: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="card-content">
-              <h3 className="card-heading">SEO- Ready Website</h3>
-              <p className="card-desc">
-                Your website is built to support professional SEO tools and
-                AI-driven optimization.
-              </p>
-            </div>
           </div>
 
-          <div
+          {/* <div
             className="bento-card bento-small anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.2s" }}
           >
@@ -322,75 +451,12 @@ export const ServicesBento: React.FC = () => {
             </div>
             <div className="card-content">
               <h3 className="card-heading">Digital Marketing</h3>
-              <p className="card-desc">
+              <p className="service-card-desc">
                 Strategic campaigns designed to increase visibility and drive
                 meaningful conversions.
               </p>
             </div>
-          </div>
-
-          {/* Bottom Row: Two Side-by-Side Large Cards */}
-          <div
-            className="bento-card bento-large anim-on-scroll anim-bento-entrance"
-            style={{ animationDelay: "0s" }}
-          >
-            <div className="card-content">
-              <h3 className="card-heading">Video Editing</h3>
-              <p className="card-desc">
-                High-quality video production and editing that captures your
-                brand's essence and engages your audience with cinematic
-                storytelling.
-              </p>
-            </div>
-            <div className="card-illustration video-preview">
-              <div className="video-timeline-mockup glass">
-                <div className="timeline-top">
-                  <div className="play-button-ring anim-pulse-ring">
-                    <Play size={24} fill="white" className="play-icon-offset" />
-                  </div>
-                </div>
-                <div className="timeline-tracks">
-                  <div className="track-row">
-                    <div className="clip-block p1"></div>
-                    <div className="clip-block p2"></div>
-                    <div className="clip-block p2"></div>
-                  </div>
-                  <div className="track-row">
-                    <div className="clip-block p3"></div>
-                    <div className="clip-block p3"></div>
-                  </div>
-                  <div className="track-row">
-                    <div className="clip-block p2"></div>
-                    <div className="clip-block p1"></div>
-                    <div className="clip-block p2"></div>
-                  </div>
-                  <div className="track-row">
-                    <div className="clip-block p3 wave"></div>
-                  </div>
-                </div>
-                <div className="playhead anim-timeline-scan"></div>
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="bento-card bento-large anim-on-scroll anim-bento-entrance"
-            style={{ animationDelay: "0.15s" }}
-          >
-            <div className="card-content">
-              <h3 className="card-heading">3D Development</h3>
-              <p className="card-desc">
-                High-quality architectural and product 3D experiences built
-                using Unity and Blender, with optimized deployment for the web
-                using Three.js and WebGL.
-              </p>
-            </div>
-            <div className="card-illustration three-preview">
-              <div className="three-object-mockup anim-sphere-float">
-                <img src="model/model.webp" alt="model" />
-              </div>
-            </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Bottom Button */}
