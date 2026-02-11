@@ -362,20 +362,33 @@
   animation: bentoEntrance 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
 }
 
+@media (max-width: 1536px) {
+  .overview-section {
+    padding: 0rem 1rem 5rem;
+  }
+  .overview-title {
+    font-size: 2.8rem;
+  }
+  .overview-cta {
+    margin-top: 4rem;
+  }
+  .cta-main-button {
+    padding: 0.3rem 0.3rem 0.3rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .cta-button-label {
+    font-size: 1rem;
+  }
+  .cta-button-icon-wrapper {
+    width: 42px;
+    height: 42px;
+  }
+}
+
 /* Tablet Adjustments */
 @media (max-width: 1024px) {
   .timeline-item {
     grid-template-columns: 1fr 80px 1.5fr;
-  }
-}
-
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-  .overview-section {
-    padding: 6rem 1.25rem;
-  }
-  .overview-header {
-    margin-bottom: 4rem;
   }
 
   .timeline {
@@ -383,7 +396,7 @@
   }
 
   .timeline-track-container {
-    left: 18px;
+    left: 50px;
     transform: none;
     top: 18px;
     bottom: 18px;
@@ -391,13 +404,13 @@
 
   .timeline-item {
     grid-template-columns: 1fr;
-    padding-left: 3.5rem;
+    padding-left: 6rem;
     gap: 1.5rem;
   }
 
   .timeline-center {
     position: absolute;
-    left: 0;
+    left: 34px;
     top: 0;
     width: 36px;
   }
@@ -414,11 +427,79 @@
   .timeline-right {
     order: 1;
   }
+  .timeline-main-line-bg {
+    height: 92%;
+  }
+  .timeline-left {
+    display: none;
+  }
+}
 
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .overview-section {
+    padding: 4rem 1.25rem 6rem;
+  }
+  .overview-header {
+    margin-bottom: 4rem;
+  }
+  .timeline {
+    gap: 4rem;
+  }
+  .overview-title {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+  .timeline-track-container {
+    left: 18px;
+    transform: none;
+    top: 18px;
+    bottom: 18px;
+  }
+  .timeline-item {
+    grid-template-columns: 1fr;
+    padding-left: 3.5rem;
+    gap: 1.5rem;
+  }
+  .timeline-center {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 36px;
+  }
+  .timeline-marker {
+    width: 36px;
+    height: 36px;
+  }
+  .timeline-left {
+    justify-content: flex-start;
+    order: 2;
+  }
+  .timeline-right {
+    order: 1;
+  }
   .timeline-left {
     transform: translateX(20px);
   }
   .timeline-right {
     transform: translateX(20px);
+  }
+  .role-title {
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  /* btn */
+  .cta-main-button {
+    padding: 0.5rem;
+    padding-left: 1.25rem;
+    margin-bottom: 0rem;
+  }
+  .cta-button-label {
+    font-size: 0.9rem;
+  }
+  .cta-button-icon-wrapper {
+    width: 36px;
+    height: 36px;
   }
 }
