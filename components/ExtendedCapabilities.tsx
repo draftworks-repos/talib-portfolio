@@ -1,13 +1,16 @@
 import React, { useEffect, useRef } from "react";
 import {
   ArrowUpRight,
-  Star,
   Zap,
-  MousePointer2,
-  Plus,
-  BarChart3,
   Play,
-  Layers,
+  Video,
+  Scissors,
+  Sparkles,
+  Palette,
+  Box,
+  Clapperboard,
+  Orbit,
+  DraftingCompass,
 } from "lucide-react";
 import "./ServicesBento.css";
 
@@ -92,6 +95,41 @@ export const ExtendedCapabilities: React.FC = () => {
                 High-quality video production designed to enhance brand
                 communication, product presentation, and digital campaigns.
               </p>
+              <div
+                className="service-card-desc"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  marginTop: "15px",
+                  marginLeft: "10px",
+                }}
+              >
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Video size={14} style={{ color: "#e3d7ffff" }} />
+                  Promotional & launch videos
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Scissors size={14} style={{ color: "#e3d7ffff" }} />
+                  Social media & YouTube editing
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Sparkles size={14} style={{ color: "#e3d7ffff" }} />
+                  Motion graphics & animated explainers
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Palette size={14} style={{ color: "#e3d7ffff" }} />
+                  Branded visual storytelling
+                </span>
+              </div>
             </div>
             <div className="card-illustration video-preview">
               <div className="video-timeline-mockup glass">
@@ -129,12 +167,46 @@ export const ExtendedCapabilities: React.FC = () => {
             style={{ animationDelay: "0.15s" }}
           >
             <div className="card-content">
-              <h3 className="card-heading">3D Development</h3>
+              <h3 className="card-heading"> 3D Modelling & Animation</h3>
               <p className="service-card-desc">
-                High-quality architectural and product 3D experiences built
-                using Unity and Blender, with optimized deployment for the web
-                using Three.js and WebGL.
+                Advanced 3D visuals and animations to create immersive product
+                showcases and high-impact digital experiences.
               </p>
+              <div
+                className="service-card-desc"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  marginTop: "15px",
+                  marginLeft: "10px",
+                }}
+              >
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Box size={14} style={{ color: "#e3d7ffff" }} />
+                  3D product visualization
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Clapperboard size={14} style={{ color: "#e3d7ffff" }} />
+                  Animated promotional visuals
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <Orbit size={14} style={{ color: "#e3d7ffff" }} />
+                  Interactive 3D elements
+                </span>
+                <span
+                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
+                >
+                  <DraftingCompass size={14} style={{ color: "#e3d7ffff" }} />
+                  Concept modeling & rendering
+                </span>
+              </div>
             </div>
             <div className="card-illustration three-preview">
               <div className="three-object-mockup anim-sphere-float">
