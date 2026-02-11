@@ -136,6 +136,12 @@
   object-fit: contain;
 }
 
+@media (max-width: 1536px) {
+  .clients-section {
+    padding: 2rem 0;
+  }
+}
+
 /* Media Queries */
 @media (max-width: 1024px) {
   .marquee-content-row {
@@ -148,12 +154,15 @@
 
 @media (max-width: 768px) {
   .clients-section {
-    padding: 3rem 0;
+    padding: 1rem 0;
   }
   .marquee-content-row {
     gap: 3rem;
   }
   .client-text-logo {
     font-size: 1rem;
+  }
+  .client-logo-image {
+    width: 72px;
   }
 }
