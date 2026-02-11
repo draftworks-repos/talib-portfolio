@@ -1,29 +1,19 @@
 .carousel-section {
   width: 100%;
-  max-width: 1200px;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 80px 20px;
+  padding: 8rem 1rem;
   background: transparent;
+  position: relative;
+  z-index: 10;
 }
 
-.section-title {
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  margin-bottom: 60px;
-}
-
-.section-title h2 {
-  font-size: 42px;
-  font-weight: 600;
-  color: #ffffff;
-  margin: 0 0 12px 0;
-  letter-spacing: -0.5px;
-}
-
-.section-title p {
-  font-size: 16px;
-  color: #94a3b8;
-  margin: 0;
-  font-weight: 400;
+  margin-bottom: 5rem;
 }
 
 .carousel-container {
@@ -37,9 +27,10 @@
 
 .carousel-track {
   position: relative;
-  height: 320px;
+  height: 380px;
   perspective: 2000px;
   flex: 1;
+  transform-style: preserve-3d;
 }
 
 /* Card Base */
@@ -50,19 +41,30 @@
   width: 100%;
   max-width: 600px;
   transform: translateX(-50%);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .card-inner {
-  background: rgba(30, 41, 59, 0.7);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 16px;
-  padding: 36px;
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  background: rgba(18, 20, 27, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 2.5rem;
+  padding: 3rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.quote-icon {
+  position: absolute;
+  top: 2rem;
+  right: 2.5rem;
+  color: rgba(227, 215, 255, 0.1);
+  pointer-events: none;
 }
 
 /* Active Card */
@@ -73,7 +75,8 @@
 }
 
 .review-card.active .card-inner {
-  background: rgba(30, 41, 59, 1);
+  background: #12141b; /* Fully opaque to prevent bleed-through */
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 /* First Stack */
@@ -102,12 +105,14 @@
 
 /* Card Content */
 .review-text {
-  font-size: 18px;
+  font-size: 1.125rem;
   line-height: 1.7;
-  color: #e2e8f0;
-  margin: 0 0 32px 0;
-  font-weight: 400;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0 0 2.5rem 0;
+  font-weight: 300;
   min-height: 90px;
+  position: relative;
+  z-index: 1;
 }
 
 .review-footer {
@@ -115,17 +120,19 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 .reviewer {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 1rem;
 }
 
 .reviewer img {
-  width: 48px;
-  height: 48px;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid rgba(255, 255, 255, 0.1);
@@ -133,91 +140,89 @@
 
 .reviewer-details h4 {
   margin: 0 0 4px 0;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #ffffff;
 }
 
 .reviewer-details span {
-  font-size: 14px;
-  color: #94a3b8;
-  font-weight: 400;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 300;
 }
 
 .rating {
   display: flex;
-  gap: 3px;
+  gap: 4px;
 }
 
 .rating svg.filled {
-  color: #fbbf24;
+  color: #e3d7ffff;
 }
 
 .rating svg.empty {
-  color: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.1);
 }
 
 /* Navigation */
 .nav-btn {
-  width: 44px;
-  height: 44px;
+  width: 3.5rem;
+  height: 3.5rem;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   color: #ffffff;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
 }
 
 .nav-btn:hover {
-  background: rgba(30, 41, 59, 0.8);
+  background: rgba(255, 255, 255, 0.08);
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .nav-btn:active {
   transform: translateY(0);
 }
 
-.nav-left,
-.nav-right {
-  align-self: center;
-}
-
 .pagination {
   position: absolute;
-  bottom: -50px;
+  bottom: -4rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   border: none;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0;
 }
 
 .dot.active {
-  width: 32px;
-  border-radius: 4px;
-  background: #ffffff;
+  width: 2rem;
+  border-radius: 100px;
+  background: #fff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
 }
 
 .dot:hover:not(.active) {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 /* Responsive */
@@ -235,40 +240,36 @@
   }
 
   .nav-left {
-    left: -60px;
+    left: -4rem;
   }
 
   .nav-right {
-    right: -60px;
+    right: -4rem;
   }
 
   .pagination {
     position: static;
     transform: none;
-    margin-top: 40px;
+    margin-top: 3rem;
   }
 }
 
 @media (max-width: 768px) {
   .carousel-section {
-    padding: 60px 20px;
-  }
-
-  .section-title h2 {
-    font-size: 32px;
+    padding: 6rem 1.5rem;
   }
 
   .carousel-track {
-    height: 380px;
+    height: 400px;
   }
 
   .card-inner {
-    padding: 28px;
+    padding: 2.5rem;
+    border-radius: 2rem;
   }
 
   .review-text {
-    font-size: 16px;
-    min-height: 100px;
+    font-size: 1rem;
   }
 
   .review-footer {
@@ -278,37 +279,18 @@
   }
 
   .nav-btn {
-    width: 40px;
-    height: 40px;
-  }
-
-  .nav-left {
-    left: 10px;
-  }
-
-  .nav-right {
-    right: 10px;
+    width: 3rem;
+    height: 3rem;
+    display: none; /* Hide nav arrows on mobile */
   }
 }
 
 @media (max-width: 480px) {
-  .section-title h2 {
-    font-size: 28px;
-  }
-
   .carousel-track {
-    height: 420px;
+    height: 450px;
   }
 
   .card-inner {
-    padding: 24px;
-  }
-
-  .nav-left {
-    left: 0;
-  }
-
-  .nav-right {
-    right: 0;
+    padding: 2rem;
   }
 }

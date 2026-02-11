@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { ChevronLeft, ChevronRight, Star, Quote, Zap } from "lucide-react";
 import "./ReviewCarousel.css";
 
 const reviews = [
@@ -40,6 +41,29 @@ const reviews = [
 
 export default function ReviewCarousel() {
   const [index, setIndex] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.15,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("item-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    const animatedElements =
+      sectionRef.current?.querySelectorAll(".anim-on-scroll");
+    animatedElements?.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   const prevCard = () => {
     setIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
@@ -59,39 +83,48 @@ export default function ReviewCarousel() {
   };
 
   return (
-    <div className="carousel-section">
-      <div className="section-title">
-        <h2>Client Reviews</h2>
-        <p>What our clients say about working with us</p>
+    <div className="carousel-section" ref={sectionRef}>
+      <div className="section-header">
+        <div
+          className="services-badge anim-on-scroll anim-bento-entrance"
+          style={{ animationDelay: "0s" }}
+        >
+          <Zap size={10} style={{ fill: "white" }} />
+          <span>Testimonials</span>
+        </div>
+        <h2
+          className="section-title-main anim-on-scroll anim-bento-entrance"
+          style={{ animationDelay: "0.1s" }}
+        >
+          What Clients Say
+        </h2>
+        <p
+          className="section-title-sub anim-on-scroll anim-bento-entrance"
+          style={{ animationDelay: "0.2s" }}
+        >
+          I've had the pleasure of working with amazing people around the globe.
+          Here's what they think about our collaboration.
+        </p>
       </div>
 
-      <div className="carousel-container">
+      <div
+        className="carousel-container anim-on-scroll anim-bento-entrance"
+        style={{ animationDelay: "0.3s" }}
+      >
         <button
           onClick={prevCard}
           className="nav-btn nav-left"
           aria-label="Previous"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M15 19l-7-7 7-7"
-            />
-          </svg>
+          <ChevronLeft size={20} />
         </button>
 
         <div className="carousel-track">
           {reviews.map((review, i) => (
             <div key={review.id} className={`review-card ${getCardClass(i)}`}>
               <div className="card-inner">
-                <p className="review-text">"{review.review}"</p>
+                <Quote className="quote-icon" size={40} />
+                <p className="review-text">{review.review}</p>
 
                 <div className="review-footer">
                   <div className="reviewer">
@@ -104,16 +137,12 @@ export default function ReviewCarousel() {
 
                   <div className="rating">
                     {[...Array(5)].map((_, idx) => (
-                      <svg
+                      <Star
                         key={idx}
                         className={idx < review.rating ? "filled" : "empty"}
-                        width="16"
-                        height="16"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                      >
-                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                      </svg>
+                        size={16}
+                        fill={idx < review.rating ? "#e3d7ffff" : "transparent"}
+                      />
                     ))}
                   </div>
                 </div>
@@ -127,20 +156,7 @@ export default function ReviewCarousel() {
           className="nav-btn nav-right"
           aria-label="Next"
         >
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M9 5l7 7-7 7"
-            />
-          </svg>
+          <ChevronRight size={20} />
         </button>
 
         <div className="pagination">
