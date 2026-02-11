@@ -167,14 +167,37 @@
   -webkit-mask-image: radial-gradient(circle at center, black, transparent 70%);
 }
 
+@media (max-width: 1536px) {
+  .cta-section {
+    padding: 7rem 2rem 6rem;
+  }
+  .cta-title {
+    font-size: 3rem;
+  }
+  .cta-subtitle {
+    font-size: 1rem;
+  }
+  .cta-main-button {
+    padding: 0.3rem 0.3rem 0.3rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .cta-button-label {
+    font-size: 1rem;
+  }
+  .cta-button-icon-wrapper {
+    width: 42px;
+    height: 42px;
+  }
+}
+
 /* TABLET RESPONSIVENESS (1024px) */
 @media (max-width: 1024px) {
   .cta-section {
+    height: 55vh;
     padding: 8rem 2rem 6rem;
   }
 
   .cta-title {
-    font-size: 3.5rem;
     max-width: 700px;
   }
 
@@ -184,15 +207,15 @@
   }
 
   .cta-visual-decoration {
-    height: 400px;
-    margin-top: -6rem;
+    height: 800px;
   }
 }
 
 /* MOBILE RESPONSIVENESS (768px) */
 @media (max-width: 768px) {
   .cta-section {
-    padding: 6rem 1.25rem 4rem;
+    height: 52vh;
+    padding: 4rem 1.25rem 4rem;
   }
 
   .cta-title {
@@ -232,11 +255,29 @@
   }
 
   .cta-visual-decoration {
-    height: 300px;
-    margin-top: -4rem;
+    height: 350px;
   }
 
   .sphere-glow {
     height: 180px;
+  }
+
+  .cta-title {
+    font-size: 2rem;
+  }
+
+  /* btn */
+  .cta-main-button {
+    padding: 0.3rem;
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+  .cta-button-label {
+    font-size: 0.9rem;
+  }
+  .cta-button-icon-wrapper {
+    width: 36px;
+    height: 36px;
   }
 }
