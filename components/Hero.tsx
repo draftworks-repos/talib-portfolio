@@ -4,10 +4,10 @@ import { TechStack } from "./TechStack";
 import "./Hero.css";
 
 export const Hero: React.FC = () => {
-  const titleText1 = "Creative Solutions";
-  const titleText2 = "That Drive Growth";
+  const titleText1 = "Led Web & Product Solutions";
+  const titleText2 = "for Growing Businesses";
   const subtext =
-    "We build secure, SEO-friendly, and high-performing WordPress websites tailored to your goals.";
+    "I’m Talib Ali founder of WebMaak, a Technology & Media Studio. I personally design and develop websites, web apps, and digital solutions that help startups and businesses grow.";
   return (
     <section className="hero-section">
       <div className="hero-container">
@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
             {/* <div className="badge-line"></div> */}
             <div className="hero-badge">
               <Layers size={12} style={{ fill: "white" }} />
-              <span>Apps that scales</span>
+              <span>UI/UX • Web Apps • Mobile Apps</span>
             </div>
             <div className="badge-line reversed"></div>
           </div>
@@ -86,7 +86,7 @@ export const Hero: React.FC = () => {
                   width={18}
                   height={18}
                 />
-                <span>View Portfolio</span>
+                <span>View My Work</span>
               </button>
             </div>
 
@@ -96,7 +96,7 @@ export const Hero: React.FC = () => {
             >
               <a href="/contact" className="btn-quote-link">
                 <button className="btn-quote">
-                  <span>Book a Call</span>
+                  <span>Start Your Project</span>
                   <div className="hero-btn-icon-wrapper">
                     <ArrowUpRight size={15} />
                   </div>
