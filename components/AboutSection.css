@@ -523,6 +523,9 @@
     width: fit-content;
     padding: 0.75rem 1.5rem;
   }
+  .element-1 {
+    right: 0;
+  }
   .element-2 {
     width: 400px;
     height: 400px;
@@ -532,6 +535,7 @@
   }
   .stat-bottom-left {
     padding-left: 0;
+    bottom: -10%;
   }
   .yellow-glow {
     align-self: center;
