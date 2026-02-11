@@ -161,6 +161,7 @@ export const Navbar: React.FC = () => {
               alt="WhatsApp"
               width={20}
               height={20}
+              className="whatsapp-icon"
             />
           </a>
 
