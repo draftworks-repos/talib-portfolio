@@ -149,7 +149,7 @@ export const AboutSection: React.FC = () => {
             className="about-title-styled anim-on-scroll reveal-up"
             style={{ transitionDelay: "0.2s" }}
           >
-            The Story Of <span className="highlight-text">Two Brothers</span>
+            The <span className="highlight-text">Mindset</span>
           </h2>
 
           <div className="about-description-styled">
@@ -157,30 +157,39 @@ export const AboutSection: React.FC = () => {
               className="anim-on-scroll reveal-up"
               style={{ transitionDelay: "0.3s" }}
             >
-              I’m <span className="name-highlight">Talib Ali</span>, a designer
-              and developer driven by the intersection of creativity and
-              technology, focused on building meaningful and high-performing
-              digital experiences.
+              Digital products should be{" "}
+              <span className="name-highlight">
+                structured, scalable, and built with long-term clarity
+              </span>
+              . I approach every project with a balance of{" "}
+              <span className="skill-tag">
+                business thinking and technical execution
+              </span>
+              , ensuring each solution is designed to{" "}
+              <span className="name-highlight">
+                perform, scale, and support measurable growth
+              </span>
+              .
             </p>
 
             <p
               className="anim-on-scroll reveal-up"
               style={{ transitionDelay: "0.4s" }}
             >
-              With expertise in{" "}
-              <span className="skill-tag">Web Architecture</span> and{" "}
-              <span className="skill-tag">3D Motion Graphics</span>, I work
-              across design and development to craft websites and applications
-              that are both visually refined and technically sound.
-            </p>
-
-            <p
-              className="anim-on-scroll reveal-up"
-              style={{ transitionDelay: "0.5s" }}
-            >
-              Through <strong>WebMaak</strong>, I collaborate with businesses
-              worldwide, delivering thoughtful digital solutions from complex
-              application builds to carefully considered branding.
+              As the <span className="name-highlight">founder of WebMaak,</span>{" "}
+              <span className="skill-tag">
+                I lead web and product development
+              </span>{" "}
+              projects while overseeing creative production through the studio.
+              In 2022,{" "}
+              <span className="skill-tag">Aman Ali joined WebMaak </span> and
+              started the media department, expanding our capabilities into
+              video production, motion graphics, and advanced visual services.
+              <span className="name-highlight">
+                {" "}
+                Together, we combine technology and creative{" "}
+              </span>
+              execution to deliver complete digital solutions.
             </p>
           </div>
 
