@@ -442,6 +442,12 @@
   font-weight: 500;
 }
 
+@media (max-width: 1536px) {
+  .about-section {
+    padding: 6rem 2rem;
+  }
+}
+
 /* RESPONSIVENESS */
 @media (max-width: 1024px) {
   .about-section {
@@ -472,6 +478,12 @@
     width: 100%;
     max-width: 300px;
     justify-content: center;
+  }
+  .stat-bottom-right {
+    right: 10%;
+  }
+  .stat-top-left {
+    top: 0;
   }
 }
 
@@ -506,5 +518,25 @@
   }
   .about-description-styled p {
     font-size: 0.95rem;
+  }
+  .about-primary-btn {
+    width: fit-content;
+    padding: 0.75rem 1.5rem;
+  }
+  .element-2 {
+    width: 400px;
+    height: 400px;
+  }
+  .about-page-container {
+    gap: 3rem;
+  }
+  .stat-bottom-left {
+    padding-left: 0;
+  }
+  .yellow-glow {
+    align-self: center;
+  }
+  .about-page-container {
+    padding: 0 1rem;
   }
 }
