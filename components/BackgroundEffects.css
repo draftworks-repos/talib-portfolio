@@ -8,6 +8,19 @@
   background-color: #0b0d13;
 }
 
+.bg-effects::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    #0b0d13 0%,
+    rgba(11, 13, 19, 0) 20%,
+    rgba(11, 13, 19, 0) 100%
+  );
+  z-index: 1;
+}
 .hero-glow-blob {
   position: absolute;
   border-radius: 50%;
@@ -240,5 +253,17 @@
   }
   50% {
     transform: translateY(-20px) rotate(-25deg);
+  }
+}
+
+@media (max-width: 1536px) {
+  .shape-code-brackets {
+    left: 2%;
+  }
+  .shape-code-brackets {
+    top: 15%;
+  }
+  .shape-video-timeline {
+    bottom: 30%;
   }
 }
