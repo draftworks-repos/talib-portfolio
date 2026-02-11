@@ -1,0 +1,125 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  /* Using a soft light wash instead of pure black */
+  background: rgba(243, 244, 246, 0.8); 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+}
+
+.card {
+  width: 360px;
+  padding: 32px;
+  border-radius: 24px; /* Increased for a softer feel */
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  text-align: center;
+  color: var(--black-3);
+  /* Subtler, more realistic shadow for light mode */
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
+              0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brand-mid); /* Brand color for visibility */
+  margin-bottom: 12px;
+  background: var(--gray-150);
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.title {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--black-0);
+}
+
+.title em {
+  font-family: var(--font-lora), serif;
+  font-style: italic;
+  color: var(--gray-500);
+}
+
+.text {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--gray-600);
+  margin-bottom: 24px;
+}
+
+.primaryBtn {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 12px; /* Switched to squircle for a modern look */
+  background: var(--brand-mid);
+  color: var(--white);
+  font-family: var(--font-sora), sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 12px;
+  transition: background 0.2s ease;
+}
+
+.primaryBtn:hover {
+  background: var(--tag-hover-bg);
+}
+
+.secondaryBtn {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  border-radius: 12px;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  color: var(--gray-700);
+  font-family: var(--font-sora), sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.secondaryBtn:hover {
+  background: var(--gray-50);
+  border-color: var(--gray-300);
+}
+
+.links {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 12px;
+  font-family: var(--font-inter), sans-serif;
+}
+
+.links a {
+  color: var(--gray-500);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.links a:hover {
+  color: var(--brand-mid);
+}
+
+.footer {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--gray-400);
+  font-family: var(--font-inter), sans-serif;
+}
