@@ -34,13 +34,13 @@ export const Footer: React.FC = () => {
 
             <div className="footer-contact-info">
               <h4 className="contact-label">Contact:</h4>
-              <a href="mailto:talibali@gmail.com" className="contact-item">
+              <a href="mailto:hello@talibali.in" className="contact-item">
                 <Mail size={16} />
-                <span>talibali@gmail.com</span>
+                <span>hello@talibali.in</span>
               </a>
-              <a href="tel:+919732751699" className="contact-item">
+              <a href="tel:+918759475316" className="contact-item">
                 <Phone size={16} />
-                <span>+919732751699</span>
+                <span>+918759475316</span>
               </a>
             </div>
 
