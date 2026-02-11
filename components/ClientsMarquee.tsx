@@ -120,6 +120,19 @@ export const ClientsMarquee: React.FC<ClientsMarqueeProps> = ({
           </div>
         </div>
       </div>
+      <div className="clients-container two" style={{ opacity: 0.4 }}>
+        <div className={`marquee-track ${"right"}`}>
+          <div className="marquee-content-row">
+            {items.map((logo, index) => (
+              <div key={`${logo.id}-${index}`} className="client-logo-item">
+                <span className="client-text-logo" style={{ margin: "0 4rem" }}>
+                  Clients I've worked with
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   );
 };
