@@ -1,0 +1,78 @@
+/* Color palette, spacing scale, font sizes. */
+:root {
+  /* BRAND COLORS */
+  --brand-light: #73b7ff;
+  --brand-mid: #0175e4;
+  --brand-dark: #013ca4;
+
+  /* WORK PAGE TAG SYSTEM */
+  --tag-active-bg: var(--brand-mid);
+  --tag-active-border: var(--brand-dark);
+  --tag-active-text: #ffffff;
+
+  --tag-hover-bg: #2390ff; /* brightened mid tone */
+  --tag-border: #d2d7df; /* neutral border for inactive tags */
+
+  /* ACCENT COLORS */
+  --accent-green: #6bffa9;
+  --accent-purple: #d8b4fe;
+  --accent-pink: #f9a8d4;
+  --accent-pink-2: #fac8ff;
+  --accent-red: #ff6666;
+  --accent-yellow: #ffda73;
+  --accent-blue-light: #bdd2ff;
+
+  /* BLACK & DARK SCALE */
+  --black-0: #000000;
+  --black-1: #0a0a0a;
+  --black-2: #11181f;
+  --black-3: #111827;
+  --black-4: #12161b;
+  --black-5: #12191b;
+  --black-6: #131822;
+  --black-7: #161c28;
+  --black-8: #1a2224;
+
+  /* GRAY SCALE */
+  --gray-700: #222222;
+  --gray-600: #444444;
+  --gray-500: #6b7280;
+  --gray-400: #8c8c8c;
+  --gray-390: #8f8f8f;
+  --gray-350: #a1a1a1;
+  --gray-300: #cccccc;
+  --gray-250: #dedede;
+  --gray-230: #e0e0e0;
+  --gray-220: #e3e3e3;
+  --gray-210: #e5e5e5;
+  --gray-200: #e5e7eb;
+  --gray-180: #e8e8e8;
+  --gray-170: #ecebeb;
+  --gray-150: #f3f4f6;
+  --gray-100: #f5f5f5;
+  --gray-50: #fafafa;
+  --white: #ffffff;
+}
+
+/* Heading Typography */
+h1,
+h2,
+h3,
+h4,
+.heading,
+.button-text {
+  font-family: var(--font-sora), sans-serif;
+}
+
+/* Paragraphs */
+p,
+li,
+span,
+.body-text {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Serif (italic text areas) */
+.serif {
+  font-family: var(--font-lora), serif;
+}

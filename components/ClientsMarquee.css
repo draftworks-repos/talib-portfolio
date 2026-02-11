@@ -65,11 +65,11 @@
 
 /* Animations */
 .marquee-track.left .marquee-content-row {
-  animation: scroll-left 70s linear infinite;
+  animation: scroll-left 50s linear infinite;
 }
 
 .marquee-track.right .marquee-content-row {
-  animation: scroll-right 100s linear infinite;
+  animation: scroll-right 150s linear infinite;
 }
 
 @keyframes scroll-left {
