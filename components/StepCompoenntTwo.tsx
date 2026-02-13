@@ -28,7 +28,7 @@ const StepComponent: React.FC = () => {
         "Clear roadmap creation",
       ],
       image:
-        "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=800&fit=crop&q=80",
+        "https://res.cloudinary.com/dl6fs4vte/video/upload/f_auto,q_auto,w_256,ar_16:9,c_fill,vc_auto,ac_none/v1770889311/1cleanedresized_pbhz56.mp4",
     },
     {
       id: 2,
@@ -42,7 +42,7 @@ const StepComponent: React.FC = () => {
         "Conversion strategy alignment",
       ],
       image:
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=800&fit=crop&q=80",
+        "https://res.cloudinary.com/dl6fs4vte/video/upload/f_auto,q_auto,w_256,ar_16:9,c_fill,vc_auto,ac_none/v1770889310/2cleaned_xxw5vp.mp4",
     },
     {
       id: 3,
@@ -56,7 +56,7 @@ const StepComponent: React.FC = () => {
         "Performance optimization",
       ],
       image:
-        "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=800&fit=crop&q=80",
+        "https://res.cloudinary.com/dl6fs4vte/video/upload/f_auto,q_auto,w_256,ar_16:9,c_fill,vc_auto,ac_none/v1770889310/3cleaned_lb22cx.mp4",
     },
     {
       id: 4,
@@ -70,7 +70,7 @@ const StepComponent: React.FC = () => {
         "Final refinements",
       ],
       image:
-        "https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=800&fit=crop&q=80",
+        "https://res.cloudinary.com/dl6fs4vte/video/upload/f_auto,q_auto,w_256,ar_16:9,c_fill,vc_auto,ac_none/v1770889310/4cleaned_rl8pv8.mp4",
     },
     {
       id: 5,
@@ -84,9 +84,16 @@ const StepComponent: React.FC = () => {
         "Performance monitoring",
       ],
       image:
-        "https://images.unsplash.com/photo-1640622300473-977435c38c04?w=800&h=800&fit=crop&q=80",
+        "https://res.cloudinary.com/dl6fs4vte/video/upload/f_auto,q_auto,w_256,ar_16:9,c_fill,vc_auto,ac_none/v1770889311/5cleaned_hjxnol.mp4",
     },
   ];
+  useEffect(() => {
+    steps.forEach((step) => {
+      const video = document.createElement("video");
+      video.src = step.image;
+      video.preload = "auto";
+    });
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -162,8 +169,17 @@ const StepComponent: React.FC = () => {
               <div className="step-content">
                 <h3 className="step-title">{step.title}</h3>
                 <p className="step-description">{step.description}</p>
+                <div className="step-list">
+                  <ul>
+                    {step.list.map((item, index) => (
+                      <li key={index} className="list-item">
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div className="step-list">
+              <div className="step-list desktop">
                 <ul>
                   {step.list.map((item, index) => (
                     <li key={index} className="list-item">
@@ -184,9 +200,12 @@ const StepComponent: React.FC = () => {
               top: `${mousePosition.y}px`,
             }}
           >
-            <img
+            <video
               src={steps.find((s) => s.id === hoveredStep)?.image}
-              alt={steps.find((s) => s.id === hoveredStep)?.title}
+              autoPlay
+              loop
+              muted
+              playsInline
             />
           </div>
         )}

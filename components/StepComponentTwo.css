@@ -174,7 +174,8 @@
 .step-image {
   position: fixed;
   width: 16rem;
-  height: 16rem;
+  height: auto;
+  aspect-ratio: 16/9;
   pointer-events: none;
   z-index: 9999;
   transform: translate3d(-50%, -50%, 0);
@@ -182,15 +183,22 @@
   will-change: transform;
 }
 
-.step-image img {
+.step-image video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: 1rem;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
-  animation: imageFloat 4s ease-in-out infinite;
   display: block;
   will-change: transform;
+}
+
+.step-list {
+  display: none;
+}
+
+.step-list.desktop {
+  display: flex;
 }
 
 @keyframes imageAppear {
@@ -206,15 +214,25 @@
   }
 }
 
-@keyframes imageFloat {
-  0% {
-    transform: translateY(0px);
+@media (max-width: 1536px) {
+  .steps-title {
+    font-size: 2.8rem;
   }
-  50% {
-    transform: translateY(-8px);
+}
+@media (max-width: 1024px) {
+  .step-list.desktop {
+    display: none;
   }
-  100% {
-    transform: translateY(0px);
+  .step-list {
+    margin-top: 1rem;
+  }
+  .step-conten {
+    width: 100%;
+  }
+  .step-item {
+    padding-left: 0;
+    padding-right: 0;
+    align-items: start;
   }
 }
 
@@ -222,6 +240,9 @@
 @media (max-width: 768px) {
   .step-component-wrapper {
     padding: 2rem 1rem;
+  }
+  .steps-header {
+    margin-bottom: 3rem;
   }
 
   .steps-title {
@@ -233,21 +254,21 @@
   }
 
   .step-item {
-    padding: 2rem 1.5rem;
+    padding: 2rem 0.5rem;
     gap: 1.5rem;
   }
 
   .step-number {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .step-number span {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 
   .step-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
   }
 
   .step-description {
@@ -263,12 +284,6 @@
 @media (max-width: 480px) {
   .steps-title {
     font-size: 2rem;
-  }
-
-  .step-item {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1.5rem;
   }
 
   .step-arrow {
