@@ -5,37 +5,39 @@ import "./ReviewCarousel.css";
 const reviews = [
   {
     id: 1,
+    name: "Sonam Singh",
+    role: "Director, Delfyle Solutions Pvt. Ltd.",
+    image: "images/1.png",
+    rating: 5,
+    review:
+      "Working with Talib in WebMaak Team has been an absolute delight! From concept to execution, their team handled our website design with remarkable creativity, precision, and professionalism. They understood exactly what we envisioned for Delfyle, a clean, impactful, and user-friendly website that truly represents who we are as a brand. The entire process was smooth, transparent, and efficient, with the WebMaak team ensuring every detail aligned perfectly with our expectations. What impressed me most was their proactive approach, timely delivery, and commitment to quality. They didn’t just design a website; they built a digital identity that reflects Delfyle’s vision and values. A huge thank you to the entire WebMaak team for your dedication and brilliant execution, you’ve made our online presence stronger and more inspiring than ever!",
+  },
+  {
+    id: 2,
     name: "Arun",
     role: "Designleeway",
     image: "images/2.png",
     rating: 5,
     review:
-      "Working with WebMaak and Team Talib was an excellent experience. The communication throughout our fintech website development in Webflow was smooth and efficient. Their quick response to feedback and commitment to maintaining design integrity truly stood out. The team’s product animation skills and turnaround time were impressive. I’d love to collaborate with them on many more projects in the future.",
-  },
-  {
-    id: 2,
-    name: "Sophia Lee",
-    role: "UI/UX Designer",
-    image: "https://randomuser.me/api/portraits/women/44.jpg",
-    rating: 5,
-    review:
-      "Their development process is structured, efficient, and future-ready.",
+      "Working with Talib in WebMaak Team was an excellent experience. The communication throughout our fintech website development in Webflow was smooth and efficient. Their quick response to feedback and commitment to maintaining design integrity truly stood out. The team’s product animation skills and turnaround time were impressive. I’d love to collaborate with them on many more projects in the future.",
   },
   {
     id: 3,
-    name: "Daniel Smith",
-    role: "Startup Founder",
-    image: "https://randomuser.me/api/portraits/men/75.jpg",
-    rating: 4,
-    review: "Strong technical expertise with a focus on scalable architecture.",
+    name: "Hamna Kouser",
+    role: "",
+    image: "images/4.png",
+    rating: 5,
+    review:
+      "The e-card which Talib & Aman provided to me was amazingly great work..Great work guyz and the best part was wedding website which was absolutely cherry on the cake.. Commendable work..keep up the Good work.",
   },
   {
     id: 4,
-    name: "Emma Johnson",
-    role: "Marketing Director",
-    image: "https://randomuser.me/api/portraits/women/68.jpg",
-    rating: 5,
-    review: "Excellent collaboration and communication throughout the project.",
+    name: "Kalika Nigam",
+    role: "Founder, Chamki",
+    image: "images/5.jpeg",
+    rating: 4,
+    review:
+      "Working withs Talib in WebMaak Team was an absolute pleasure! They built a stunning website for my brand and truly brought my vision to life. The team was incredibly dedicated, prompt with every update, and went above and beyond to make sure everything was perfect. Highly recommend them to anyone looking for a reliable and creative web development team!",
   },
 ];
 
@@ -113,7 +115,7 @@ export default function ReviewCarousel() {
       >
         <button
           onClick={prevCard}
-          className="nav-btn nav-left"
+          className="nav-btn nav-left top-nav"
           aria-label="Previous"
         >
           <ChevronLeft size={20} />
@@ -153,13 +155,20 @@ export default function ReviewCarousel() {
 
         <button
           onClick={nextCard}
-          className="nav-btn nav-right"
+          className="nav-btn nav-right top-nav"
           aria-label="Next"
         >
           <ChevronRight size={20} />
         </button>
 
         <div className="pagination">
+          <button
+            onClick={prevCard}
+            className="nav-btn nav-left bottom-nav"
+            aria-label="Previous"
+          >
+            <ChevronLeft size={20} />
+          </button>
           {reviews.map((_, i) => (
             <button
               key={i}
@@ -168,6 +177,13 @@ export default function ReviewCarousel() {
               aria-label={`Go to slide ${i + 1}`}
             />
           ))}
+          <button
+            onClick={nextCard}
+            className="nav-btn nav-right bottom-nav"
+            aria-label="Next"
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
       </div>
     </div>
