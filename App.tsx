@@ -68,6 +68,8 @@ import { Navbar } from "./components/Navbar";
 import DevToolsGuard from "@/components/security/DevToolsGuard";
 import Home from "./pages/Home";
 import Contact from "./pages/Contact";
+import Privacy from "./pages/Privacy"; // Added
+import Terms from "./pages/Terms"; // Added
 
 function App() {
   useEffect(() => {
@@ -89,6 +91,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
         </Routes>
       </DevToolsGuard>
     </BrowserRouter>
