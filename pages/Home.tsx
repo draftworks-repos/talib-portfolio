@@ -4,6 +4,8 @@ import { ServicesBento } from "../components/ServicesBento";
 import { ExtendedCapabilities } from "../components/ExtendedCapabilities";
 import { OverviewSection } from "../components/OverviewSection";
 import { ClientsMarquee } from "../components/ClientsMarquee";
+import { GsapMarquee } from "../components/GsapMarquee";
+import { FrammerMarquee } from "../components/FrammerMarquee";
 import { AboutSection } from "../components/AboutSection";
 import { CallToAction } from "../components/CallToAction";
 import { Footer } from "../components/Footer";
@@ -11,8 +13,9 @@ import ComingSoon from "../components/ComingSoon";
 import PageTransition from "../components/PageTransition";
 import ReviewCarousel from "../components/ReviewCarousel";
 import StepComponentTwo from "../components/StepCompoenntTwo";
+import Showreel from "../components/Section2_Showreel/Showreel";
 
-export default function Home() {
+const Home: React.FC = () => {
   return (
     <PageTransition>
       <div
@@ -35,6 +38,10 @@ export default function Home() {
             <ServicesBento />
           </section>
 
+          <section id="showreel">
+            <Showreel />
+          </section>
+
           <section id="process">
             <StepComponentTwo />
           </section>
@@ -47,15 +54,21 @@ export default function Home() {
             <ExtendedCapabilities />
           </section>
 
-          <OverviewSection />
-
           <AboutSection />
+
+          <OverviewSection />
 
           <CallToAction />
         </main>
 
         <Footer />
+
+        <GsapMarquee direction="left" />
+
+        <FrammerMarquee direction="left" />
       </div>
     </PageTransition>
   );
-}
+};
+
+export default Home;
