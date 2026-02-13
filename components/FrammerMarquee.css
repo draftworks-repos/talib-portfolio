@@ -1,0 +1,160 @@
+.clients-section {
+  padding: 4rem 0;
+  background-color: #0b0d13;
+  overflow: hidden;
+  position: relative;
+  z-index: 5;
+
+  /* Entrance Animation Initial State */
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.clients-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.clients-container {
+  width: 100%;
+  position: relative;
+  transform: rotate(-3deg);
+  z-index: 2;
+  background: linear-gradient(to right, #a61b1b, #c82020, #a61b1b);
+  /* Soft fade effect on the edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+  will-change: transform;
+}
+
+.clients-container.two {
+  padding: 0.6rem;
+  margin-top: -6rem;
+  transform: rotate(4deg);
+  z-index: 0;
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  overflow: hidden;
+}
+
+.marquee-content-row {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  padding: 1rem 0;
+
+  /* Anti-blur optimizations for Framer Motion */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -webkit-font-smoothing: subpixel-antialiased;
+  perspective: 1000px;
+}
+
+.client-logo-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+  cursor: default;
+
+  /* Additional anti-blur for logo containers */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Replicating the typography-based logos from the image */
+.client-text-logo {
+  font-family: "Inter", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  text-transform: uppercase;
+
+  /* Anti-blur for text */
+  -webkit-font-smoothing: subpixel-antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+  user-select: none;
+}
+
+.client-logo-image {
+  height: 58px;
+  width: auto;
+  object-fit: contain;
+
+  /* Critical anti-blur properties for images */
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+
+  /* Ensure sharp rendering */
+  filter: contrast(1);
+  user-select: none;
+  pointer-events: none;
+}
+
+@media (max-width: 1536px) {
+  .client-logo-image {
+    height: 42px;
+  }
+}
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .marquee-content-row {
+    gap: 4rem;
+  }
+  .client-text-logo {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .clients-section {
+    padding: 4rem 0;
+  }
+  .marquee-content-row {
+    gap: 2rem;
+  }
+  .client-text-logo {
+    font-size: 1rem;
+  }
+  .client-logo-image {
+    height: 32px;
+  }
+  .clients-container.two {
+    margin-top: -4rem;
+    transform: rotate(6deg);
+    padding: 0;
+  }
+  .clients-container {
+    transform: rotate(-6deg);
+  }
+}
