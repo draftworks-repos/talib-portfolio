@@ -117,8 +117,8 @@
 }
 
 @media (max-width: 1536px) {
-  .clients-section {
-    padding: 2rem 0;
+  .client-logo-image {
+    height: 42px; /* adjust as needed */
   }
 }
 
@@ -134,15 +134,23 @@
 
 @media (max-width: 768px) {
   .clients-section {
-    padding: 1rem 0;
+    padding: 4rem 0;
   }
   .marquee-content-row {
-    gap: 3rem;
+    gap: 1rem;
   }
   .client-text-logo {
     font-size: 1rem;
   }
   .client-logo-image {
-    width: 72px;
+    height: 32px;
+  }
+  .clients-container.two {
+    margin-top: -4rem;
+    transform: rotate(6deg);
+    padding: 0;
+  }
+  .clients-container {
+    transform: rotate(-6deg);
   }
 }
