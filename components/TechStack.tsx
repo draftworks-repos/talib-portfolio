@@ -4,39 +4,51 @@ import "./TechStack.css";
 const TOOLS = [
   {
     name: "WordPress",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-plain.svg",
+    icon: "icons/wp.png",
   },
   {
     name: "CSS3",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg",
+    icon: "icons/css.png",
   },
   {
     name: "HTML5",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-plain.svg",
+    icon: "icons/html.png",
   },
   {
     name: "JavaScript",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg",
+    icon: "icons/javascript.png",
   },
   {
     name: "Node.js",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain.svg",
+    icon: "icons/nodejs.png",
   },
   {
-    name: "Trello",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/trello/trello-plain.svg",
-  },
-  {
-    name: "PHP",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg",
-  },
-  {
-    name: "C++",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-plain.svg",
+    name: "Next Js",
+    icon: "icons/next-js.png",
   },
   {
     name: "React",
-    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    icon: "icons/react.png",
+  },
+  {
+    name: "Shopify",
+    icon: "icons/shopify-hero.png",
+  },
+  {
+    name: "Webflow",
+    icon: "icons/webflow.svg",
+  },
+  {
+    name: "Wix",
+    icon: "icons/wix.png",
+  },
+  {
+    name: "Drammer",
+    icon: "icons/frammer.png",
+  },
+  {
+    name: "Mongo DB",
+    icon: "icons/mongodb.png",
   },
 ];
 
