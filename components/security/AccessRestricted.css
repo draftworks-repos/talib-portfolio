@@ -1,125 +1,174 @@
+/* ========== OVERLAY (Glassy Dark Backdrop) ========== */
+
 .overlay {
   position: fixed;
   inset: 0;
-  /* Using a soft light wash instead of pure black */
-  background: rgba(243, 244, 246, 0.8); 
+  background: rgba(10, 10, 15, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 24px;
   z-index: 9999;
-  backdrop-filter: blur(8px);
 }
 
+/* ========== CARD (Horizontal Layout Desktop) ========== */
+
 .card {
-  width: 360px;
-  padding: 32px;
-  border-radius: 24px; /* Increased for a softer feel */
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  text-align: center;
-  color: var(--black-3);
-  /* Subtler, more realistic shadow for light mode */
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 
-              0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 720px;
+  padding: 40px;
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
+
+  background: rgba(22, 28, 40, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+
+  color: var(--white);
+
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
+
+/* Left Content Block */
+.card-content {
+  flex: 1;
+}
+
+/* Right Actions Block */
+.card-actions {
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ========== TYPOGRAPHY (Inter Only) ========== */
 
 .badge {
   display: inline-block;
   font-family: var(--font-inter), sans-serif;
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--brand-mid); /* Brand color for visibility */
-  margin-bottom: 12px;
-  background: var(--gray-150);
-  padding: 4px 10px;
-  border-radius: 6px;
+  color: var(--accent-blue-light);
+  margin-bottom: 16px;
+  opacity: 0.85;
 }
 
 .title {
-  font-family: var(--font-sora), sans-serif;
-  font-size: 24px;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 10px;
-  color: var(--black-0);
+  margin-bottom: 12px;
+  color: var(--white);
 }
 
 .title em {
-  font-family: var(--font-lora), serif;
-  font-style: italic;
-  color: var(--gray-500);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--gray-350);
 }
 
 .text {
   font-family: var(--font-inter), sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--gray-600);
-  margin-bottom: 24px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--gray-300);
+  margin-bottom: 0;
 }
 
-.primaryBtn {
+/* ========== BUTTONS ========== */
+
+.primary-btn,
+.secondary-btn {
   display: block;
   width: 100%;
   padding: 14px 0;
-  border-radius: 12px; /* Switched to squircle for a modern look */
-  background: var(--brand-mid);
-  color: var(--white);
-  font-family: var(--font-sora), sans-serif;
+  border-radius: 14px;
+  font-family: var(--font-inter), sans-serif;
   font-size: 14px;
   font-weight: 600;
+  text-align: center;
   text-decoration: none;
-  margin-bottom: 12px;
-  transition: background 0.2s ease;
+  transition: all 0.25s ease;
 }
 
-.primaryBtn:hover {
-  background: var(--tag-hover-bg);
+.primary-btn {
+  background: linear-gradient(135deg, var(--brand-mid), var(--brand-dark));
+  color: var(--white);
+  margin-bottom: 14px;
 }
 
-.secondaryBtn {
-  display: block;
-  width: 100%;
-  padding: 14px 0;
-  border-radius: 12px;
-  background: var(--white);
-  border: 1px solid var(--gray-200);
-  color: var(--gray-700);
-  font-family: var(--font-sora), sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(1, 117, 228, 0.35);
 }
 
-.secondaryBtn:hover {
-  background: var(--gray-50);
-  border-color: var(--gray-300);
+.secondary-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--gray-200);
 }
+
+.secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* ========== LINKS ========== */
 
 .links {
   margin-top: 24px;
   display: flex;
-  justify-content: center;
-  gap: 16px;
+  gap: 18px;
   font-size: 12px;
   font-family: var(--font-inter), sans-serif;
 }
 
 .links a {
-  color: var(--gray-500);
+  color: var(--gray-400);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s ease;
 }
 
 .links a:hover {
-  color: var(--brand-mid);
+  color: var(--white);
 }
 
+/* ========== FOOTER ========== */
+
 .footer {
-  margin-top: 12px;
+  margin-top: 18px;
   font-size: 11px;
-  color: var(--gray-400);
+  color: var(--gray-500);
   font-family: var(--font-inter), sans-serif;
+}
+
+/* ========== RESPONSIVE (Mobile → Vertical Layout) ========== */
+
+@media (max-width: 640px) {
+  .card {
+    flex-direction: column;
+    gap: 32px;
+    padding: 32px 24px;
+  }
+
+  .card-actions {
+    width: 100%;
+  }
+
+  .links {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }

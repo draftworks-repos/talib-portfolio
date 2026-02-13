@@ -5,33 +5,39 @@ export default function AccessRestricted() {
   return (
     <div className="overlay">
       <div className="card">
-        <span className="badge">ACCESS RESTRICTED</span>
+        {/* LEFT SIDE (Content) */}
+        <div className="card-content">
+          <span className="badge">ACCESS RESTRICTED</span>
 
-        <h1 className="title">
-          DEV TOOLS <em>detected</em>
-        </h1>
+          <h1 className="title">
+            DEV TOOLS <em>detected</em>
+          </h1>
 
-        <p className="text">
-          Curious about how this was built?
-          <br />
-          Let’s connect and chat about it.
-        </p>
+          <p className="text">
+            Curious about how this was built?
+            <br />
+            Let’s connect and chat about it.
+          </p>
 
-        <a href="/" className="primary-btn">
-          Return Home
-        </a>
+          <div className="links">
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms</a>
+            <a href="/contact">Contact</a>
+          </div>
 
-        <a href="/contact" className="secondary-btn">
-          Get in Touch
-        </a>
-
-        <div className="links">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-          <a href="/about">About</a>
+          <div className="footer">Talib Ali © 2026 all rights reserved.</div>
         </div>
 
-        <div className="footer">© 2026 WebMaak</div>
+        {/* RIGHT SIDE (Actions) */}
+        <div className="card-actions">
+          <a href="/" className="primary-btn">
+            Return Home
+          </a>
+
+          <a href="/contact" className="secondary-btn">
+            Get in Touch
+          </a>
+        </div>
       </div>
     </div>
   );
