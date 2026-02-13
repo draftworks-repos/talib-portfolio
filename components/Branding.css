@@ -7,7 +7,7 @@
 /* ---------------- Title ---------------- */
 
 .branding-title {
-  font-family: var(--font-sora);
+  font-family: var(--font-inter);
   font-size: 1.875rem;
   font-weight: 600;
   letter-spacing: -0.025em;
@@ -27,15 +27,6 @@
   /* 🔥 REQUIRED */
   -webkit-text-fill-color: transparent;
   color: transparent;
-}
-
-/* Italic emphasis — NO opacity */
-.branding-italic {
-  font-family: var(--font-lora);
-  font-style: italic;
-
-  /* subtle emphasis without breaking gradient */
-  letter-spacing: -0.01em;
 }
 
 /* ---------------- Description ---------------- */
