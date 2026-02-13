@@ -111,6 +111,7 @@ export const Navbar: React.FC = () => {
       <nav className="glass-nav">
         {/* Logo */}
         <div className="nav-logo" onClick={() => navigate("/")}>
+          <img src="icons/logo.png" alt="Logo" className="nav-logo-img" />{" "}
           <span>Talib Ali</span>
         </div>
 
@@ -124,10 +125,10 @@ export const Navbar: React.FC = () => {
           </button>
 
           <button
-            className={`nav-link ${active === "reviews" ? "active" : ""}`}
-            onClick={() => handleSectionClick("reviews")}
+            className={`nav-link ${active === "services" ? "active" : ""}`}
+            onClick={() => handleSectionClick("services")}
           >
-            Reviews
+            Projects
           </button>
 
           <button
@@ -135,6 +136,13 @@ export const Navbar: React.FC = () => {
             onClick={() => handleSectionClick("about")}
           >
             About
+          </button>
+
+          <button
+            className={`nav-link ${active === "reviews" ? "active" : ""}`}
+            onClick={() => handleSectionClick("reviews")}
+          >
+            Reviews
           </button>
 
           {/* Contact is a PAGE */}
