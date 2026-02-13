@@ -1,0 +1,76 @@
+.logo-bar-mobile-root {
+  display: none;
+  width: 100%;
+  padding: 1rem 0;
+}
+
+.logo-bar-mobile-card {
+  background-color: rgba(18, 20, 27, 0.6);
+  border-radius: 1.5rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 35px 100px rgba(109, 40, 217, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nav-arrow-btn {
+  background: rgba(18, 20, 27, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.2s;
+}
+
+.nav-arrow-btn:active {
+  transform: scale(0.9);
+}
+
+.mobile-logo-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobile-brand-name {
+  font-family: "Sora", sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.mobile-pagination {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.pagination-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.pagination-dot.active {
+  background-color: #fff;
+  width: 12px;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  .logo-bar-mobile-root {
+    display: block;
+  }
+}
