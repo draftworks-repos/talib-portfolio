@@ -62,7 +62,7 @@ export const AboutSection: React.FC = () => {
                 <Trophy size={18} />
               </div>
               <div className="stat-info">
-                <span className="stat-number">100+</span>
+                <span className="stat-number">200+</span>
                 <span className="stat-label">Projects Delivered</span>
               </div>
             </div>
@@ -141,7 +141,7 @@ export const AboutSection: React.FC = () => {
           <div className="about-badge-wrapper anim-on-scroll reveal-up">
             <div className="about-badge">
               <Sparkles size={12} fill="currentColor" />
-              <span>The Talib Ali Story</span>
+              <span>About Talib</span>
             </div>
           </div>
 
@@ -197,10 +197,12 @@ export const AboutSection: React.FC = () => {
             className="about-actions anim-on-scroll reveal-up"
             style={{ transitionDelay: "0.6s" }}
           >
-            <button className="about-primary-btn">
-              <span>Read more</span>
-              <Users size={18} />
-            </button>
+            <a href="https://webmaak.com/" style={{ textDecoration: "none" }}>
+              <button className="about-primary-btn">
+                <span>Visit WebMaak</span>
+                <Users size={18} />
+              </button>
+            </a>
             <div className="trusted-by-mini">
               <div className="mini-avatars">
                 <img src="images/1.png" alt="c1" />

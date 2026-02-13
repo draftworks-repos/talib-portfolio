@@ -451,7 +451,7 @@
 /* RESPONSIVENESS */
 @media (max-width: 1024px) {
   .about-section {
-    padding: 8rem 2rem;
+    padding: 5rem 2rem 8rem;
   }
   .about-page-container {
     grid-template-columns: 1fr;
@@ -459,11 +459,9 @@
     text-align: center;
   }
   .about-visuals {
-    order: 2;
     transform: scale(0.95);
   }
   .about-content {
-    order: 1;
     align-items: center;
   }
   .about-title-styled {
