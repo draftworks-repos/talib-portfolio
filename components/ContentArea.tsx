@@ -1,21 +1,11 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import { ArrowUpRight } from "lucide-react";
 import TalibScheduler from "./TalibScheduler";
 import "./ContentArea.css";
 
-interface ContentAreaProps {
-  activeTab: string;
-  onNavigate: (id: string) => void;
-}
-
-export const ContentArea: React.FC<ContentAreaProps> = ({
-  activeTab,
-  onNavigate,
-}) => {
+export const ContentArea: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [displayContent, setDisplayContent] = useState(activeTab);
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number | string>("auto");
 
@@ -34,11 +24,10 @@ export const ContentArea: React.FC<ContentAreaProps> = ({
   useEffect(() => {
     setIsTransitioning(true);
     const timer = setTimeout(() => {
-      setDisplayContent(activeTab);
       setIsTransitioning(false);
     }, 250);
     return () => clearTimeout(timer);
-  }, [activeTab]);
+  }, []);
 
   return (
     <div

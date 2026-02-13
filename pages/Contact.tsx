@@ -64,27 +64,7 @@ import PageTransition from "../components/PageTransition";
 import "../components/Contact.css";
 // Parent component
 
-const tabs = [
-  {
-    id: "OVERVIEW",
-    label: "Overview",
-    icon: <LayoutGrid size={14} strokeWidth={2} />,
-  },
-  {
-    id: "WEBAPPS",
-    label: "Web Apps",
-    icon: <Code size={14} strokeWidth={2} />,
-  },
-  {
-    id: "MEDIA",
-    label: "Media",
-    icon: <Image size={14} strokeWidth={2} />,
-  },
-];
-
-const About: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("OVERVIEW");
-
+const Contact: React.FC = () => {
   return (
     <PageTransition>
       <div className="about-root selection-accent">
@@ -102,7 +82,7 @@ const About: React.FC = () => {
             <Branding />
 
             <div className="about-content-card">
-              <ContentArea activeTab={activeTab} onNavigate={setActiveTab} />
+              <ContentArea />
             </div>
 
             <PageFooter />
@@ -113,4 +93,4 @@ const About: React.FC = () => {
   );
 };
 
-export default About;
+export default Contact;

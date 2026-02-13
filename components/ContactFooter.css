@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-sora);
+  font-family: var(--font-inter);
   font-size: 9px;
   font-weight: 300;
   letter-spacing: 0.2em;

@@ -6,17 +6,17 @@ export const PageFooter: React.FC = () => {
   const socialLinks = [
     {
       name: "LinkedIn",
-      url: "#",
+      url: "https://www.linkedin.com/in/mdtalib15/",
       icon: <Linkedin className="footer-social-icon" />,
     },
     {
       name: "Instagram",
-      url: "#",
+      url: "https://www.instagram.com/talib_imran/",
       icon: <Instagram className="footer-social-icon" />,
     },
     {
       name: "Facebook",
-      url: "#",
+      url: "https://www.facebook.com/talib.ali.15",
       icon: <Facebook className="footer-social-icon" />,
     },
   ];
