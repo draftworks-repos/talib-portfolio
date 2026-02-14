@@ -42,7 +42,7 @@ export const ExtendedCapabilities: React.FC = () => {
   }, []);
 
   return (
-    <section id="services" className="services-section" ref={sectionRef}>
+    <section id="media-services" className="services-section" ref={sectionRef}>
       {/* Decorative Background Elements */}
       <div className="services-bg-decor">
         <div className="abstract-light light-left-1"></div>
@@ -76,9 +76,18 @@ export const ExtendedCapabilities: React.FC = () => {
             className="section-title-sub anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.2s" }}
           >
-            Through WebMaak – Technology & Media Studio, I also lead creative
-            production and advanced visual solutions for brands that require
-            complete digital execution.
+            Through{" "}
+            <a
+              href="https://webmaak.com/"
+              target="_blank"
+              style={{ textDecoration: "none" }}
+              className="skill-tag"
+            >
+              WebMaak
+            </a>{" "}
+            – Technology & Media Studio, I also lead creative production and
+            advanced visual solutions for brands that require complete digital
+            execution.
           </p>
         </div>
 
@@ -210,7 +219,7 @@ export const ExtendedCapabilities: React.FC = () => {
             </div>
             <div className="card-illustration three-preview">
               <div className="three-object-mockup anim-sphere-float">
-                <img src="model/model.webp" alt="model" />
+                <img src="model/model.png" alt="model" className="model" />
               </div>
             </div>
           </div>
@@ -227,7 +236,7 @@ export const ExtendedCapabilities: React.FC = () => {
               className="cta-main-button"
               style={{ textDecoration: "none" }}
             >
-              <span className="cta-button-label">Get Started- It's Free</span>
+              <span className="cta-button-label">Schedule a Call</span>
               <div className="cta-button-icon-wrapper">
                 <ArrowUpRight size={18} />
               </div>
