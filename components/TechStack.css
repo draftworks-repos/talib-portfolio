@@ -43,6 +43,7 @@
   width: max-content;
   animation: marquee-scroll 20s linear infinite;
   padding: 0.5rem 0;
+  will-change: transform;
 }
 
 .tech-item {
