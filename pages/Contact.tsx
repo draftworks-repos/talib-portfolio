@@ -1,59 +1,6 @@
-// import PageTransition from "../components/PageTransition";
-// import Scheduler from "../components/TalibScheduler";
-// import "./Contact.css";
-
-// export default function Contact() {
-//   return (
-//     <PageTransition>
-//       <main className="contact-page">
-//         {/* Header */}
-//         <section className="contact-hero">
-//           <div className="contact-hero-inner">
-//             <h1 className="contact-title">Let’s talk about your project</h1>
-
-//             <p className="contact-desc">
-//               Book a call to discuss scope, timelines, or collaboration. Prefer
-//               async? Reach out directly below.
-//             </p>
-//           </div>
-//         </section>
-
-//         {/* Scheduler */}
-//         <section className="contact-scheduler">
-//           <Scheduler />
-//         </section>
-
-//         {/* Direct actions */}
-//         <section className="contact-actions">
-//           <a
-//             href="https://wa.me/XXXXXXXXXX"
-//             target="_blank"
-//             rel="noreferrer"
-//             className="contact-action-btn"
-//           >
-//             WhatsApp
-//           </a>
-
-//           <a href="mailto:hello@yourdomain.com" className="contact-action-btn">
-//             Email
-//           </a>
-
-//           <a
-//             href="https://twitter.com/yourhandle"
-//             target="_blank"
-//             rel="noreferrer"
-//             className="contact-action-btn muted"
-//           >
-//             Twitter / X
-//           </a>
-//         </section>
-//       </main>
-//     </PageTransition>
-//   );
-// }
-
 "use client";
 
+import { Helmet } from "react-helmet";
 import React, { useState } from "react";
 import { AnimatedBackground } from "../components/AnimatedBackground";
 import { ContentArea } from "../components/ContentArea";
@@ -66,30 +13,59 @@ import "../components/Contact.css";
 
 const Contact: React.FC = () => {
   return (
-    <PageTransition>
-      <div className="about-root selection-accent">
-        <div
-          style={{
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <AnimatedBackground />
+    <>
+      <Helmet>
+        <title>Contact Talib Ali | Hire Full Stack Developer in Kolkata</title>
 
-          <div className="about-container">
-            <Branding />
+        <meta
+          name="description"
+          content="Get in touch with Talib Ali, full stack developer in Kolkata, India. Available for custom web development, scalable applications, and performance-driven digital solutions."
+        />
 
-            <div className="about-content-card">
-              <ContentArea />
+        <meta
+          name="keywords"
+          content="Hire Full Stack Developer Kolkata, Contact Web Developer India, React Developer Contact, WordPress Developer Kolkata"
+        />
+
+        <meta
+          property="og:title"
+          content="Contact Talib Ali | Full Stack Developer"
+        />
+
+        <meta
+          property="og:description"
+          content="Contact Talib Ali for custom web applications, WordPress solutions, and scalable digital platforms."
+        />
+
+        <meta property="og:url" content="https://talibali.in/contact" />
+
+        <link rel="canonical" href="https://talibali.in/contact" />
+      </Helmet>
+      <PageTransition>
+        <div className="about-root selection-accent">
+          <div
+            style={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <AnimatedBackground />
+
+            <div className="about-container">
+              <Branding />
+
+              <div className="about-content-card">
+                <ContentArea />
+              </div>
+
+              <PageFooter />
             </div>
-
-            <PageFooter />
           </div>
         </div>
-      </div>
-    </PageTransition>
+      </PageTransition>
+    </>
   );
 };
 
