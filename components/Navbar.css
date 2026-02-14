@@ -162,6 +162,9 @@
   .glass-nav {
     padding-left: 1.5rem;
   }
+  .whatsapp-btn {
+    display: none;
+  }
 }
 
 /* MOBILE MEDIA QUERY */

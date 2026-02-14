@@ -1,63 +1,40 @@
-// import React from "react";
-// import { ArrowUpRight, Phone } from "lucide-react";
-// import "./Navbar.css";
-
-// export const Navbar: React.FC = () => {
-//   const navItems = ["Services", "About", "Reviews", "Contact"];
-
-//   return (
-//     <div className="navbar-wrapper">
-//       <nav className="glass-nav">
-//         {/* Logo */}
-//         <div className="nav-logo">
-//           <span>Talib Ali</span>
-//         </div>
-
-//         {/* Menu Items */}
-//         <div className="nav-links">
-//           {navItems.map((item, idx) => (
-//             <a
-//               key={item}
-//               href={`#${item.toLowerCase().replace(" ", "-")}`}
-//               className={`nav-link ${idx === 0 ? "active" : ""}`}
-//             >
-//               {item}
-//             </a>
-//           ))}
-//         </div>
-
-//         {/* CTA Section */}
-//         <div className="nav-actions">
-//           <button className="whatsapp-btn">
-//             <img
-//               src="/images/whatsapp.svg"
-//               alt="WhatsApp"
-//               width={20}
-//               height={20}
-//             />
-//           </button>
-//           <button className="btn-pill">
-//             <span>Schedule a Call</span>
-//             {/* <span className="pill-small-text">+ its free</span> */}
-//             <ArrowUpRight size={16} />
-//           </button>
-//         </div>
-//       </nav>
-//     </div>
-//   );
-// };
-
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
+import MobileNav from "./MobileNav";
 import "./Navbar.css";
 
-const SECTION_IDS = ["services", "about", "reviews"];
+const SECTION_IDS = [
+  "projects",
+  "services",
+  "reviews",
+  "media-services",
+  "about",
+];
 
 export const Navbar: React.FC = () => {
   const [active, setActive] = useState<string | null>(null);
   const location = useLocation();
   const navigate = useNavigate();
+
+  /* ------------------------------
+     Global Hash-Scroll Handler
+  ------------------------------ */
+  useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const id = location.hash.replace("#", "");
+
+      // Delay slightly to ensure content is rendered (important for lazy components)
+      const timeoutId = setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [location.pathname, location.hash]);
 
   /* ------------------------------
      Scroll-based active tracking
@@ -95,14 +72,11 @@ export const Navbar: React.FC = () => {
   ------------------------------ */
   const handleSectionClick = (id: string) => {
     if (location.pathname !== "/") {
-      navigate("/");
-      setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 50);
+      navigate(`/#${id}`);
     } else {
       document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      navigate(`/#${id}`, { replace: true });
     }
-
     setActive(id);
   };
 
@@ -118,24 +92,17 @@ export const Navbar: React.FC = () => {
         {/* Menu Items */}
         <div className="nav-links">
           <button
-            className={`nav-link ${active === "services" ? "active" : ""}`}
-            onClick={() => handleSectionClick("services")}
+            className={`nav-link ${active === "projects" ? "active" : ""}`}
+            onClick={() => handleSectionClick("projects")}
           >
-            Services
+            My Works
           </button>
 
           <button
             className={`nav-link ${active === "services" ? "active" : ""}`}
             onClick={() => handleSectionClick("services")}
           >
-            Projects
-          </button>
-
-          <button
-            className={`nav-link ${active === "about" ? "active" : ""}`}
-            onClick={() => handleSectionClick("about")}
-          >
-            About
+            Core Expertise
           </button>
 
           <button
@@ -143,6 +110,20 @@ export const Navbar: React.FC = () => {
             onClick={() => handleSectionClick("reviews")}
           >
             Reviews
+          </button>
+
+          <button
+            className={`nav-link ${active === "media-services" ? "active" : ""}`}
+            onClick={() => handleSectionClick("media-services")}
+          >
+            Media Services
+          </button>
+
+          <button
+            className={`nav-link ${active === "about" ? "active" : ""}`}
+            onClick={() => handleSectionClick("about")}
+          >
+            About
           </button>
 
           {/* Contact is a PAGE */}
@@ -159,7 +140,7 @@ export const Navbar: React.FC = () => {
         {/* CTA Section */}
         <div className="nav-actions">
           <a
-            href="https://wa.me/+918759475316"
+            href="https://api.whatsapp.com/send?phone=918759475316&text=Hey%20Talib%2C%20I%20want%20start%20my%20project"
             target="_blank"
             className="whatsapp-btn"
             style={{ textDecoration: "none" }}
@@ -181,6 +162,8 @@ export const Navbar: React.FC = () => {
             <span>Schedule a Call</span>
             <ArrowUpRight size={16} />
           </a>
+
+          <MobileNav />
         </div>
       </nav>
     </div>
