@@ -1,5 +1,4 @@
 .footer-section {
-  min-height: 100vh;
   background-color: #0b0d13;
   padding: 8rem 2rem 3rem;
   color: white;
@@ -56,6 +55,20 @@
   z-index: 5;
 }
 
+.status {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.bullet {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #55f790;
+  box-shadow: 0 0 14px #55f790;
+}
+
 .footer-top-header {
   margin-bottom: 3rem;
 }
@@ -78,12 +91,13 @@
 .footer-main-grid {
   display: flex;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 10rem;
   margin-bottom: 5rem;
 }
 
 .footer-brand-col {
-  flex: 1.2;
+  display: flex;
+  flex-direction: column;
   max-width: 400px;
 }
 
@@ -93,13 +107,16 @@
   margin-bottom: 1.5rem;
   color: white;
   letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .footer-brand-desc {
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.5);
   line-height: 1.6;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .footer-contact-info {
@@ -258,6 +275,12 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+.footer-logo {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 0px !important;
+}
+
 @media (max-width: 1536px) {
   .footer-section {
     padding: 6rem 2rem 2rem;
@@ -335,6 +358,7 @@
   }
 
   .footer-logo-brand {
+    gap: 0.75rem;
     font-size: 1.5rem;
     margin-bottom: 1.25rem;
   }
