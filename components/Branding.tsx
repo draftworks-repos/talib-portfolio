@@ -8,8 +8,8 @@ export const Branding: React.FC = () => {
         Schedule a <span className="branding-italic">call</span>
       </h1>
       <p className="branding-description">
-        At WebMaak, we make your vision a reality. Creative Media, Apps, and
-        Digital Marketing.
+        Whether you're launching or improving a platform, this discussion brings
+        clarity before execution
       </p>
     </div>
   );
