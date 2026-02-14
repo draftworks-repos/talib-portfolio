@@ -24,12 +24,25 @@
   gap: 40px;
 }
 
-.carousel-track {
+.carousel-track-wrapper {
+  flex: 1;
   position: relative;
   height: 500px;
+  overflow: visible;
+}
+
+.carousel-track {
+  position: relative;
+  height: 100%;
+  width: 100%;
   perspective: 2000px;
-  flex: 1;
   transform-style: preserve-3d;
+  cursor: grab;
+  touch-action: pan-y pinch-zoom; /* Allow vertical scroll but handle horizontal drag */
+}
+
+.carousel-track:active {
+  cursor: grabbing;
 }
 
 /* Card Base */
@@ -39,10 +52,9 @@
   left: 50%;
   width: 100%;
   max-width: 1000px;
-  transform: translateX(-50%);
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform, opacity;
   backface-visibility: hidden;
+  user-select: none;
 }
 .section-title-sub {
   max-width: 40rem;
@@ -71,40 +83,14 @@
   pointer-events: none;
 }
 
-/* Active Card */
+/* Positions are now handled by Framer Motion variants */
 .review-card.active {
-  z-index: 3;
-  opacity: 1;
-  transform: translateX(-50%) translateY(0) scale(1);
+  z-index: 10;
 }
 
 .review-card.active .card-inner {
-  background: #12141b; /* Fully opaque to prevent bleed-through */
+  background: #12141b; /* Fully opaque for active card */
   border-color: rgba(255, 255, 255, 0.12);
-}
-
-/* First Stack */
-.review-card.next {
-  z-index: 2;
-  opacity: 0.5;
-  transform: translateX(-50%) translateY(20px) scale(0.94);
-  pointer-events: none;
-}
-
-/* Second Stack */
-.review-card.next-2 {
-  z-index: 1;
-  opacity: 0.25;
-  transform: translateX(-50%) translateY(40px) scale(0.88);
-  pointer-events: none;
-}
-
-/* Hidden */
-.review-card.hidden {
-  z-index: 0;
-  opacity: 0;
-  transform: translateX(-50%) translateY(60px) scale(0.82);
-  pointer-events: none;
 }
 
 /* Card Content */
@@ -238,11 +224,14 @@
 }
 
 @media (max-width: 1536px) {
+  .carousel-section {
+    padding-bottom: 4rem;
+  }
   .review-text {
     font-size: 0.9rem;
   }
   .review-text {
-    min-height: 200px;
+    min-height: 220px;
     margin-bottom: 1.5rem;
   }
   .quote-icon {
@@ -260,11 +249,14 @@
     font-size: 1rem;
     margin-bottom: 1px;
   }
+  .pagination {
+    bottom: 0;
+  }
 }
 
 @media (max-width: 1024px) {
   .carousel-container {
-    padding: 0rem 1.5rem;
+    padding: 0rem 1.5rem 2rem;
   }
   .top-nav {
     display: none;
@@ -290,6 +282,9 @@
   .bottom-nav {
     display: block;
   }
+  .carousel-section {
+    padding-bottom: 4rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -297,7 +292,7 @@
     margin-bottom: 2.5rem;
   }
   .carousel-section {
-    padding: 0 1.5rem 6rem;
+    padding: 4rem 1.5rem 6rem;
   }
   .carousel-container {
     padding: 0;
@@ -316,7 +311,19 @@
   .review-text {
     min-height: 500px;
   }
-  .carousel-track {
-    height: 700px;
+  .card-inner {
+    padding: 1.5rem;
+    backdrop-filter: none; /* Disable backdrop filter on mobile for performance */
+    -webkit-backdrop-filter: none;
+    background: rgba(18, 20, 27, 0.95);
+  }
+  .review-card.active .card-inner {
+    background: #12141b;
+  }
+  .rating {
+    display: none;
+  }
+  .carousel-track-wrapper {
+    height: 670px;
   }
 }
