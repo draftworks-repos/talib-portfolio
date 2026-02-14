@@ -79,7 +79,15 @@ export const Hero: React.FC = () => {
               className="anim-spring-in"
               style={{ animationDelay: "1.2s" } as React.CSSProperties}
             >
-              <button className="btn-chat" data-coming-soon="true">
+              <button
+                className="btn-chat"
+                onClick={() =>
+                  window.scrollTo({
+                    top: document.getElementById("projects")?.offsetTop,
+                    behavior: "smooth",
+                  })
+                }
+              >
                 <img
                   src="/icons/code.png"
                   alt="WhatsApp"
@@ -94,7 +102,10 @@ export const Hero: React.FC = () => {
               className="anim-spring-in"
               style={{ animationDelay: "1.35s" } as React.CSSProperties}
             >
-              <a href="/contact" className="btn-quote-link">
+              <a
+                href="https://api.whatsapp.com/send?phone=918759475316&text=Hey%20Talib%2C%20I%20want%20start%20my%20project"
+                className="btn-quote-link"
+              >
                 <button className="btn-quote">
                   <span>Start Your Project</span>
                   <div className="hero-btn-icon-wrapper">
