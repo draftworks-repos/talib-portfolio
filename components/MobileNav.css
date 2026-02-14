@@ -1,0 +1,235 @@
+@media (min-width: 1024px) {
+  .mobile-toggle {
+    display: none !important;
+  }
+}
+
+/* =========================
+   Toggle Button
+========================= */
+.mobile-toggle {
+  padding: 0.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--border-white);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.mobile-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* =========================
+   Overlay
+========================= */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 10, 15, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 1100;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* =========================
+   Drawer Container
+========================= */
+.mobile-drawer {
+  position: fixed;
+  top: 1.5rem;
+  right: 0;
+  bottom: 1.5rem;
+  width: 320px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background: var(--glass-bg);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+
+  border-left: 1px solid var(--border-white);
+  border-top: 1px solid var(--border-white);
+  border-bottom: 1px solid var(--border-white);
+
+  border-radius: 24px 0 0 24px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.45),
+    inset 0 0 1px rgba(255, 255, 255, 0.25);
+
+  transform: translateX(110%);
+  transition: transform 0.35s cubic-bezier(0.77, 0, 0.175, 1);
+  will-change: transform;
+
+  z-index: 1150;
+  overflow: hidden;
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+/* Subtle internal glow */
+.mobile-drawer::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 25% 15%,
+    rgba(139, 92, 246, 0.15),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* =========================
+   Header (Close)
+========================= */
+.drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.25rem 0 1.25rem;
+}
+
+.drawer-logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.drawer-logo-img {
+  width: 20px;
+  height: 20px;
+}
+
+.drawer-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-white);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.drawer-close:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.08);
+}
+
+/* =========================
+   Navigation Section
+========================= */
+.drawer-body {
+  padding: 3rem 2rem 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.drawer-link {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.05rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.drawer-link:hover {
+  color: white;
+  transform: translateX(4px);
+}
+
+/* =========================
+   Footer Section
+========================= */
+.drawer-footer {
+  padding: 1.5rem 2rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* =========================
+   Social Icons
+========================= */
+.drawer-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.drawer-socials a {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border-white);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: all 0.25s ease;
+}
+
+.drawer-socials a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+/* =========================
+   CTA Button (Adapted)
+========================= */
+.drawer-cta {
+  width: 100%;
+}
+
+.drawer-cta .cta-main-button {
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 0;
+  padding-left: 1.75rem;
+}
+
+.cta-button-label {
+  text-align: center;
+}
+
+.drawer-cta .cta-button-icon-wrapper {
+  width: 36px;
+  height: 36px;
+}
