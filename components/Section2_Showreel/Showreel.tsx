@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import VideoShowcase from "./VideoShowcase";
-import { Zap } from "lucide-react";
+import { Zap, ArrowUpRight } from "lucide-react";
 import "./root.css";
 import "./Showreel.css";
 
@@ -36,7 +36,12 @@ export default function RootDevelopmentPage() {
 
   return (
     <>
-      <section data-theme="light" id="showreel" ref={sectionRef}>
+      <section
+        data-theme="light"
+        id="projects"
+        ref={sectionRef}
+        className="showreel-wrapper"
+      >
         {/* Top Header */}
         <div className="section-header">
           <div
@@ -51,19 +56,32 @@ export default function RootDevelopmentPage() {
             className="section-title-main anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.1s" }}
           >
-            Core Expertise
+            Featured Projects
           </h2>
           <p
             className="section-title-sub anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.2s" }}
           >
-            I specialize in building scalable digital products and
-            high-performing web solutions. Designed for clarity, speed, and
-            measurable growth.
+            Digital solutions designed and developed to deliver performance,
+            scalability, and measurable growth.
           </p>
         </div>
         <div className=" anim-on-scroll anim-bento-entrance">
           <VideoShowcase />
+        </div>
+        <div className="services-cta" style={{ marginTop: "4rem" }}>
+          <div
+            data-coming-soon="true"
+            className="anim-on-scroll anim-bento-entrance"
+            style={{ animationDelay: "0.1s" }}
+          >
+            <button className="cta-main-button">
+              <span className="cta-button-label">View My Work</span>
+              <div className="cta-button-icon-wrapper">
+                <ArrowUpRight size={18} />
+              </div>
+            </button>
+          </div>
         </div>
       </section>
     </>

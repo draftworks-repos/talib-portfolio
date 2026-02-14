@@ -1,3 +1,8 @@
+.showreel-wrapper {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
 .app-container {
   /* min-height: 100vh; */
   display: flex;
@@ -81,6 +86,9 @@
 }
 
 @media (max-width: 1536px) {
+  .showreel-wrapper {
+    padding-top: 6rem;
+  }
   .section-title-main {
     font-size: 2.8rem;
   }
@@ -90,6 +98,10 @@
   }
 }
 @media (max-width: 1024px) {
+  .showreel-wrapper {
+    padding-top: 2rem;
+    padding-bottom: 7rem;
+  }
   .section-title-main {
     font-size: 2.8rem;
   }
@@ -101,8 +113,12 @@
   .section-title-main {
     font-size: 2rem;
     line-height: 1.2;
+    margin-bottom: 0;
   }
   .section-title-sub {
     margin-top: 0.75rem;
+  }
+  .showreel-wrapper {
+    padding: 3rem 1.5rem 4rem;
   }
 }
