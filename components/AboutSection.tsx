@@ -2,12 +2,10 @@ import React, { useEffect, useRef } from "react";
 import { Zap, Star, Trophy, Clock, Users, Sparkles } from "lucide-react";
 import "./AboutSection.css";
 
-export const AboutSection: React.FC = () => {
+export const AboutSection: React.FC = React.memo(() => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    // Observer options: trigger when 15% is visible,
-    // and wait until it's 100px from the bottom edge
     const observerOptions = {
       threshold: 0.15,
       rootMargin: "0px 0px -100px 0px",
@@ -16,17 +14,20 @@ export const AboutSection: React.FC = () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add("item-visible");
-          // Once seen, we don't need to observe it anymore
+          // Trigger all animations at once for this section
+          const animatedElements =
+            entry.target.querySelectorAll(".anim-on-scroll");
+          animatedElements.forEach((el) => el.classList.add("item-visible"));
+
+          // Stop observing the section once triggered
           observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
 
-    // Specifically target all elements meant for scroll-reveal
-    const animatedElements =
-      sectionRef.current?.querySelectorAll(".anim-on-scroll");
-    animatedElements?.forEach((el) => observer.observe(el));
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
 
     return () => observer.disconnect();
   }, []);
@@ -48,6 +49,8 @@ export const AboutSection: React.FC = () => {
                   src="images/talib.jpg"
                   alt="Talib Ali"
                   className="person-img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <div className="image-overlay-gradient"></div>
               </div>
@@ -200,14 +203,35 @@ export const AboutSection: React.FC = () => {
             <a href="https://webmaak.com/" style={{ textDecoration: "none" }}>
               <button className="about-primary-btn">
                 <span>Visit WebMaak</span>
-                <Users size={18} />
+                <img
+                  src="icons/webmaak.png"
+                  alt="webmaak"
+                  className="webmaak-icon"
+                  loading="lazy"
+                  decoding="async"
+                />
               </button>
             </a>
             <div className="trusted-by-mini">
               <div className="mini-avatars">
-                <img src="images/1.png" alt="c1" />
-                <img src="images/2.png" alt="c2" />
-                <img src="images/3.png" alt="c3" />
+                <img
+                  src="images/1.png"
+                  alt="c1"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src="images/2.png"
+                  alt="c2"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <img
+                  src="images/3.png"
+                  alt="c3"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div className="avatar-plus">+50</div>
               </div>
               <span>Trusted by Industry Leaders</span>
@@ -217,4 +241,6 @@ export const AboutSection: React.FC = () => {
       </div>
     </section>
   );
-};
+});
+
+AboutSection.displayName = "AboutSection";

@@ -1,5 +1,5 @@
 .about-section {
-  padding: 10rem 2rem;
+  padding: 8rem 2rem 10rem;
   background-color: #0b0d13;
   position: relative;
   overflow: hidden;
@@ -377,7 +377,7 @@
   background: #fff;
   color: #000;
   border: none;
-  padding: 1.1rem 2.2rem;
+  padding: 1.1rem 2rem;
   border-radius: 9999px;
   font-size: 1rem;
   font-weight: 700;
@@ -442,9 +442,14 @@
   font-weight: 500;
 }
 
+.webmaak-icon {
+  width: 24px;
+  height: 24px;
+}
+
 @media (max-width: 1536px) {
   .about-section {
-    padding: 6rem 2rem;
+    padding: 8rem 2rem 8rem;
   }
 }
 
@@ -487,7 +492,7 @@
 
 @media (max-width: 768px) {
   .about-section {
-    padding: 6rem 1.25rem;
+    padding: 2rem 1.25rem;
   }
   .collage-grid {
     height: 480px;
