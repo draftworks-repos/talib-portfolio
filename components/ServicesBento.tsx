@@ -1,14 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import {
   ArrowUpRight,
-  Star,
   Zap,
   MousePointer2,
   Plus,
-  BarChart3,
-  Play,
-  Layers,
-  Check,
   Code2,
   Smartphone,
   ShoppingCart,
@@ -470,7 +465,7 @@ export const ServicesBento: React.FC = () => {
               className="cta-main-button"
               style={{ textDecoration: "none" }}
             >
-              <span className="cta-button-label">Get Started- It's Free</span>
+              <span className="cta-button-label">Schedule a Call</span>
               <div className="cta-button-icon-wrapper">
                 <ArrowUpRight size={18} />
               </div>
