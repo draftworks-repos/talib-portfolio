@@ -128,6 +128,25 @@ const StepComponent: React.FC = () => {
     };
   }, []);
 
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      if (window.innerWidth <= 1024) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          setHoveredStep(null);
+        }, 50);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const handleMouseMove = (
     e: React.MouseEvent<HTMLDivElement>,
     stepId: number,
@@ -169,7 +188,7 @@ const StepComponent: React.FC = () => {
               <div className="step-content">
                 <h3 className="step-title">{step.title}</h3>
                 <p className="step-description">{step.description}</p>
-                <div className="step-list">
+                <div className="step-list mobile">
                   <ul>
                     {step.list.map((item, index) => (
                       <li key={index} className="list-item">
