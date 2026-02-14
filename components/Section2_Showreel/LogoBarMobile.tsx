@@ -49,7 +49,11 @@ const LogoBarMobile: React.FC<LogoBarMobileProps> = ({
               transition={{ duration: 0.3 }}
               className="mobile-brand-name"
             >
-              {activeProject.name}
+              <img
+                className="image"
+                src={activeProject.logo}
+                alt={activeProject.name}
+              />
             </motion.div>
           </AnimatePresence>
           <div className="mobile-pagination">
