@@ -1,12 +1,11 @@
 "use client";
 
 import { Helmet } from "react-helmet";
-import React, { useState } from "react";
+import React from "react";
 import { AnimatedBackground } from "../components/AnimatedBackground";
 import { ContentArea } from "../components/ContentArea";
 import { Branding } from "../components/Branding";
 import { PageFooter } from "../components/ContactFooter";
-import { LayoutGrid, Code, Image } from "lucide-react";
 import PageTransition from "../components/PageTransition";
 import "../components/Contact.css";
 // Parent component
