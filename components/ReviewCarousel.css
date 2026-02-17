@@ -6,6 +6,7 @@
   background: transparent;
   position: relative;
   z-index: 10;
+  overflow: hidden;
 }
 
 .section-header {
@@ -306,10 +307,11 @@
     padding: 2rem;
   }
   .review-text {
-    font-size: 0.875rem;
+    line-height: 1.4;
+    font-size: 0.75rem;
   }
   .review-text {
-    min-height: 500px;
+    min-height: 350px;
   }
   .card-inner {
     padding: 1.5rem;
@@ -324,6 +326,13 @@
     display: none;
   }
   .carousel-track-wrapper {
-    height: 670px;
+    height: 500px;
+  }
+  .reviewer-details span {
+    font-size: 0.75rem;
+  }
+  .reviewer-details h4 {
+    margin-bottom: 0;
+    line-height: 1.2;
   }
 }
