@@ -133,7 +133,6 @@ import React, { lazy, Suspense, useEffect } from "react";
 import { Hero } from "../components/Hero";
 import { BackgroundEffects } from "../components/BackgroundEffects";
 import ComingSoon from "../components/ComingSoon";
-import PageTransition from "../components/PageTransition";
 import "./home.css"; // move inline styles here
 
 // Lazy-loaded sections (below the fold)
@@ -211,69 +210,67 @@ const Home: React.FC = () => {
         <link rel="canonical" href="https://talibali.in/" />
       </Helmet>
 
-      <PageTransition>
-        <div className="home-wrapper">
-          <ComingSoon />
+      <div className="home-wrapper">
+        <ComingSoon />
 
-          <main>
-            {/* HERO (above the fold - no lazy) */}
-            <section id="home" className="home-hero-section">
-              <BackgroundEffects />
-              <Hero />
-            </section>
+        <main>
+          {/* HERO (above the fold - no lazy) */}
+          <section id="home" className="home-hero-section">
+            <BackgroundEffects />
+            <Hero />
+          </section>
 
-            {/* BELOW THE FOLD — isolated Suspense boundaries */}
+          {/* BELOW THE FOLD — isolated Suspense boundaries */}
 
-            <section id="showreel">
-              <Suspense fallback={null}>
-                <Showreel />
-              </Suspense>
-            </section>
-
-            <section id="services">
-              <Suspense fallback={null}>
-                <ServicesBento />
-              </Suspense>
-            </section>
-
-            <section id="process">
-              <Suspense fallback={null}>
-                <StepComponentTwo />
-              </Suspense>
-            </section>
-
+          <section id="showreel">
             <Suspense fallback={null}>
-              <FrammerMarquee direction="left" />
+              <Showreel />
             </Suspense>
+          </section>
 
+          <section id="services">
             <Suspense fallback={null}>
-              <ReviewCarousel />
+              <ServicesBento />
             </Suspense>
+          </section>
 
-            <section id="extended-capabilities" className="no-margin-bottom">
-              <Suspense fallback={null}>
-                <ExtendedCapabilities />
-              </Suspense>
-            </section>
-
+          <section id="process">
             <Suspense fallback={null}>
-              <AboutSection />
+              <StepComponentTwo />
             </Suspense>
+          </section>
 
-            <Suspense fallback={null}>
-              <OverviewSection />
-            </Suspense>
+          <Suspense fallback={null}>
+            <FrammerMarquee direction="left" />
+          </Suspense>
 
-            <Suspense fallback={null}>
-              <CallToAction />
-            </Suspense>
+          <Suspense fallback={null}>
+            <ReviewCarousel />
+          </Suspense>
 
+          <section id="extended-capabilities" className="no-margin-bottom">
             <Suspense fallback={null}>
-              <Footer />
+              <ExtendedCapabilities />
             </Suspense>
-          </main>
-        </div>
-      </PageTransition>
+          </section>
+
+          <Suspense fallback={null}>
+            <AboutSection />
+          </Suspense>
+
+          <Suspense fallback={null}>
+            <OverviewSection />
+          </Suspense>
+
+          <Suspense fallback={null}>
+            <CallToAction />
+          </Suspense>
+
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
+        </main>
+      </div>
     </>
   );
 };
