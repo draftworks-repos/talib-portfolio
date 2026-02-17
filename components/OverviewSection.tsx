@@ -183,28 +183,42 @@ export const OverviewSection: React.FC = React.memo(() => {
 
   /* ===== Scroll → Progress (ends exactly at last marker) ===== */
   const scrollProgressRef = useRef(0);
+  const layoutDataRef = useRef<{ start: number; totalDistance: number } | null>(
+    null,
+  );
+
+  const updateLayoutData = useCallback(() => {
+    const markers = markerRefs.current.filter(Boolean);
+    if (markers.length < 2) return;
+
+    const firstRect = markers[0]!.getBoundingClientRect();
+    const lastRect = markers[markers.length - 1]!.getBoundingClientRect();
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+    const start = scrollY + firstRect.top + firstRect.height / 2;
+    const end = scrollY + lastRect.top + lastRect.height / 2;
+
+    layoutDataRef.current = {
+      start,
+      totalDistance: end - start,
+    };
+  }, []);
 
   useEffect(() => {
     let ticking = false;
 
     const updateProgress = () => {
-      if (!containerRef.current) return;
-
-      // Filter out null refs to avoid errors
-      const markers = markerRefs.current.filter(Boolean);
-      if (markers.length < 2) return;
+      if (!layoutDataRef.current) {
+        updateLayoutData();
+      }
+      if (!layoutDataRef.current) return;
 
       const viewportHeight = window.innerHeight;
-      // Trigger when marker is 60% up the viewport
-      const triggerPoint = viewportHeight * 0.6;
+      const triggerPoint =
+        (window.pageYOffset || document.documentElement.scrollTop) +
+        viewportHeight * 0.6;
+      const { start, totalDistance } = layoutDataRef.current;
 
-      const firstMarker = markers[0]!.getBoundingClientRect();
-      const lastMarker = markers[markers.length - 1]!.getBoundingClientRect();
-
-      const start = firstMarker.top + firstMarker.height / 2;
-      const end = lastMarker.top + lastMarker.height / 2;
-
-      const totalDistance = end - start;
       const progress = (triggerPoint - start) / totalDistance;
       const clampedProgress = Math.min(Math.max(progress, 0), 1);
 
@@ -230,11 +244,26 @@ export const OverviewSection: React.FC = React.memo(() => {
       }
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    updateProgress();
+    const handleResize = () => {
+      updateLayoutData();
+      updateProgress();
+    };
 
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize, { passive: true });
+
+    // Initial calculation after a short delay to ensure layout is settled
+    const timer = setTimeout(() => {
+      updateLayoutData();
+      updateProgress();
+    }, 100);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(timer);
+    };
+  }, [updateLayoutData]);
 
   /* ===== Header observer only ===== */
   useEffect(() => {

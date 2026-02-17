@@ -130,35 +130,77 @@ export const OverviewSection: React.FC = () => {
   ];
 
   /* ===== Scroll → Progress (ends exactly at last marker) ===== */
+  const layoutDataRef = useRef<{ start: number; totalDistance: number } | null>(
+    null,
+  );
+
+  const updateLayoutData = () => {
+    if (markerRefs.current.length < 2) return;
+
+    const firstRect = markerRefs.current[0].getBoundingClientRect();
+    const lastRect =
+      markerRefs.current[markerRefs.current.length - 1].getBoundingClientRect();
+    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+    const start = scrollY + firstRect.top + firstRect.height / 2;
+    const end = scrollY + lastRect.top + lastRect.height / 2;
+
+    layoutDataRef.current = {
+      start,
+      totalDistance: end - start,
+    };
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (!containerRef.current || markerRefs.current.length < 2) return;
+    let ticking = false;
+
+    const updateProgress = () => {
+      if (!layoutDataRef.current) {
+        updateLayoutData();
+      }
+      if (!layoutDataRef.current) return;
 
       const viewportHeight = window.innerHeight;
-      const triggerPoint = viewportHeight * 0.6;
-
-      const firstMarker = markerRefs.current[0].getBoundingClientRect();
-      const lastMarker =
-        markerRefs.current[
-          markerRefs.current.length - 1
-        ].getBoundingClientRect();
-
-      const start = firstMarker.top + firstMarker.height / 2;
-      const end = lastMarker.top + lastMarker.height / 2;
-
-      const totalDistance = end - start;
+      const triggerPoint =
+        (window.pageYOffset || document.documentElement.scrollTop) +
+        viewportHeight * 0.6;
+      const { start, totalDistance } = layoutDataRef.current;
 
       const progress = (triggerPoint - start) / totalDistance;
       const clampedProgress = Math.min(Math.max(progress, 0), 1);
 
       setScrollProgress(clampedProgress);
       setLineHeightPx(totalDistance * clampedProgress);
+
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateProgress);
+        ticking = true;
+      }
+    };
+
+    const handleResize = () => {
+      updateLayoutData();
+      updateProgress();
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    window.addEventListener("resize", handleResize, { passive: true });
 
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Initial calculation
+    const timer = setTimeout(() => {
+      updateLayoutData();
+      updateProgress();
+    }, 100);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
+      clearTimeout(timer);
+    };
   }, []);
 
   /* ===== Header observer only ===== */
