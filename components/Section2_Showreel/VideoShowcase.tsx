@@ -9,7 +9,7 @@ import LogoBar from "./LogoBar";
 import LogoBarMobile from "./LogoBarMobile";
 import "./VideoShowcase.css";
 
-const VideoShowcase: React.FC = () => {
+const VideoShowcase: React.FC = React.memo(() => {
   const [activeTab, setActiveTab] = useState<Category>("IT Projects");
   const [activeProject, setActiveProject] = useState<ProjectVideo>(
     PROJECT_DATA["IT Projects"][0],
@@ -125,6 +125,6 @@ const VideoShowcase: React.FC = () => {
       </div>
     </motion.div>
   );
-};
+});
 
 export default VideoShowcase;
