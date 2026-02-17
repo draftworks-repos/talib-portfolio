@@ -5,26 +5,27 @@ import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Analytics from "./Analytics";
 
-declare global {
-  interface Window {
-    gtag: (...args: any[]) => void;
-  }
-}
+// declare global {
+//   interface Window {
+//     gtag: (...args: any[]) => void;
+//   }
+// }
 
-function RouteTracker() {
-  const location = useLocation();
+// function RouteTracker() {
+//   const location = useLocation();
 
-  useEffect(() => {
-    if (window.gtag) {
-      window.gtag("config", "G-X2YD0EHSTS", {
-        page_path: location.pathname,
-      });
-    }
-  }, [location]);
+//   useEffect(() => {
+//     if (window.gtag) {
+//       window.gtag("config", "G-X2YD0EHSTS", {
+//         page_path: location.pathname,
+//       });
+//     }
+//   }, [location]);
 
-  return null;
-}
+//   return null;
+// }
 
 function App() {
   // useEffect(() => {
@@ -41,7 +42,8 @@ function App() {
 
   return (
     <BrowserRouter>
-      <RouteTracker />
+      {/* <RouteTracker /> */}
+      <Analytics />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
