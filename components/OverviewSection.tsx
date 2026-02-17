@@ -182,6 +182,8 @@ export const OverviewSection: React.FC = React.memo(() => {
   const [lineHeightPx, setLineHeightPx] = useState(0);
 
   /* ===== Scroll → Progress (ends exactly at last marker) ===== */
+  const scrollProgressRef = useRef(0);
+
   useEffect(() => {
     let ticking = false;
 
@@ -193,6 +195,7 @@ export const OverviewSection: React.FC = React.memo(() => {
       if (markers.length < 2) return;
 
       const viewportHeight = window.innerHeight;
+      // Trigger when marker is 60% up the viewport
       const triggerPoint = viewportHeight * 0.6;
 
       const firstMarker = markers[0]!.getBoundingClientRect();
@@ -205,8 +208,18 @@ export const OverviewSection: React.FC = React.memo(() => {
       const progress = (triggerPoint - start) / totalDistance;
       const clampedProgress = Math.min(Math.max(progress, 0), 1);
 
-      setScrollProgress(clampedProgress);
-      setLineHeightPx(totalDistance * clampedProgress);
+      // PERSISTENT: Only update if progress has increased
+      if (clampedProgress > scrollProgressRef.current) {
+        scrollProgressRef.current = clampedProgress;
+        setScrollProgress(clampedProgress);
+        setLineHeightPx(totalDistance * clampedProgress);
+
+        // Optimization: if we hit 100%, we can stop listening to scroll
+        if (clampedProgress >= 1) {
+          window.removeEventListener("scroll", handleScroll);
+        }
+      }
+
       ticking = false;
     };
 
