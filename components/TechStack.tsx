@@ -85,9 +85,9 @@ export const TechStack: React.FC<TechStackProps> = React.memo(({ isHero }) => {
 
   return (
     <div className="tech-stack" ref={containerRef}>
-      <h3 className="tech-stack-title">
+      <h2 className="tech-stack-title">
         Revolutionizing Client Solutions with the Best Tools
-      </h3>
+      </h2>
 
       <div className="marquee-wrapper">
         <div className="marquee-content">
