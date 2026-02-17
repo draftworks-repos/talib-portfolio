@@ -6,7 +6,6 @@ import { AnimatedBackground } from "../components/AnimatedBackground";
 import { ContentArea } from "../components/ContentArea";
 import { Branding } from "../components/Branding";
 import { PageFooter } from "../components/ContactFooter";
-import PageTransition from "../components/PageTransition";
 import "../components/Contact.css";
 // Parent component
 
@@ -40,30 +39,28 @@ const Contact: React.FC = () => {
 
         <link rel="canonical" href="https://talibali.in/contact" />
       </Helmet>
-      <PageTransition>
-        <div className="about-root selection-accent">
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <AnimatedBackground />
+      <div className="about-root selection-accent">
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <AnimatedBackground />
 
-            <div className="about-container">
-              <Branding />
+          <div className="about-container">
+            <Branding />
 
-              <div className="about-content-card">
-                <ContentArea />
-              </div>
-
-              <PageFooter />
+            <div className="about-content-card">
+              <ContentArea />
             </div>
+
+            <PageFooter />
           </div>
         </div>
-      </PageTransition>
+      </div>
     </>
   );
 };
