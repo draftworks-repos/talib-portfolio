@@ -127,3 +127,8 @@
     opacity: 0.15;
   }
 }
+
+/* Optimization: Pause any CSS animations when out of viewport */
+.bg-root:not(.in-view) * {
+  animation-play-state: paused !important;
+}

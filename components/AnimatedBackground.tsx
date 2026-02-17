@@ -1,11 +1,12 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./AnimatedBackground.css";
 
-export const AnimatedBackground: React.FC = () => {
+export const AnimatedBackground: React.FC = React.memo(() => {
   const rootRef = useRef<HTMLDivElement>(null);
   const frame = useRef<number | null>(null);
+  const [isInView, setIsInView] = useState(false);
 
   // current animated values
   const current = useRef({ x: 0, y: 0 });
@@ -17,6 +18,33 @@ export const AnimatedBackground: React.FC = () => {
   const FOLLOW_SPEED = 0.18; // higher = more aggressive follow
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          setIsInView(entry.isIntersecting);
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            entry.target.classList.remove("in-view");
+          }
+        });
+      },
+      { threshold: 0 },
+    );
+
+    if (rootRef.current) {
+      observer.observe(rootRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isInView) {
+      if (frame.current) cancelAnimationFrame(frame.current);
+      return;
+    }
+
     const animate = () => {
       const dx = target.current.x - current.current.x;
       const dy = target.current.y - current.current.y;
@@ -48,7 +76,7 @@ export const AnimatedBackground: React.FC = () => {
       window.removeEventListener("mousemove", handleMouseMove);
       if (frame.current) cancelAnimationFrame(frame.current);
     };
-  }, []);
+  }, [isInView]);
 
   return (
     <div ref={rootRef} className="bg-root">
@@ -60,4 +88,6 @@ export const AnimatedBackground: React.FC = () => {
       <div className="bg-vignette" />
     </div>
   );
-};
+});
+
+AnimatedBackground.displayName = "AnimatedBackground";
