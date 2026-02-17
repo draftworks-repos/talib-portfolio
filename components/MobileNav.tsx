@@ -136,6 +136,7 @@ const MobileNav: React.FC = memo(() => {
         <div className="drawer-header">
           <a
             href="/"
+            aria-label="home"
             className="drawer-logo"
             style={{ textDecoration: "none" }}
             onClick={(e) => {
@@ -170,6 +171,7 @@ const MobileNav: React.FC = memo(() => {
               <a
                 key={idx}
                 href={href}
+                aria-label="social link"
                 target="_blank"
                 rel="noopener noreferrer"
               >

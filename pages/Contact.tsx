@@ -37,7 +37,11 @@ const Contact: React.FC = () => {
 
         <meta property="og:url" content="https://talibali.in/contact" />
 
-        <link rel="canonical" href="https://talibali.in/contact" />
+        <link
+          rel="canonical"
+          aria-label="canonical"
+          href="https://talibali.in/contact"
+        />
       </Helmet>
       <div className="about-root selection-accent">
         <div

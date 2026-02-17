@@ -341,6 +341,7 @@ export const OverviewSection: React.FC = React.memo(() => {
         >
           <a
             href="/contact"
+            aria-label="schedule a call"
             className="cta-main-button"
             style={{ textDecoration: "none" }}
           >

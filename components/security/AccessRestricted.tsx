@@ -20,9 +20,15 @@ export default function AccessRestricted() {
           </p>
 
           <div className="links">
-            <a href="/privacy">Privacy</a>
-            <a href="/terms">Terms</a>
-            <a href="/contact">Contact</a>
+            <a href="/privacy" aria-label="privacy">
+              Privacy
+            </a>
+            <a href="/terms" aria-label="terms">
+              Terms
+            </a>
+            <a href="/contact" aria-label="contact">
+              Contact
+            </a>
           </div>
 
           <div className="footer">Talib Ali © 2026 all rights reserved.</div>
@@ -30,11 +36,15 @@ export default function AccessRestricted() {
 
         {/* RIGHT SIDE (Actions) */}
         <div className="card-actions">
-          <a href="/" className="primary-btn">
+          <a href="/" className="primary-btn" aria-label="return home">
             Return Home
           </a>
 
-          <a href="/contact" className="secondary-btn">
+          <a
+            href="/contact"
+            className="secondary-btn"
+            aria-label="get in touch"
+          >
             Get in Touch
           </a>
         </div>

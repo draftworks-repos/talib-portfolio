@@ -59,6 +59,7 @@ export const Footer: React.FC = () => {
               <a
                 href="https://webmaak.com/"
                 className="footer-demo-btn"
+                aria-label="explore webmaak"
                 style={{ textDecoration: "none" }}
               >
                 <span>Explore WebMaak</span>
@@ -77,6 +78,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <a
                     href="#"
+                    aria-label="return home"
                     onClick={(e) => {
                       e.preventDefault();
                       handleSectionClick("home");
@@ -88,6 +90,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <a
                     href="#"
+                    aria-label="view featured projects"
                     onClick={(e) => {
                       e.preventDefault();
                       handleSectionClick("projects");
@@ -99,6 +102,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <a
                     href="#"
+                    aria-label="view core expertise"
                     onClick={(e) => {
                       e.preventDefault();
                       handleSectionClick("services");
@@ -110,6 +114,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <a
                     href="#"
+                    aria-label="view workflow"
                     onClick={(e) => {
                       e.preventDefault();
                       handleSectionClick("process");
@@ -121,6 +126,7 @@ export const Footer: React.FC = () => {
                 <li>
                   <a
                     href="#"
+                    aria-label="get in touch"
                     onClick={(e) => {
                       e.preventDefault();
                       handleSectionClick("/contact");
@@ -135,27 +141,42 @@ export const Footer: React.FC = () => {
               <h4 className="footer-links-title">Services</h4>
               <ul>
                 <li>
-                  <a href="https://api.whatsapp.com/send?phone=918759475316&text=I%20need%20UI%2FUX%20design%20services%20for%20my%20project.%20Can%20we%20discuss%20the%20details%3F">
+                  <a
+                    href="https://api.whatsapp.com/send?phone=918759475316&text=I%20need%20UI%2FUX%20design%20services%20for%20my%20project.%20Can%20we%20discuss%20the%20details%3F"
+                    aria-label="get ui/ux design services"
+                  >
                     UI/UX Design
                   </a>
                 </li>
                 <li>
-                  <a href="https://api.whatsapp.com/send?phone=918759475316&text=I%20am%20looking%20to%20build%20a%20custom%20web%20application.%20Can%20we%20discuss%20the%20requirements%3F">
+                  <a
+                    href="https://api.whatsapp.com/send?phone=918759475316&text=I%20am%20looking%20to%20build%20a%20custom%20web%20application.%20Can%20we%20discuss%20the%20requirements%3F"
+                    aria-label="get wordpress development services"
+                  >
                     WordPress Development
                   </a>
                 </li>
                 <li>
-                  <a href="https://api.whatsapp.com/send?phone=918759475316&text=I%20need%20a%20WordPress%20website%20designed%20and%20developed.%20Can%20we%20discuss%20my%20project%3F">
+                  <a
+                    href="https://api.whatsapp.com/send?phone=918759475316&text=I%20need%20a%20WordPress%20website%20designed%20and%20developed.%20Can%20we%20discuss%20my%20project%3F"
+                    aria-label="get web & application development services"
+                  >
                     Web & Application Development
                   </a>
                 </li>
                 <li>
-                  <a href="https://api.whatsapp.com/send?phone=918759475316&text=I%20want%20to%20build%20an%20e-commerce%20store%20(Shopify%20or%20WooCommerce).%20Can%20we%20discuss%20the%20details%3F">
+                  <a
+                    href="https://api.whatsapp.com/send?phone=918759475316&text=I%20want%20to%20build%20an%20e-commerce%20store%20(Shopify%20or%20WooCommerce).%20Can%20we%20discuss%20the%20details%3F"
+                    aria-label="get e-commerce solutions"
+                  >
                     E-commerce Solutions
                   </a>
                 </li>
                 <li>
-                  <a href="https://api.whatsapp.com/send?phone=918759475316&text=I%20am%20planning%20to%20develop%20a%20mobile%20application.%20Can%20we%20discuss%20the%20project%20requirements%3F">
+                  <a
+                    href="https://api.whatsapp.com/send?phone=918759475316&text=I%20am%20planning%20to%20develop%20a%20mobile%20application.%20Can%20we%20discuss%20the%20project%20requirements%3F"
+                    aria-label="get mobile application services"
+                  >
                     Mobile Application
                   </a>
                 </li>
@@ -165,20 +186,26 @@ export const Footer: React.FC = () => {
               <h4 className="footer-links-title">Contact</h4>
               <ul>
                 <li>
-                  <a href="mailto:hello@talibali.in">
+                  <a
+                    href="mailto:hello@talibali.in"
+                    aria-label="send email to hello@talibali.in"
+                  >
                     {" "}
                     <Mail size={16} style={{ marginRight: "5px" }} />{" "}
                     hello@talibali.in
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+918759475316">
+                  <a href="tel:+918759475316" aria-label="call +91 8759475316">
                     <Phone size={16} style={{ marginRight: "5px" }} /> +91
                     8759475316
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.google.com/maps/place/Kolkata,+West+Bengal/@22.5354063,88.2647794,26587m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f882db4908f667:0x43e330e68f6c2cbc!8m2!3d22.5743545!4d88.3628734!16zL20vMGN2dzk!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDIxMC4wIKXMDSoASAFQAw%3D%3D">
+                  <a
+                    href="https://www.google.com/maps/place/Kolkata,+West+Bengal/@22.5354063,88.2647794,26587m/data=!3m2!1e3!4b1!4m6!3m5!1s0x39f882db4908f667:0x43e330e68f6c2cbc!8m2!3d22.5743545!4d88.3628734!16zL20vMGN2dzk!5m1!1e1?entry=ttu&g_ep=EgoyMDI2MDIxMC4wIKXMDSoASAFQAw%3D%3D"
+                    aria-label="view kolkata location"
+                  >
                     <MapPin size={16} style={{ marginRight: "5px" }} /> Kolkata,
                     India
                   </a>
@@ -198,16 +225,23 @@ export const Footer: React.FC = () => {
             <a
               href="https://www.facebook.com/talib.ali.15"
               className="social-icon-circle"
+              aria-label="facebook"
             >
               <Facebook size={16} />
             </a>
             <a
               href="https://www.instagram.com/talib_imran/"
               className="social-icon-circle"
+              aria-label="instagram"
             >
               <Instagram size={16} />
             </a>
-            <a href="#" className="social-icon-circle" data-coming-soon="true">
+            <a
+              href="#"
+              aria-label="twitter"
+              className="social-icon-circle"
+              data-coming-soon="true"
+            >
               <svg
                 width="14"
                 height="14"
@@ -220,6 +254,7 @@ export const Footer: React.FC = () => {
             <a
               href="https://www.linkedin.com/in/mdtalib15/"
               className="social-icon-circle"
+              aria-label="linkedin"
             >
               <Linkedin size={16} />
             </a>

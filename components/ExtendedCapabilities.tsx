@@ -101,6 +101,7 @@ export const ExtendedCapabilities: React.FC = React.memo(() => {
             <a
               href="https://webmaak.com/"
               target="_blank"
+              aria-label="visit webmaak"
               style={{ textDecoration: "none" }}
               className="skill-tag"
             >
@@ -260,6 +261,7 @@ export const ExtendedCapabilities: React.FC = React.memo(() => {
           >
             <a
               href="/contact"
+              aria-label="schedule a call"
               className="cta-main-button"
               style={{ textDecoration: "none" }}
             >

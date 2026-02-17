@@ -128,6 +128,7 @@ export const Hero: React.FC = React.memo(() => {
               <a
                 href="https://api.whatsapp.com/send?phone=918759475316&text=Hey%20Talib%2C%20I%20want%20start%20my%20project"
                 className="btn-quote-link"
+                aria-label="start your project"
               >
                 <button className="btn-quote">
                   <span>Start Your Project</span>

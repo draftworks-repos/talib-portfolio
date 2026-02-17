@@ -25,7 +25,12 @@ export const PageFooter: React.FC = () => {
     <div className="footer-container">
       <div className="footer-socials">
         {socialLinks.map((social) => (
-          <a key={social.name} href={social.url} className="footer-social-link">
+          <a
+            key={social.name}
+            href={social.url}
+            aria-label={social.name}
+            className="footer-social-link"
+          >
             <span>{social.icon}</span>
             <span>{social.name}</span>
           </a>
@@ -33,11 +38,19 @@ export const PageFooter: React.FC = () => {
       </div>
 
       <div className="footer-contact-wrapper">
-        <a href="tel:+918256012345" className="footer-contact">
+        <a
+          href="tel:+918256012345"
+          aria-label="connect on phone"
+          className="footer-contact"
+        >
           <span className="footer-contact-label">Connect on Phone</span>
           <span className="footer-contact-email">+91 8256012345</span>
         </a>
-        <a href="mailto:hello@webmaak.com" className="footer-contact">
+        <a
+          href="mailto:hello@webmaak.com"
+          aria-label="connect on email"
+          className="footer-contact"
+        >
           <span className="footer-contact-label">Connect on Email</span>
           <span className="footer-contact-email">hello@talibali.in</span>
         </a>

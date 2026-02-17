@@ -200,7 +200,11 @@ export const AboutSection: React.FC = React.memo(() => {
             className="about-actions anim-on-scroll reveal-up"
             style={{ transitionDelay: "0.6s" }}
           >
-            <a href="https://webmaak.com/" style={{ textDecoration: "none" }}>
+            <a
+              href="https://webmaak.com/"
+              aria-label="visit webmaak"
+              style={{ textDecoration: "none" }}
+            >
               <button className="about-primary-btn">
                 <span>Visit WebMaak</span>
                 <img

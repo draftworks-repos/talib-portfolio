@@ -299,6 +299,7 @@ export const OverviewSection: React.FC = () => {
         >
           <a
             href="/contact"
+            aria-label="schedule a call"
             className="cta-main-button"
             style={{ textDecoration: "none" }}
           >

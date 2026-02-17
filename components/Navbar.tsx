@@ -142,6 +142,7 @@ export const Navbar: React.FC = () => {
           <a
             href="https://api.whatsapp.com/send?phone=918759475316&text=Hey%20Talib%2C%20I%20want%20start%20my%20project"
             target="_blank"
+            aria-label="start your project"
             className="whatsapp-btn"
             style={{ textDecoration: "none" }}
           >
@@ -156,6 +157,7 @@ export const Navbar: React.FC = () => {
 
           <a
             href="/contact"
+            aria-label="schedule a call"
             className="btn-pill"
             style={{ textDecoration: "none" }}
           >

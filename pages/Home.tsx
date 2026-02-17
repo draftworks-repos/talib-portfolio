@@ -207,7 +207,11 @@ const Home: React.FC = () => {
         />
 
         <meta property="og:url" content="https://talibali.in/" />
-        <link rel="canonical" href="https://talibali.in/" />
+        <link
+          rel="canonical"
+          aria-label="canonical"
+          href="https://talibali.in/"
+        />
       </Helmet>
 
       <div className="home-wrapper">

@@ -49,6 +49,7 @@ export const CallToAction: React.FC = () => {
         <div className="cta-button-container">
           <a
             href="/contact"
+            aria-label="schedule a call"
             className="cta-main-button secondary"
             style={{ textDecoration: "none" }}
           >
@@ -60,6 +61,7 @@ export const CallToAction: React.FC = () => {
 
           <a
             href="https://api.whatsapp.com/send?phone=918759475316&text=Hey%20Talib%2C%20I%20want%20start%20my%20project"
+            aria-label="start your project"
             className="cta-main-button"
             style={{ textDecoration: "none" }}
           >
