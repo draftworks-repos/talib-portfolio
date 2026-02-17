@@ -22,7 +22,6 @@
 .clients-container {
   width: 100%;
   position: relative;
-  transform: rotate(-3deg);
   z-index: 2;
   background: linear-gradient(to right, #a61b1b, #c82020, #a61b1b);
   /* Soft fade effect on the edges */
@@ -40,6 +39,7 @@
     black 85%,
     transparent
   );
+  transform: rotate(-3deg);
   will-change: transform;
 }
 
@@ -157,4 +157,40 @@
   .clients-container {
     transform: rotate(-6deg);
   }
+}
+
+/* Marquee Scroll Animations */
+.marquee-scroll-left {
+  animation: scroll-left 50s linear infinite;
+}
+
+.marquee-scroll-right {
+  animation: scroll-right 50s linear infinite;
+}
+
+.clients-container.two .marquee-scroll-right {
+  animation-duration: 150s;
+}
+
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-33.33%);
+  }
+}
+
+@keyframes scroll-right {
+  from {
+    transform: translateX(-33.33%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Optimization: Pause when out of view */
+.clients-section:not(.is-visible) .marquee-content-row {
+  animation-play-state: paused !important;
 }
