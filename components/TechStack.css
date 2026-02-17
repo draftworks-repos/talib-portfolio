@@ -98,3 +98,8 @@
     height: 2.25rem;
   }
 }
+
+/* Optimization: Pause marquee when out of viewport */
+.tech-stack:not(.in-view) .marquee-content {
+  animation-play-state: paused !important;
+}

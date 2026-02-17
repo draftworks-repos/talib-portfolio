@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./TechStack.css";
 
 const TOOLS = [
@@ -60,8 +60,31 @@ interface TechStackProps {
 }
 
 export const TechStack: React.FC<TechStackProps> = React.memo(({ isHero }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            entry.target.classList.remove("in-view");
+          }
+        });
+      },
+      { threshold: 0 },
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="tech-stack">
+    <div className="tech-stack" ref={containerRef}>
       <h3 className="tech-stack-title">
         Revolutionizing Client Solutions with the Best Tools
       </h3>
@@ -74,9 +97,8 @@ export const TechStack: React.FC<TechStackProps> = React.memo(({ isHero }) => {
                 src={tool.icon}
                 alt={tool.name}
                 className="tech-icon"
-                loading={isHero ? "eager" : "lazy"}
-                // @ts-ignore - fetchpriority is a newer attribute
-                fetchpriority={isHero ? "high" : "auto"}
+                loading="lazy"
+                fetchPriority="low"
                 decoding="async"
                 width={36}
                 height={36}
