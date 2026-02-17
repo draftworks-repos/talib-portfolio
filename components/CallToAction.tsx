@@ -65,7 +65,11 @@ export const CallToAction: React.FC = () => {
           >
             <span className="cta-button-label">Start Your Project</span>
             <div className="cta-button-icon-wrapper">
-              <img src="images/whatsapp.svg" alt="" className="cta-whatsapp" />
+              <img
+                src="images/whatsapp.svg"
+                alt="whatsapp-icon"
+                className="cta-whatsapp"
+              />
             </div>
           </a>
         </div>
