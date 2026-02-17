@@ -3,8 +3,10 @@ import { createPortal } from "react-dom";
 import {
   Menu,
   X,
-  Briefcase,
-  Layers,
+  BriefcaseBusiness,
+  BrainCircuit,
+  Route,
+  DiamondPlus,
   User,
   Star,
   Mail,
@@ -64,6 +66,9 @@ const MobileNav: React.FC = memo(() => {
         if (el) {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
           navigate(`/${hash}`, { replace: true });
+        } else if (id === "home") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          navigate("/", { replace: true });
         }
       }
     },
@@ -74,12 +79,12 @@ const MobileNav: React.FC = memo(() => {
     () => [
       {
         label: "My Works",
-        icon: Layers,
+        icon: BriefcaseBusiness,
         action: () => handleScroll("#projects"),
       },
       {
         label: "Core Expertise",
-        icon: Briefcase,
+        icon: BrainCircuit,
         action: () => handleScroll("#services"),
       },
       {
@@ -89,8 +94,13 @@ const MobileNav: React.FC = memo(() => {
       },
       {
         label: "Media Services",
-        icon: Layers, // Using Layers for consistency, or can use another icon if imported
+        icon: DiamondPlus, // Using Layers for consistency, or can use another icon if imported
         action: () => handleScroll("#media-services"),
+      },
+      {
+        label: "My Journey",
+        icon: Route,
+        action: () => handleScroll("#process"),
       },
       {
         label: "About",
@@ -128,6 +138,10 @@ const MobileNav: React.FC = memo(() => {
             href="/"
             className="drawer-logo"
             style={{ textDecoration: "none" }}
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("home");
+            }}
           >
             <img src="icons/logo.png" alt="Logo" className="drawer-logo-img" />{" "}
             <span>Talib Ali</span>
