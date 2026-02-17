@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import "./ServicesBento.css";
 
-export const ExtendedCapabilities: React.FC = () => {
+export const ExtendedCapabilities: React.FC = React.memo(() => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -38,7 +38,28 @@ export const ExtendedCapabilities: React.FC = () => {
       sectionRef.current?.querySelectorAll(".anim-on-scroll");
     animatedElements?.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
+    // Observer for toggling in-view class to pause/unpause animations
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            entry.target.classList.remove("in-view");
+          }
+        });
+      },
+      { threshold: 0 },
+    );
+
+    if (sectionRef.current) {
+      sectionObserver.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      sectionObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -219,7 +240,13 @@ export const ExtendedCapabilities: React.FC = () => {
             </div>
             <div className="card-illustration three-preview">
               <div className="three-object-mockup anim-sphere-float">
-                <img src="model/model.png" alt="model" className="model" />
+                <img
+                  src="model/model.png"
+                  alt="model"
+                  className="model"
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
             </div>
           </div>
@@ -246,7 +273,9 @@ export const ExtendedCapabilities: React.FC = () => {
       </div>
     </section>
   );
-};
+});
+
+ExtendedCapabilities.displayName = "ExtendedCapabilities";
 
 const ShoppingBagIcon = () => (
   <svg
