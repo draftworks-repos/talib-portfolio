@@ -76,7 +76,7 @@ export default function RootDevelopmentPage() {
             style={{ animationDelay: "0.1s" }}
           >
             <button className="cta-main-button">
-              <span className="cta-button-label">View My Work</span>
+              <span className="cta-button-label">Explore all Works</span>
               <div className="cta-button-icon-wrapper">
                 <ArrowUpRight size={18} />
               </div>
