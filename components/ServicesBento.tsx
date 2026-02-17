@@ -344,7 +344,7 @@ export const ServicesBento: React.FC = React.memo(() => {
                   <div className="mockup-circle-plus-shopify">
                     <img
                       src="icons/shopify.png"
-                      alt=""
+                      alt="shopify-icon"
                       loading="lazy"
                       decoding="async"
                       width={40}
