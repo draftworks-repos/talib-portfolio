@@ -334,3 +334,14 @@
     filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
   }
 }
+
+/* Optimization: Pause animations when out of viewport */
+.bg-effects:not(.in-view) * {
+  animation-play-state: paused !important;
+}
+
+.hero-glow-blob,
+.floating-shape,
+.grid-plane {
+  will-change: transform, opacity;
+}
