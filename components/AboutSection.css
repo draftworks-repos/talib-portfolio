@@ -572,4 +572,7 @@
     padding-left: 0.15rem;
     padding-right: 0.15rem;
   }
+  .about-content {
+    padding: 0 1.5rem;
+  }
 }
