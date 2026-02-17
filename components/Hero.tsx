@@ -1,15 +1,38 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ArrowUpRight, Layers } from "lucide-react";
 import { TechStack } from "./TechStack";
 import "./Hero.css";
 
-export const Hero: React.FC = () => {
+export const Hero: React.FC = React.memo(() => {
+  const sectionRef = useRef<HTMLElement>(null);
   const titleText1 = "Led Web & Product Solutions";
   const titleText2 = "for Growing Businesses";
   const subtext =
     "I’m Talib Ali founder of WebMaak, a Technology & Media Studio. I personally design and develop websites, web apps, and digital solutions that help startups and businesses grow.";
+
+  useEffect(() => {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            entry.target.classList.remove("in-view");
+          }
+        });
+      },
+      { threshold: 0 },
+    );
+
+    if (sectionRef.current) {
+      sectionObserver.observe(sectionRef.current);
+    }
+
+    return () => sectionObserver.disconnect();
+  }, []);
+
   return (
-    <section className="hero-section">
+    <section className="hero-section" ref={sectionRef}>
       <div className="hero-container">
         <div className="hero-main">
           {/* Top Badge */}
@@ -22,15 +45,15 @@ export const Hero: React.FC = () => {
             <div className="badge-line reversed"></div>
           </div>
 
-          {/* Headline - Character based animation */}
+          {/* Headline - Discrete Typewriter Animation */}
           <h1 className="hero-title">
             <span className="title-inner">
               {titleText1.split("").map((char, i) => (
                 <span
                   key={`t1-${i}`}
-                  className="char"
+                  className="char typewriter"
                   style={{
-                    animationDelay: `${i * 0.02 + 0.3}s`,
+                    animationDelay: `${i * 0.04 + 0.3}s`,
                   }}
                 >
                   {char === " " ? "\u00A0" : char}
@@ -42,9 +65,9 @@ export const Hero: React.FC = () => {
               {titleText2.split("").map((char, i) => (
                 <span
                   key={`t2-${i}`}
-                  className="char"
+                  className="char typewriter"
                   style={{
-                    animationDelay: `${(i + titleText1.length) * 0.02 + 0.3}s`,
+                    animationDelay: `${(i + titleText1.length) * 0.04 + 0.3}s`,
                   }}
                 >
                   {char === " " ? "\u00A0" : char}
@@ -53,16 +76,16 @@ export const Hero: React.FC = () => {
             </span>
           </h1>
 
-          {/* Subtext - Word based animation for better readability */}
+          {/* Subtext - Word based animation with typewriter feel */}
           <div className="hero-subtext">
             <p>
               {subtext.split(" ").map((word, i) => (
                 <span
                   key={i}
-                  className="word"
+                  className="word typewriter-fade"
                   style={
                     {
-                      animationDelay: `${i * 0.05 + 0.8}s`,
+                      animationDelay: `${i * 0.03 + 0.8}s`,
                     } as React.CSSProperties
                   }
                 >
@@ -127,4 +150,6 @@ export const Hero: React.FC = () => {
       </div>
     </section>
   );
-};
+});
+
+Hero.displayName = "Hero";
