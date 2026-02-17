@@ -8,7 +8,7 @@ const reviews = [
     id: 1,
     name: "Sonam Singh",
     role: "Director, Delfyle Solutions Pvt. Ltd.",
-    image: "images/1.png",
+    image: "images/1.webp",
     rating: 5,
     review:
       "Working with Talib and WebMaak Team has been an absolute delight! From concept to execution, their team handled our website design with remarkable creativity, precision, and professionalism. They understood exactly what we envisioned for Delfyle, a clean, impactful, and user-friendly website that truly represents who we are as a brand. The entire process was smooth, transparent, and efficient, with the WebMaak team ensuring every detail aligned perfectly with our expectations. What impressed me most was their proactive approach, timely delivery, and commitment to quality. They didn’t just design a website; they built a digital identity that reflects Delfyle’s vision and values. A huge thank you to the entire WebMaak team for your dedication and brilliant execution, you’ve made our online presence stronger and more inspiring than ever!",
@@ -17,7 +17,7 @@ const reviews = [
     id: 2,
     name: "Arun",
     role: "Designleeway",
-    image: "images/2.png",
+    image: "images/2.webp",
     rating: 5,
     review:
       "Working with Talib and WebMaak Team was an excellent experience. The communication throughout our fintech website development in Webflow was smooth and efficient. Their quick response to feedback and commitment to maintaining design integrity truly stood out. The team’s product animation skills and turnaround time were impressive. I’d love to collaborate with them on many more projects in the future.",
@@ -26,7 +26,7 @@ const reviews = [
     id: 3,
     name: "Hamna Kouser",
     role: "",
-    image: "images/4.png",
+    image: "images/3.webp",
     rating: 5,
     review:
       "The e-card which Talib & Aman provided to me was amazingly great work..Great work guyz and the best part was wedding website which was absolutely cherry on the cake.. Commendable work..keep up the Good work.",

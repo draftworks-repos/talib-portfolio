@@ -8,7 +8,7 @@ interface ClientsMarqueeProps {
 // Generate logos: /marquee-logo/1.png → /marquee-logo/39.png
 const LOGOS = Array.from({ length: 39 }, (_, i) => ({
   id: i + 1,
-  src: `/marquee-logo/${i + 1}.png`,
+  src: `/marquee-logo/${i + 1}.webp`,
 }));
 
 export const FrammerMarquee: React.FC<ClientsMarqueeProps> = React.memo(
