@@ -90,13 +90,11 @@
 
 "use client";
 
-import { useEffect, useRef, lazy, Suspense } from "react";
+import { useEffect, useRef } from "react";
 import { Zap, ArrowUpRight } from "lucide-react";
+import VideoShowcase from "./VideoShowcase";
 import "./root.css";
 import "./Showreel.css";
-
-// Lazy load VideoShowcase
-const VideoShowcase = lazy(() => import("./VideoShowcase"));
 
 export default function RootDevelopmentPage() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -156,13 +154,9 @@ export default function RootDevelopmentPage() {
         </p>
       </div>
 
-      {/* Lazy Loaded Showcase with Reserved Layout */}
+      {/* Showcase area - Integrated directly into Showreel chunk to reduce chain depth */}
       <div className="anim-on-scroll anim-bento-entrance">
-        <Suspense
-          fallback={<div className="video-skeleton" aria-hidden="true" />}
-        >
-          <VideoShowcase />
-        </Suspense>
+        <VideoShowcase />
       </div>
 
       <div className="services-cta" style={{ marginTop: "4rem" }}>

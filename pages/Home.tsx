@@ -176,11 +176,6 @@ const Footer = lazy(() =>
 );
 
 const Home: React.FC = () => {
-  // Optional: preload first below-the-fold chunk for smoother scroll
-  useEffect(() => {
-    import("../components/Section2_Showreel/Showreel");
-  }, []);
-
   return (
     <>
       <Helmet>
