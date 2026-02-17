@@ -151,7 +151,7 @@ const MobileNav: React.FC = memo(() => {
             onClick={close}
             aria-label="Close navigation"
           >
-            <X size={20} />
+            <X size={20} className="nav-icon" />
           </button>
         </div>
 
@@ -209,7 +209,11 @@ const MobileNav: React.FC = memo(() => {
         aria-label="Toggle navigation"
         aria-expanded={open}
       >
-        {open ? <X size={20} /> : <Menu size={20} />}
+        {open ? (
+          <X size={20} className="nav-icon" />
+        ) : (
+          <Menu size={20} className="nav-icon" />
+        )}
       </button>
 
       {createPortal(drawer, document.body)}
