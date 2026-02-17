@@ -166,7 +166,7 @@ const StepComponent: React.FC = () => {
     <div className="step-component-wrapper">
       <div className="step-component-container" ref={containerRef}>
         <div className="steps-header">
-          <h1 className="steps-title">How I Work</h1>
+          <h1 className="steps-title">MY JOURNEY</h1>
           <p className="steps-subtitle">
             A structured, transparent approach designed to deliver clarity,
             performance, and long-term scalability.
