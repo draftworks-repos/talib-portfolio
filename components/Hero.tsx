@@ -53,7 +53,7 @@ export const Hero: React.FC = React.memo(() => {
                   key={`t1-${i}`}
                   className="char typewriter"
                   style={{
-                    animationDelay: `${i * 0.04 + 0.3}s`,
+                    animationDelay: `${i * 0.02 + 0.1}s`,
                   }}
                 >
                   {char === " " ? "\u00A0" : char}
@@ -67,7 +67,7 @@ export const Hero: React.FC = React.memo(() => {
                   key={`t2-${i}`}
                   className="char typewriter"
                   style={{
-                    animationDelay: `${(i + titleText1.length) * 0.04 + 0.3}s`,
+                    animationDelay: `${(i + titleText1.length) * 0.02 + 0.1}s`,
                   }}
                 >
                   {char === " " ? "\u00A0" : char}
@@ -85,7 +85,7 @@ export const Hero: React.FC = React.memo(() => {
                   className="word typewriter-fade"
                   style={
                     {
-                      animationDelay: `${i * 0.03 + 0.8}s`,
+                      animationDelay: `${i * 0.02 + 0.4}s`,
                     } as React.CSSProperties
                   }
                 >
@@ -100,7 +100,7 @@ export const Hero: React.FC = React.memo(() => {
           <div className="hero-btns">
             <div
               className="anim-spring-in"
-              style={{ animationDelay: "1.2s" } as React.CSSProperties}
+              style={{ animationDelay: "0.7s" } as React.CSSProperties}
             >
               <button
                 className="btn-chat"
@@ -123,7 +123,7 @@ export const Hero: React.FC = React.memo(() => {
 
             <div
               className="anim-spring-in"
-              style={{ animationDelay: "1.35s" } as React.CSSProperties}
+              style={{ animationDelay: "0.8s" } as React.CSSProperties}
             >
               <a
                 href="https://api.whatsapp.com/send?phone=918759475316&text=Hey%20Talib%2C%20I%20want%20start%20my%20project"
@@ -145,7 +145,7 @@ export const Hero: React.FC = React.memo(() => {
 
       <div
         className="tech-stack-container anim-reveal-wide"
-        style={{ animationDelay: "1.6s" } as React.CSSProperties}
+        style={{ animationDelay: "1.0s" } as React.CSSProperties}
       >
         <TechStack isHero />
       </div>
