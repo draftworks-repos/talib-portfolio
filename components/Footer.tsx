@@ -9,9 +9,33 @@ import {
   ArrowRight,
   MapPin,
 } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./Footer.css";
 
 export const Footer: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSectionClick = (id: string) => {
+    if (id === "/contact") {
+      navigate("/contact");
+      return;
+    }
+
+    if (location.pathname !== "/") {
+      navigate(`/#${id}`);
+    } else {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+        navigate(`/#${id}`, { replace: true });
+      } else if (id === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        navigate("/", { replace: true });
+      }
+    }
+  };
+
   return (
     <footer className="footer-section">
       <div className="footer-gradient-bg"></div>
@@ -51,19 +75,59 @@ export const Footer: React.FC = () => {
               <h4 className="footer-links-title"> Navigation</h4>
               <ul>
                 <li>
-                  <a href="#">Home</a>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSectionClick("home");
+                    }}
+                  >
+                    Home
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Featured Projects</a>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSectionClick("projects");
+                    }}
+                  >
+                    Featured Projects
+                  </a>
                 </li>
                 <li>
-                  <a href="#">Core Expertise</a>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSectionClick("services");
+                    }}
+                  >
+                    Core Expertise
+                  </a>
                 </li>
                 <li>
-                  <a href="#">How I Work</a>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSectionClick("process");
+                    }}
+                  >
+                    How I Work
+                  </a>
                 </li>
                 <li>
-                  <a href="#"> Contact</a>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleSectionClick("/contact");
+                    }}
+                  >
+                    Contact
+                  </a>
                 </li>
               </ul>
             </div>
