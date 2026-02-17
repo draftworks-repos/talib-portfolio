@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import "./ServicesBento.css";
 
-export const ServicesBento: React.FC = () => {
+export const ServicesBento: React.FC = React.memo(() => {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -41,7 +41,28 @@ export const ServicesBento: React.FC = () => {
       sectionRef.current?.querySelectorAll(".anim-on-scroll");
     animatedElements?.forEach((el) => observer.observe(el));
 
-    return () => observer.disconnect();
+    // Observer for toggling in-view class to pause/unpause animations
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+          } else {
+            entry.target.classList.remove("in-view");
+          }
+        });
+      },
+      { threshold: 0 }, // Trigger as soon as any part is visible
+    );
+
+    if (sectionRef.current) {
+      sectionObserver.observe(sectionRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+      sectionObserver.disconnect();
+    };
   }, []);
 
   return (
@@ -145,10 +166,24 @@ export const ServicesBento: React.FC = () => {
                   <div className="mockup-bar"></div>
                   <div className="mockup-circle-plus-wrapper">
                     <div className="mockup-circle-plus-wp">
-                      <img src="icons/wordpress.png" alt="Wordpress" />
+                      <img
+                        src="icons/wordpress.png"
+                        alt="Wordpress"
+                        loading="lazy"
+                        decoding="async"
+                        width={40}
+                        height={40}
+                      />
                     </div>
                     <div className="mockup-circle-plus-wp">
-                      <img src="icons/elementor.png" alt="Elementor" />
+                      <img
+                        src="icons/elementor.png"
+                        alt="Elementor"
+                        loading="lazy"
+                        decoding="async"
+                        width={40}
+                        height={40}
+                      />
                     </div>
                     <div className="mockup-circle-plus">
                       <Plus size={20} />
@@ -207,8 +242,22 @@ export const ServicesBento: React.FC = () => {
                   <div className="filename">users-list.tsx</div>
                   <div className="header-actions">
                     <div className="avatar-stack">
-                      <img src="https://i.pravatar.cc/100?img=1" alt="u1" />
-                      <img src="https://i.pravatar.cc/100?img=2" alt="u2" />
+                      <img
+                        src="https://i.pravatar.cc/100?img=1"
+                        alt="u1"
+                        loading="lazy"
+                        decoding="async"
+                        width={16}
+                        height={16}
+                      />
+                      <img
+                        src="https://i.pravatar.cc/100?img=2"
+                        alt="u2"
+                        loading="lazy"
+                        decoding="async"
+                        width={16}
+                        height={16}
+                      />
                     </div>
                     <button className="publish-btn">Publish</button>
                   </div>
@@ -293,7 +342,14 @@ export const ServicesBento: React.FC = () => {
               <div className="cart-window glass">
                 <div className="cart-header">
                   <div className="mockup-circle-plus-shopify">
-                    <img src="icons/shopify.png" alt="" />
+                    <img
+                      src="icons/shopify.png"
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                      width={40}
+                      height={40}
+                    />
                   </div>
                   <div className="cart-title">My Store</div>
                   <div className="cart-icon">
@@ -462,9 +518,9 @@ export const ServicesBento: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
-const ShoppingBagIcon = () => (
+const ShoppingBagIcon = React.memo(() => (
   <svg
     width="18"
     height="18"
@@ -479,4 +535,6 @@ const ShoppingBagIcon = () => (
     <path d="M3 6h18" />
     <path d="M16 10a4 4 0 0 1-8 0" />
   </svg>
-);
+));
+
+ServicesBento.displayName = "ServicesBento";

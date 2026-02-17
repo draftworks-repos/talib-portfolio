@@ -183,6 +183,8 @@
   grid-auto-rows: minmax(280px, auto);
   gap: 1.25rem;
   margin-bottom: 4rem;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 1000px;
 }
 
 .bento-card {
@@ -199,6 +201,7 @@
     background 0.4s ease,
     border-color 0.4s ease,
     box-shadow 0.4s ease;
+  contain: content;
 }
 
 .bento-card:hover {
@@ -1284,4 +1287,11 @@
   .service-card-desc span svg {
     padding-top: 0.25rem !important;
   }
+}
+
+/* Optimization: Pause animations when section is out of viewport */
+.services-section:not(.in-view) *,
+.services-section:not(.in-view) *::before,
+.services-section:not(.in-view) *::after {
+  animation-play-state: paused !important;
 }
