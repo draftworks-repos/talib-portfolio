@@ -183,8 +183,8 @@
   grid-auto-rows: minmax(280px, auto);
   gap: 1.25rem;
   margin-bottom: 4rem;
-  content-visibility: auto;
-  contain-intrinsic-size: 0 1000px;
+  /* content-visibility: auto; */
+  /* contain-intrinsic-size: 0 1000px; */
 }
 
 .bento-card {
@@ -201,7 +201,7 @@
     background 0.4s ease,
     border-color 0.4s ease,
     box-shadow 0.4s ease;
-  contain: content;
+  /* contain: content; */
 }
 
 .bento-card:hover {
@@ -750,7 +750,7 @@
 
 .mockup-circle-plus-shopify {
   width: 40px;
-  height: 40px;
+  height: auto;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -758,6 +758,7 @@
 }
 .mockup-circle-plus-shopify img {
   width: 60%;
+  height: 60%;
 }
 
 .mockup-blocks {
