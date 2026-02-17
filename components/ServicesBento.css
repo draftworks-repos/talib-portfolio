@@ -1138,6 +1138,25 @@
   );
 }
 
+.list-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.LayoutDashboard-icon-wrapper {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+
+.LayoutDashboard-icon {
+  margin-top: 5px;
+}
+.list-wrapper {
+  color: #e3d7ffff;
+}
+
 @media (max-width: 1536px) {
   .services-section {
     padding-top: 4rem;
@@ -1186,6 +1205,16 @@
   }
   .code-window {
     width: 100%;
+  }
+
+  .list-wrapper {
+    align-items: start;
+  }
+  .list-icon {
+    margin-top: 5px;
+  }
+  .LayoutDashboard-icon {
+    margin-top: 5px;
   }
 }
 

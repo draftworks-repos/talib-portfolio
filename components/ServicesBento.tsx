@@ -11,6 +11,7 @@ import {
   CreditCard,
   SearchCheck,
   MonitorSmartphone,
+  LayoutDashboard,
   Gauge,
   FolderTree,
 } from "lucide-react";
@@ -92,11 +93,34 @@ export const ServicesBento: React.FC = () => {
             style={{ animationDelay: "0s" }}
           >
             <div className="card-content">
-              <h3 className="card-heading">Wordpress Design</h3>
+              <h3 className="card-heading">
+                High Performance WordPress Development
+              </h3>
               <p className="service-card-desc">
-                I build pixel-perfect WordPress websites. Choose from 100+
-                templates or get a custom design tailored to your needs.
+                Custom WordPress solutions engineered for flexibility,
+                scalability, and real business performance, from dynamic
+                websites to advanced integration driven platforms.
               </p>
+              <div
+                className="service-card-desc"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "5px",
+                  marginTop: "15px",
+                  marginLeft: "10px",
+                }}
+              >
+                <span className="list-wrapper">
+                  <Code2 size={14} className="list-icon" /> Custom code
+                  integration and tailored functionality development
+                </span>
+                <span className="LayoutDashboard-icon-wrapper">
+                  <LayoutDashboard size={14} className="LayoutDashboard-icon" />{" "}
+                  Elementor based design systems built for speed,
+                  responsiveness, and long term scalability
+                </span>
+              </div>
             </div>
             <div className="card-illustration design-preview">
               <div className="ui-mockup-container">
@@ -162,17 +186,13 @@ export const ServicesBento: React.FC = () => {
                   marginLeft: "10px",
                 }}
               >
-                <span
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  <Code2 size={14} style={{ color: "#e3d7ffff" }} /> Custom web
-                  apps & API integrations for scale
+                <span className="list-wrapper">
+                  <Code2 size={14} className="list-icon" /> Custom web apps &
+                  API integrations for scale
                 </span>
-                <span
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  <Smartphone size={14} style={{ color: "#e3d7ffff" }} /> Mobile
-                  apps & progressive web apps (PWA)
+                <span className="list-wrapper">
+                  <Smartphone size={14} className="list-icon" /> Mobile apps &
+                  progressive web apps (PWA)
                 </span>
               </div>
             </div>
@@ -255,23 +275,17 @@ export const ServicesBento: React.FC = () => {
                   marginLeft: "10px",
                 }}
               >
-                <span
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  <ShoppingCart size={14} style={{ color: "#e3d7ffff" }} />{" "}
-                  Shopify / WooCommerce implementation & customization
+                <span className="list-wrapper">
+                  <ShoppingCart size={14} className="list-icon" /> Shopify /
+                  WooCommerce implementation & customization
                 </span>
-                <span
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  <TrendingUp size={14} style={{ color: "#e3d7ffff" }} />{" "}
-                  Product discovery & conversion optimization
+                <span className="list-wrapper">
+                  <TrendingUp size={14} className="list-icon" /> Product
+                  discovery & conversion optimization
                 </span>
-                <span
-                  style={{ display: "flex", alignItems: "center", gap: "8px" }}
-                >
-                  <CreditCard size={14} style={{ color: "#e3d7ffff" }} />{" "}
-                  Checkout UX & funnel integration
+                <span className="list-wrapper">
+                  <CreditCard size={14} className="list-icon" /> Checkout UX &
+                  funnel integration
                 </span>
               </div>
             </div>
@@ -334,51 +348,24 @@ export const ServicesBento: React.FC = () => {
                 }}
               >
                 <div>
-                  <span
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <SearchCheck size={14} style={{ color: "#e3d7ffff" }} />{" "}
-                    Technical SEO foundation
+                  <span className="list-wrapper">
+                    <SearchCheck size={14} className="list-icon" /> Technical
+                    SEO foundation
                   </span>
-                  <span
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <MonitorSmartphone
-                      size={14}
-                      style={{ color: "#e3d7ffff" }}
-                    />{" "}
-                    Mobile responsiveness
+                  <span className="list-wrapper">
+                    <MonitorSmartphone size={14} className="list-icon" /> Mobile
+                    responsiveness
                   </span>
                 </div>
 
                 <div>
-                  <span
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <Gauge size={14} style={{ color: "#e3d7ffff" }} /> Page
-                    speed optimization
+                  <span className="list-wrapper">
+                    <Gauge size={14} className="list-icon" /> Page speed
+                    optimization
                   </span>
-                  <span
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
-                  >
-                    <FolderTree size={14} style={{ color: "#e3d7ffff" }} />{" "}
-                    Structured content hierarchy
+                  <span className="list-wrapper">
+                    <FolderTree size={14} className="list-icon" /> Structured
+                    content hierarchy
                   </span>
                 </div>
               </div>
