@@ -71,7 +71,7 @@ export const AboutSection: React.FC = React.memo(() => {
             </div>
 
             <div
-              className="glass-stat-card stat-bottom-left floating-2 anim-on-scroll reveal-left"
+              className="glass-stat-card stat-bottom-left floating-2 anim-on-scroll reveal-left experience-card"
               style={{ transitionDelay: "0.6s" }}
             >
               <div className="stat-icon-bg yellow-glow">
