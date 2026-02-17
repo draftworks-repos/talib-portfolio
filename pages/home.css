@@ -1,0 +1,14 @@
+.home-wrapper {
+  position: relative;
+  min-height: 100vh;
+  background-color: #0b0d13;
+  color: white;
+}
+
+.home-hero-section {
+  position: relative;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
+}
