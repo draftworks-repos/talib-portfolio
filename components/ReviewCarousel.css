@@ -67,8 +67,6 @@
   padding: 3rem;
   border-radius: 2.5rem;
   background: rgba(18, 20, 27, 0.6);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.06);
   box-shadow: 0 35px 100px rgba(109, 40, 217, 0.1);
   position: relative;
@@ -166,8 +164,6 @@
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   color: #ffffff;
   cursor: pointer;
   display: flex;
