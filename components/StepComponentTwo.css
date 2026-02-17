@@ -23,24 +23,6 @@
 .steps-header {
   text-align: center;
   margin-bottom: 5rem;
-  opacity: 0;
-  filter: blur(10px);
-  transform: scale(0.9);
-  animation: headerFadeIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-  animation-delay: 0.2s;
-}
-
-@keyframes headerFadeIn {
-  0% {
-    opacity: 0;
-    filter: blur(10px);
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0px);
-    transform: scale(1);
-  }
 }
 
 .steps-title {
