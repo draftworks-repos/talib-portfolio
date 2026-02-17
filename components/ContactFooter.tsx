@@ -32,10 +32,16 @@ export const PageFooter: React.FC = () => {
         ))}
       </div>
 
-      <a href="mailto:hello@webmaak.com" className="footer-contact">
-        <span className="footer-contact-label">Connect with us</span>
-        <span className="footer-contact-email">hello@webmaak.com</span>
-      </a>
+      <div className="footer-contact-wrapper">
+        <a href="tel:+918256012345" className="footer-contact">
+          <span className="footer-contact-label">Connect on Phone</span>
+          <span className="footer-contact-email">+91 8256012345</span>
+        </a>
+        <a href="mailto:hello@webmaak.com" className="footer-contact">
+          <span className="footer-contact-label">Connect on Email</span>
+          <span className="footer-contact-email">hello@talibali.in</span>
+        </a>
+      </div>
     </div>
   );
 };
