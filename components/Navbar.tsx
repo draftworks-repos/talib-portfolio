@@ -160,7 +160,7 @@ export const Navbar: React.FC = () => {
             style={{ textDecoration: "none" }}
           >
             <span>Schedule a Call</span>
-            <ArrowUpRight size={16} />
+            <ArrowUpRight size={16} className="nav-icon" />
           </a>
 
           <MobileNav />

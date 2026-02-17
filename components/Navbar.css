@@ -185,8 +185,13 @@
     display: none;
   }
   .btn-pill {
-    padding: 0.6rem 1rem;
-    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem;
+    gap: 0.25rem;
+  }
+  .nav-icon {
+    width: 14px;
+    height: 14px;
   }
   .whatsapp-btn {
     padding: 0.5rem;
