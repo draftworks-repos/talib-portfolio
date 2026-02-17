@@ -249,7 +249,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: #c7c7c7;
   margin-bottom: 1.5rem;
 }
 
@@ -261,7 +261,7 @@
 .resp-label {
   font-size: 0.75rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.4);
+  color: #a8a8a8;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   margin-bottom: 1rem;
@@ -276,7 +276,7 @@
 
 .resp-list li {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: #f1f1f1;
   line-height: 1.5;
   position: relative;
   padding-left: 1.5rem;
