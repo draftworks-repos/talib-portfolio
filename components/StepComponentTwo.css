@@ -34,6 +34,18 @@
   background-clip: text;
   margin-bottom: 1rem;
   letter-spacing: -0.02em;
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+  will-change: transform, opacity;
+}
+
+.steps-header.visible .steps-title {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .steps-subtitle {
@@ -42,6 +54,18 @@
   font-weight: 300;
   line-height: 1.5;
   color: #fff;
+  /* Entrance animation */
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease-out 0.2s,
+    transform 0.8s ease-out 0.2s;
+  will-change: transform, opacity;
+}
+
+.steps-header.visible .steps-subtitle {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .steps-grid {
@@ -64,12 +88,15 @@
   border-left: none;
   border-right: none;
   cursor: pointer;
-  transition: all 0.6s ease;
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
   overflow: visible;
 
   /* Initial state for entrance animation */
   opacity: 0;
-  transform: translateY(30px) scale(0.8);
+  transform: translateY(30px); /* Removed scale to reduce jank */
+  will-change: transform, opacity;
 }
 .step-item:first-child {
   border-top: 1px solid rgba(255, 255, 255, 0.06);
@@ -191,13 +218,12 @@ ul li::marker {
 @keyframes imageAppear {
   0% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(0.5) rotate(-5deg);
-    filter: blur(10px);
+    transform: translate(-50%, -50%) scale(0.8) rotate(-5deg);
+    /* Blur removed for performance */
   }
   100% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    filter: blur(0px);
   }
 }
 

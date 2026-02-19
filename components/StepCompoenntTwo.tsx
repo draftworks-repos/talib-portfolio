@@ -13,7 +13,9 @@ const StepComponent: React.FC = () => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
+  const [headerVisible, setHeaderVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const steps: Step[] = [
     {
@@ -103,28 +105,36 @@ const StepComponent: React.FC = () => {
             const stepId = parseInt(
               entry.target.getAttribute("data-step-id") || "0",
             );
-            setTimeout(() => {
-              setVisibleSteps((prev) => {
-                if (!prev.includes(stepId)) {
-                  return [...prev, stepId];
-                }
-                return prev;
-              });
-            }, stepId * 150); // Stagger the animations
+
+            if (stepId > 0) {
+              setTimeout(() => {
+                setVisibleSteps((prev) => {
+                  if (!prev.includes(stepId)) {
+                    return [...prev, stepId];
+                  }
+                  return prev;
+                });
+              }, stepId * 100); // Reduced delay for better feel
+              observer.unobserve(entry.target); // Run only once
+            } else if (entry.target === headerRef.current) {
+              setHeaderVisible(true);
+              observer.unobserve(entry.target); // Run only once
+            }
           }
         });
       },
       {
-        threshold: 0.2,
+        threshold: 0.1, // Sooner trigger
         rootMargin: "0px",
       },
     );
 
+    if (headerRef.current) observer.observe(headerRef.current);
     const stepElements = containerRef.current?.querySelectorAll(".step-item");
     stepElements?.forEach((element) => observer.observe(element));
 
     return () => {
-      stepElements?.forEach((element) => observer.unobserve(element));
+      observer.disconnect();
     };
   }, []);
 
@@ -165,8 +175,11 @@ const StepComponent: React.FC = () => {
   return (
     <div className="step-component-wrapper">
       <div className="step-component-container" ref={containerRef}>
-        <div className="steps-header">
-          <h1 className="steps-title">MY JOURNEY</h1>
+        <div
+          className={`steps-header ${headerVisible ? "visible" : ""}`}
+          ref={headerRef}
+        >
+          <h1 className="steps-title">How I Work</h1>
           <p className="steps-subtitle">
             A structured, transparent approach designed to deliver clarity,
             performance, and long-term scalability.
