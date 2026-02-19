@@ -219,19 +219,19 @@ export const AboutSection: React.FC = React.memo(() => {
             <div className="trusted-by-mini">
               <div className="mini-avatars">
                 <img
-                  src="images/1.png"
+                  src="images/1.webp"
                   alt="c1"
                   loading="lazy"
                   decoding="async"
                 />
                 <img
-                  src="images/2.png"
+                  src="images/2.webp"
                   alt="c2"
                   loading="lazy"
                   decoding="async"
                 />
                 <img
-                  src="images/3.png"
+                  src="images/3.webp"
                   alt="c3"
                   loading="lazy"
                   decoding="async"
