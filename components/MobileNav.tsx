@@ -15,7 +15,7 @@ import {
   Linkedin,
   ArrowUpRight,
 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./MobileNav.css";
 
 const MobileNav: React.FC = memo(() => {
@@ -40,7 +40,11 @@ const MobileNav: React.FC = memo(() => {
   const handleRoute = useCallback(
     (path: string) => {
       close();
-      navigate(path);
+      if (path.startsWith("http")) {
+        window.open(path, "_blank", "noopener,noreferrer");
+      } else {
+        navigate(path);
+      }
     },
     [navigate, close],
   );
@@ -134,19 +138,21 @@ const MobileNav: React.FC = memo(() => {
 
       <aside className={`mobile-drawer ${open ? "open" : ""}`}>
         <div className="drawer-header">
-          <a
-            href="/"
+          <Link
+            to="/"
             aria-label="home"
             className="drawer-logo"
             style={{ textDecoration: "none" }}
             onClick={(e) => {
-              e.preventDefault();
-              handleScroll("home");
+              if (window.location.pathname === "/") {
+                e.preventDefault();
+                handleScroll("home");
+              }
             }}
           >
             <img src="icons/logo.png" alt="Logo" className="drawer-logo-img" />{" "}
             <span>Talib Ali</span>
-          </a>
+          </Link>
           <button
             className="drawer-close"
             onClick={close}

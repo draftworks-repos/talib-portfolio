@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import MobileNav from "./MobileNav";
 import "./Navbar.css";
 
@@ -155,15 +155,15 @@ export const Navbar: React.FC = () => {
             />
           </a>
 
-          <a
-            href="/contact"
+          <Link
+            to="/contact"
             aria-label="schedule a call"
             className="btn-pill"
             style={{ textDecoration: "none" }}
           >
             <span>Schedule a Call</span>
             <ArrowUpRight size={16} className="nav-icon" />
-          </a>
+          </Link>
 
           <MobileNav />
         </div>
