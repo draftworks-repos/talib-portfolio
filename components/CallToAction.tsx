@@ -66,7 +66,7 @@ export const CallToAction: React.FC = () => {
             style={{ textDecoration: "none" }}
           >
             <span className="cta-button-label">Start Your Project</span>
-            <div className="cta-button-icon-wrapper">
+            <div className="cta-button-icon-wrapper rotate-none">
               <img
                 src="images/whatsapp.svg"
                 alt="whatsapp-icon"

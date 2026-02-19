@@ -111,12 +111,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: rotate(0deg) !important;
   transition: transform 0.3s ease;
 }
 
 .cta-main-button:hover .cta-button-icon-wrapper {
-  transform: rotate(0deg);
+  transform: rotate(45deg) !important;
   background: rgba(255, 255, 255, 0.25);
+}
+
+.cta-main-button:hover .rotate-none {
+  transform: rotate(0deg) !important;
 }
 
 .cta-visual-decoration {
