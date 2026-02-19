@@ -51,6 +51,10 @@ export const Footer: React.FC = () => {
             <p className="footer-brand-desc">
               Founder of WebMaak - Technology & Media Studio
             </p>
+            <h3 className="footer-logo-brand footer-highlight">
+              UI/UX
+              <br /> Web Apps <br /> Mobile Apps
+            </h3>
             <span className="status">
               <span className="bullet" />
               Available for work
