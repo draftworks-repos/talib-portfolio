@@ -15,6 +15,7 @@ import {
   Gauge,
   FolderTree,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import "./ServicesBento.css";
 
 export const ServicesBento: React.FC = React.memo(() => {
@@ -503,8 +504,8 @@ export const ServicesBento: React.FC = React.memo(() => {
             className="anim-on-scroll anim-bento-entrance"
             style={{ animationDelay: "0.1s" }}
           >
-            <a
-              href="/contact"
+            <Link
+              to="/contact"
               aria-label="schedule a call"
               className="cta-main-button"
               style={{ textDecoration: "none" }}
@@ -513,7 +514,7 @@ export const ServicesBento: React.FC = React.memo(() => {
               <div className="cta-button-icon-wrapper">
                 <ArrowUpRight size={18} />
               </div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
