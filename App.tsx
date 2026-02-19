@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Analytics from "./Analytics";
+import NotFound from "./components/security/NotFound";
 
 // declare global {
 //   interface Window {
@@ -27,6 +28,28 @@ import Analytics from "./Analytics";
 //   return null;
 // }
 
+function AppContent() {
+  const location = useLocation();
+  const is404 = !["/", "/contact", "/privacy", "/terms"].includes(
+    location.pathname,
+  );
+
+  return (
+    <>
+      {/* <RouteTracker /> */}
+      <Analytics />
+      {!is404 && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
+  );
+}
+
 function App() {
   // useEffect(() => {
   //   const handleMouseMove = (e: MouseEvent) => {
@@ -42,15 +65,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <RouteTracker /> */}
-      <Analytics />
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-      </Routes>
+      <AppContent />
     </BrowserRouter>
   );
 }
