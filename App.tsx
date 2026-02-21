@@ -6,7 +6,6 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Analytics from "./Analytics";
 import NotFound from "./components/security/NotFound";
-import Preloader from "./components/loader/PreLoader";
 // declare global {
 //   interface Window {
 //     gtag: (...args: any[]) => void;
@@ -64,9 +63,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Preloader>
-        <AppContent />
-      </Preloader>
+      <AppContent />
     </BrowserRouter>
   );
 }
