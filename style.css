@@ -34,6 +34,7 @@ body {
 .gradient-text {
   background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 50%, #64748b 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -144,4 +145,16 @@ section {
 /* Hover */
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, #a78bfa, #f472b6);
+}
+@keyframes appEntrance {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.app-content-fade-in {
+  animation: appEntrance 0.8s ease-out forwards;
 }
