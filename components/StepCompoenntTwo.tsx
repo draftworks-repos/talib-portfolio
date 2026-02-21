@@ -199,7 +199,7 @@ const StepComponent: React.FC = () => {
                 <span>{String(step.id).padStart(2, "0")}</span>
               </div>
               <div className="step-content">
-                <h3 className="step-title">{step.title}</h3>
+                <h2 className="step-title">{step.title}</h2>
                 <p className="step-description">{step.description}</p>
                 <div className="step-list mobile">
                   <ul>
