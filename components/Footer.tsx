@@ -45,7 +45,14 @@ export const Footer: React.FC = () => {
           {/* Brand & Contact Column */}
           <div className="footer-brand-col">
             <h3 className="footer-logo-brand">
-              <img src="icons/logo.png" alt="logo" className="footer-logo" />
+              <img
+                src="icons/logo.png"
+                alt="logo"
+                className="footer-logo"
+                loading="lazy"
+                width={24}
+                height={24}
+              />
               Talib Ali
             </h3>
             <p className="footer-brand-desc">

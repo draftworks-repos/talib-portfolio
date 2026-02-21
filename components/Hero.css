@@ -34,7 +34,7 @@
   background-repeat: no-repeat;
   opacity: 0;
   animation: bgFadeIn 1s ease-in-out forwards;
-  animation-delay: 1s;
+  animation-delay: 0.4s;
   z-index: -1;
   pointer-events: none;
   will-change: opacity;
@@ -68,7 +68,7 @@
   pointer-events: none;
   opacity: 0;
   animation: bgFadeIn 1s ease-in-out forwards;
-  animation-delay: 1s;
+  animation-delay: 0.4s;
   z-index: -1;
   will-change: opacity;
 }

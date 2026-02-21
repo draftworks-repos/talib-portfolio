@@ -116,6 +116,9 @@ export const Hero: React.FC = React.memo(() => {
                   alt="WhatsApp"
                   width={18}
                   height={18}
+                  fetchPriority="high"
+                  loading="eager"
+                  decoding="async"
                 />
                 <span>View My Work</span>
               </button>
@@ -145,7 +148,7 @@ export const Hero: React.FC = React.memo(() => {
 
       <div
         className="tech-stack-container anim-reveal-wide"
-        style={{ animationDelay: "1.0s" } as React.CSSProperties}
+        style={{ animationDelay: "0.3s" } as React.CSSProperties}
       >
         <TechStack isHero />
       </div>

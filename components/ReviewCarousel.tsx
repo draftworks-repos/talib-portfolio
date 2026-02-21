@@ -224,7 +224,13 @@ export default function ReviewCarousel() {
 
                       <div className="review-footer">
                         <div className="reviewer">
-                          <img src={review.image} alt={review.name} />
+                          <img
+                            src={review.image}
+                            alt={review.name}
+                            loading="lazy"
+                            width={48}
+                            height={48}
+                          />
                           <div className="reviewer-details">
                             <h4>{review.name}</h4>
                             <span>{review.role}</span>

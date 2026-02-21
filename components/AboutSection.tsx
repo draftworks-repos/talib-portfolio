@@ -51,6 +51,8 @@ export const AboutSection: React.FC = React.memo(() => {
                   className="person-img"
                   loading="lazy"
                   decoding="async"
+                  width={400}
+                  height={500}
                 />
                 <div className="image-overlay-gradient"></div>
               </div>
@@ -223,18 +225,24 @@ export const AboutSection: React.FC = React.memo(() => {
                   alt="c1"
                   loading="lazy"
                   decoding="async"
+                  width={32}
+                  height={32}
                 />
                 <img
                   src="images/2.webp"
                   alt="c2"
                   loading="lazy"
                   decoding="async"
+                  width={32}
+                  height={32}
                 />
                 <img
                   src="images/3.webp"
                   alt="c3"
                   loading="lazy"
                   decoding="async"
+                  width={32}
+                  height={32}
                 />
                 <div className="avatar-plus">+50</div>
               </div>

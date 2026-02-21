@@ -97,8 +97,8 @@ export const TechStack: React.FC<TechStackProps> = React.memo(({ isHero }) => {
                 src={tool.icon}
                 alt={tool.name}
                 className="tech-icon"
-                loading="lazy"
-                fetchPriority="low"
+                loading={isHero ? "eager" : "lazy"}
+                fetchPriority={isHero ? "high" : "low"}
                 decoding="async"
                 width={36}
                 height={36}

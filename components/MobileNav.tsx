@@ -150,7 +150,14 @@ const MobileNav: React.FC = memo(() => {
               }
             }}
           >
-            <img src="icons/logo.png" alt="Logo" className="drawer-logo-img" />{" "}
+            <img
+              src="icons/logo.png"
+              alt="Logo"
+              className="drawer-logo-img"
+              width={24}
+              height={24}
+              fetchPriority="high"
+            />{" "}
             <span>Talib Ali</span>
           </Link>
           <button

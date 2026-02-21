@@ -85,7 +85,14 @@ export const Navbar: React.FC = () => {
       <nav className="glass-nav">
         {/* Logo */}
         <div className="nav-logo" onClick={() => navigate("/")}>
-          <img src="icons/logo.png" alt="Logo" className="nav-logo-img" />{" "}
+          <img
+            src="icons/logo.png"
+            alt="Logo"
+            className="nav-logo-img"
+            fetchPriority="high"
+            width={32}
+            height={32}
+          />{" "}
           <span>Talib Ali</span>
         </div>
 
@@ -152,6 +159,7 @@ export const Navbar: React.FC = () => {
               width={20}
               height={20}
               className="whatsapp-icon"
+              fetchPriority="high"
             />
           </a>
 
