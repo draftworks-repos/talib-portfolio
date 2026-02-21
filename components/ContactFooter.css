@@ -100,3 +100,9 @@
   display: flex;
   gap: 2rem;
 }
+
+@media (max-width: 768px) {
+  .footer-contact-label {
+    text-align: center;
+  }
+}
