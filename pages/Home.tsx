@@ -261,13 +261,17 @@ const Home: React.FC = () => {
             <OverviewSection />
           </Suspense>
 
-          <Suspense fallback={null}>
-            <CallToAction />
-          </Suspense>
+          <div className="cta-footer-wrapper">
+            <Suspense fallback={null}>
+              <CallToAction />
+            </Suspense>
 
-          <Suspense fallback={null}>
-            <Footer />
-          </Suspense>
+            <div className="rail-pulse" />
+
+            <Suspense fallback={null}>
+              <Footer />
+            </Suspense>
+          </div>
         </main>
       </div>
     </>

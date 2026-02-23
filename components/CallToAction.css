@@ -9,10 +9,39 @@
   align-items: center;
   text-align: center;
   z-index: 10;
-  height: 85vh;
+  height: 75vh;
   margin-bottom: 0;
 }
+.cta-section::before {
+  content: "";
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160%;
+  height: 120%;
 
+  background:
+    /* deep soft base */
+    radial-gradient(
+      ellipse 80% 60% at 50% 100%,
+      rgba(139, 92, 246, 0.25) 0%,
+      rgba(139, 92, 246, 0.18) 30%,
+      rgba(139, 92, 246, 0.08) 55%,
+      transparent 75%
+    ),
+    /* inner intensity */
+    radial-gradient(
+        ellipse 50% 40% at 50% 100%,
+        rgba(139, 92, 246, 0.35) 0%,
+        rgba(139, 92, 246, 0.25) 40%,
+        transparent 70%
+      );
+
+  pointer-events: none;
+  z-index: 1;
+}
+/* Your radial glow (unchanged) */
 .cta-gradient-bg {
   position: absolute;
   top: 0;
@@ -250,7 +279,7 @@
 /* TABLET RESPONSIVENESS (1024px) */
 @media (max-width: 1024px) {
   .cta-section {
-    height: 650px;
+    height: 600px;
     padding: 8rem 2rem 6rem;
   }
   .cta-title {

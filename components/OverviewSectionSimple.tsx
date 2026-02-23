@@ -138,19 +138,24 @@ export const OverviewSectionSimple: React.FC = React.memo(() => {
 
     const itemObserver = new IntersectionObserver(
       (entries) => {
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
+        entries.forEach((entry) => {
           const idx = parseInt(
             entry.target.getAttribute("data-index") ?? "-1",
             10,
           );
-          if (idx >= 0) {
+          if (idx < 0) return;
+
+          if (entry.isIntersecting) {
             setVisibleCount((prev) => Math.max(prev, idx + 1));
-            itemObserver.unobserve(entry.target);
+          } else {
+            // If the item is below the viewport (scrolling up)
+            if (entry.boundingClientRect.top > 0) {
+              setVisibleCount((prev) => Math.min(prev, idx));
+            }
           }
-        }
+        });
       },
-      { threshold: 0.2, rootMargin: "0px 0px -80px 0px" },
+      { threshold: 0.2, rootMargin: "0px 0px -25% 0px" },
     );
 
     const setupItems = () => {

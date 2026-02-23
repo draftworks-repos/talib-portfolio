@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, Suspense } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import "./CallToAction.css";
 
@@ -9,17 +9,16 @@ import "./CallToAction.css";
 
 export const CallToAction: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [showGlobe, setShowGlobe] = useState(false);
+  const [borderVisible, setBorderVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setShowGlobe(true);
-          observer.disconnect(); // load once only
+          setBorderVisible(true);
         }
       },
-      { threshold: 0.25 },
+      { threshold: 0.3 },
     );
 
     if (sectionRef.current) {
@@ -30,7 +29,11 @@ export const CallToAction: React.FC = () => {
   }, []);
 
   return (
-    <section className="cta-section" id="contact" ref={sectionRef}>
+    <section
+      className={`cta-section ${borderVisible ? "border-visible" : ""}`}
+      id="contact"
+      ref={sectionRef}
+    >
       <div className="cta-gradient-bg"></div>
 
       <div className="cta-container">

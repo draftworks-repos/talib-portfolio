@@ -50,6 +50,7 @@ const Contact: React.FC = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "start",
+            justifyContent: "start",
           }}
         >
           <AnimatedBackground />
