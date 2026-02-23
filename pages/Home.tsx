@@ -148,7 +148,7 @@ const FrammerMarquee = lazy(() =>
     default: m.FrammerMarquee,
   })),
 );
-const ReviewCarousel = lazy(() => import("../components/ReviewCarousel"));
+// const ReviewCarousel = lazy(() => import("../components/ReviewCarousel"));
 const ExtendedCapabilities = lazy(() =>
   import("../components/ExtendedCapabilities").then((m) => ({
     default: m.ExtendedCapabilities,
@@ -243,9 +243,9 @@ const Home: React.FC = () => {
             <FrammerMarquee direction="left" />
           </Suspense>
 
-          <Suspense fallback={null}>
+          {/* <Suspense fallback={null}>
             <ReviewCarousel />
-          </Suspense>
+          </Suspense> */}
 
           <section id="extended-capabilities" className="no-margin-bottom">
             <Suspense fallback={null}>
