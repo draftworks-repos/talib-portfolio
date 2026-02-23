@@ -159,11 +159,11 @@ const AboutSection = lazy(() =>
     default: m.AboutSection,
   })),
 );
-const OverviewSection = lazy(() =>
-  import("../components/OverviewSection").then((m) => ({
-    default: m.OverviewSection,
-  })),
-);
+// const OverviewSection = lazy(() =>
+//   import("../components/OverviewSection").then((m) => ({
+//     default: m.OverviewSection,
+//   })),
+// );
 const CallToAction = lazy(() =>
   import("../components/CallToAction").then((m) => ({
     default: m.CallToAction,
@@ -257,9 +257,9 @@ const Home: React.FC = () => {
             <AboutSection />
           </Suspense>
 
-          <Suspense fallback={null}>
+          {/* <Suspense fallback={null}>
             <OverviewSection />
-          </Suspense>
+          </Suspense> */}
 
           <Suspense fallback={null}>
             <CallToAction />
