@@ -3,9 +3,9 @@ import { ArrowUpRight } from "lucide-react";
 import "./CallToAction.css";
 
 // Lazy-load Globe (separate chunk)
-const Globe = React.lazy(() =>
-  import("./Globe").then((m) => ({ default: m.Globe })),
-);
+// const Globe = React.lazy(() =>
+//   import("./Globe").then((m) => ({ default: m.Globe })),
+// );
 
 export const CallToAction: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -78,11 +78,11 @@ export const CallToAction: React.FC = () => {
 
         {/* 3D Globe — loads only when visible */}
         <div className="cta-visual-decoration">
-          {showGlobe && (
+          {/* {showGlobe && (
             <Suspense fallback={null}>
               <Globe />
             </Suspense>
-          )}
+          )} */}
           <div className="sphere-glow"></div>
           <div className="subtle-grid"></div>
         </div>
