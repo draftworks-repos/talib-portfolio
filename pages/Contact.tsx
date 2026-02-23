@@ -49,7 +49,7 @@ const Contact: React.FC = () => {
             width: "100%",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+            alignItems: "start",
           }}
         >
           <AnimatedBackground />
