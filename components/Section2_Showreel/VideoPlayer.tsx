@@ -7,6 +7,7 @@ import {
   Volume2,
   VolumeX,
   Maximize,
+  Minimize,
   Share2,
   Loader2,
 } from "lucide-react";
@@ -42,9 +43,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(
     const [isTablet, setIsTablet] = useState(false);
     const [videoDuration, setVideoDuration] = useState<number | null>(null);
     const [currentTime, setCurrentTime] = useState(0);
+    const [isFullscreen, setIsFullscreen] = useState(false);
+    const [showControls, setShowControls] = useState(false);
 
     const containerRef = useRef<HTMLDivElement>(null);
     const iframeRef = useRef<HTMLIFrameElement>(null);
+    const controlsTimerRef = useRef<NodeJS.Timeout | null>(null);
 
     const isActuallyLoading = isLoading || !iframeLoaded;
 
@@ -58,6 +62,24 @@ const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(
       }
     }, [isInView, hasBeenSeen]);
 
+    const resetControlsTimer = () => {
+      if (controlsTimerRef.current) {
+        clearTimeout(controlsTimerRef.current);
+      }
+      controlsTimerRef.current = setTimeout(() => {
+        if (document.fullscreenElement) {
+          setShowControls(false);
+        }
+      }, 1000);
+    };
+
+    const handleMouseMove = () => {
+      if (!isTablet) {
+        setShowControls(true);
+        resetControlsTimer();
+      }
+    };
+
     useEffect(() => {
       const checkTablet = () => {
         setIsTablet(window.innerWidth <= 1024);
@@ -65,7 +87,26 @@ const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(
 
       checkTablet();
       window.addEventListener("resize", checkTablet);
-      return () => window.removeEventListener("resize", checkTablet);
+
+      const handleFullscreenChange = () => {
+        setIsFullscreen(!!document.fullscreenElement);
+        // Show controls immediately when entering/exiting fullscreen
+        setShowControls(true);
+        resetControlsTimer();
+      };
+
+      document.addEventListener("fullscreenchange", handleFullscreenChange);
+
+      return () => {
+        window.removeEventListener("resize", checkTablet);
+        document.removeEventListener(
+          "fullscreenchange",
+          handleFullscreenChange,
+        );
+        if (controlsTimerRef.current) {
+          clearTimeout(controlsTimerRef.current);
+        }
+      };
     }, []);
 
     // Listen for Vimeo player events
@@ -190,8 +231,20 @@ const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(
       <div
         ref={containerRef}
         className={`player-wrapper ${isTablet ? "mobile-mode" : ""}`}
-        onMouseEnter={() => !isTablet && setIsHovered(true)}
-        onMouseLeave={() => !isTablet && setIsHovered(false)}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => {
+          if (!isTablet) {
+            setIsHovered(true);
+            setShowControls(true);
+            resetControlsTimer();
+          }
+        }}
+        onMouseLeave={() => {
+          if (!isTablet) {
+            setIsHovered(false);
+            setShowControls(false);
+          }
+        }}
       >
         <div className="video-viewport">
           {hasBeenSeen && (
@@ -223,93 +276,98 @@ const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(
 
           {!isTablet && (
             <AnimatePresence>
-              {isHovered && !isActuallyLoading && (
-                <>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
-                    transition={overlayTransition}
-                    className="hud-overlay"
-                  >
-                    <div className="top-right-actions">
-                      <button
-                        className="icon-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleShare();
-                        }}
-                      >
-                        <Share2 size={18} className="control-icon" />
-                      </button>
-                    </div>
+              {(isFullscreen ? showControls : isHovered) &&
+                !isActuallyLoading && (
+                  <>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 20 }}
+                      transition={overlayTransition}
+                      className="hud-overlay"
+                    >
+                      <div className="top-right-actions">
+                        <button
+                          className="icon-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleShare();
+                          }}
+                        >
+                          <Share2 size={18} className="control-icon" />
+                        </button>
+                      </div>
 
-                    <div className="content-group">
-                      <div className="video-info">
-                        <h3 className="video-title">{project.name}</h3>
-                        <div className="tags-row">
-                          {project.tags.slice(0, 3).map((tag, idx) => (
-                            <span key={idx} className="tag-badge">
-                              {tag}
-                            </span>
-                          ))}
+                      <div className="content-group">
+                        <div className="video-info">
+                          <h3 className="video-title">{project.name}</h3>
+                          <div className="tags-row">
+                            {project.tags.slice(0, 3).map((tag, idx) => (
+                              <span key={idx} className="tag-badge">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="bottom-actions">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setIsMuted(!isMuted);
+                            }}
+                            className="icon-btn"
+                          >
+                            {isMuted ? (
+                              <VolumeX size={18} className="control-icon" />
+                            ) : (
+                              <Volume2 size={18} className="control-icon" />
+                            )}
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              toggleFullscreen();
+                            }}
+                            className="icon-btn"
+                          >
+                            {isFullscreen ? (
+                              <Minimize size={20} className="control-icon" />
+                            ) : (
+                              <Maximize size={20} className="control-icon" />
+                            )}
+                          </button>
                         </div>
                       </div>
+                    </motion.div>
 
-                      <div className="bottom-actions">
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setIsMuted(!isMuted);
-                          }}
-                          className="icon-btn"
-                        >
-                          {isMuted ? (
-                            <VolumeX size={18} className="control-icon" />
-                          ) : (
-                            <Volume2 size={18} className="control-icon" />
-                          )}
-                        </button>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleFullscreen();
-                          }}
-                          className="icon-btn"
-                        >
-                          <Maximize size={18} className="control-icon" />
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="play-btn-center"
-                    initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.8, y: 20 }}
-                    transition={overlayTransition}
-                  >
-                    <motion.button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setUserPaused(!userPaused);
-                      }}
-                      className="play-btn"
+                    <motion.div
+                      className="play-btn-center"
+                      initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                      transition={overlayTransition}
                     >
-                      {isPlaying ? (
-                        <Pause size={32} className="play-btn-icon" />
-                      ) : (
-                        <Play
-                          size={32}
-                          className="play-btn-icon"
-                          style={{ marginLeft: "4px" }}
-                        />
-                      )}
-                    </motion.button>
-                  </motion.div>
-                </>
-              )}
+                      <motion.button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setUserPaused(!userPaused);
+                        }}
+                        className="play-btn"
+                      >
+                        {isPlaying ? (
+                          <Pause size={32} className="play-btn-icon" />
+                        ) : (
+                          <Play
+                            size={32}
+                            className="play-btn-icon"
+                            style={{ marginLeft: "4px" }}
+                          />
+                        )}
+                      </motion.button>
+                    </motion.div>
+                  </>
+                )}
             </AnimatePresence>
           )}
 
@@ -346,7 +404,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = React.memo(
                 {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
               </button>
               <button onClick={toggleFullscreen} className="slim-icon-btn">
-                <Maximize size={20} />
+                {isFullscreen ? <Minimize size={20} /> : <Maximize size={20} />}
               </button>
             </div>
           </div>
