@@ -148,7 +148,7 @@ const FrammerMarquee = lazy(() =>
     default: m.FrammerMarquee,
   })),
 );
-// const ReviewCarousel = lazy(() => import("../components/ReviewCarousel"));
+const ReviewCarousel = lazy(() => import("../components/ReviewCarousel"));
 const ExtendedCapabilities = lazy(() =>
   import("../components/ExtendedCapabilities").then((m) => ({
     default: m.ExtendedCapabilities,
@@ -159,11 +159,11 @@ const AboutSection = lazy(() =>
     default: m.AboutSection,
   })),
 );
-// const OverviewSection = lazy(() =>
-//   import("../components/OverviewSection").then((m) => ({
-//     default: m.OverviewSection,
-//   })),
-// );
+const OverviewSection = lazy(() =>
+  import("../components/OverviewSectionSimple").then((m) => ({
+    default: m.OverviewSectionSimple,
+  })),
+);
 const CallToAction = lazy(() =>
   import("../components/CallToAction").then((m) => ({
     default: m.CallToAction,
@@ -243,9 +243,9 @@ const Home: React.FC = () => {
             <FrammerMarquee direction="left" />
           </Suspense>
 
-          {/* <Suspense fallback={null}>
+          <Suspense fallback={null}>
             <ReviewCarousel />
-          </Suspense> */}
+          </Suspense>
 
           <section id="extended-capabilities" className="no-margin-bottom">
             <Suspense fallback={null}>
@@ -257,9 +257,9 @@ const Home: React.FC = () => {
             <AboutSection />
           </Suspense>
 
-          {/* <Suspense fallback={null}>
+          <Suspense fallback={null}>
             <OverviewSection />
-          </Suspense> */}
+          </Suspense>
 
           <Suspense fallback={null}>
             <CallToAction />

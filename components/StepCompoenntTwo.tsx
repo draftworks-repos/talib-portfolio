@@ -11,11 +11,15 @@ interface Step {
 
 const StepComponent: React.FC = () => {
   const [hoveredStep, setHoveredStep] = useState<number | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [visibleSteps, setVisibleSteps] = useState<number[]>([]);
   const [headerVisible, setHeaderVisible] = useState(false);
+  const [enablePreview, setEnablePreview] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  const hoverRef = useRef<number | null>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const rafRef = useRef<number | null>(null);
 
   const steps: Step[] = [
     {
@@ -89,12 +93,28 @@ const StepComponent: React.FC = () => {
         "https://res.cloudinary.com/dl6fs4vte/video/upload/f_auto,q_auto,w_256,ar_16:9,c_fill,vc_auto,ac_none/v1770889311/5cleaned_hjxnol.mp4",
     },
   ];
+
   useEffect(() => {
-    steps.forEach((step) => {
-      const video = document.createElement("video");
-      video.src = step.image;
-      video.preload = "auto";
-    });
+    const mq = window.matchMedia?.("(hover: hover) and (pointer: fine)");
+    if (!mq) {
+      setEnablePreview(false);
+      return;
+    }
+
+    const update = () => setEnablePreview(mq.matches);
+    update();
+
+    // Safari fallback
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const anyMq = mq as any;
+    if (typeof mq.addEventListener === "function") mq.addEventListener("change", update);
+    else if (typeof anyMq.addListener === "function") anyMq.addListener(update);
+
+    return () => {
+      if (typeof mq.removeEventListener === "function")
+        mq.removeEventListener("change", update);
+      else if (typeof anyMq.removeListener === "function") anyMq.removeListener(update);
+    };
   }, []);
 
   useEffect(() => {
@@ -139,41 +159,72 @@ const StepComponent: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: ReturnType<typeof setTimeout> | undefined;
 
     const handleScroll = () => {
+      // Always hide the floating preview during scroll to avoid jank/GPU spikes.
+      if (hoverRef.current !== null) setHoveredStep(null);
+
+      // On smaller screens, also debounce to avoid rapid state churn if touch triggers hover.
       if (window.innerWidth <= 1024) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          setHoveredStep(null);
-        }, 50);
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => setHoveredStep(null), 50);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (timeout) clearTimeout(timeout);
     };
   }, []);
 
-  const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement>,
-    stepId: number,
-  ) => {
-    setMousePosition({
-      x: e.clientX,
-      y: e.clientY,
-    });
-    setHoveredStep(stepId);
+  useEffect(() => {
+    hoverRef.current = hoveredStep;
+  }, [hoveredStep]);
+
+  const applyPreviewTransform = () => {
+    rafRef.current = null;
+    const el = previewRef.current;
+    if (!el) return;
+    const { x, y } = mouseRef.current;
+    el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+    // Ensure the preview only becomes visible *after* it has been positioned,
+    // so it never flashes in the top corner on first mount.
+    if (el.style.opacity !== "1") {
+      el.style.opacity = "1";
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (rafRef.current !== null) cancelAnimationFrame(rafRef.current);
+    };
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!enablePreview) return;
+    mouseRef.current.x = e.clientX;
+    mouseRef.current.y = e.clientY;
+
+    if (rafRef.current === null) {
+      rafRef.current = requestAnimationFrame(applyPreviewTransform);
+    }
   };
 
   const handleMouseLeave = () => {
     setHoveredStep(null);
   };
 
+  const handleStepMouseLeave = (e: React.MouseEvent) => {
+    const next = e.relatedTarget as HTMLElement | null;
+    if (next?.closest?.(".step-item")) return;
+    setHoveredStep(null);
+  };
+
   return (
-    <div className="step-component-wrapper">
+    <div className="step-component-wrapper" onMouseLeave={handleMouseLeave}>
       <div className="step-component-container" ref={containerRef}>
         <div
           className={`steps-header ${headerVisible ? "visible" : ""}`}
@@ -192,8 +243,9 @@ const StepComponent: React.FC = () => {
               key={step.id}
               className={`step-item ${visibleSteps.includes(step.id) ? "visible" : ""}`}
               data-step-id={step.id}
-              onMouseMove={(e) => handleMouseMove(e, step.id)}
-              onMouseLeave={handleMouseLeave}
+              onMouseEnter={enablePreview ? () => setHoveredStep(step.id) : undefined}
+              onMouseMove={enablePreview ? handleMouseMove : undefined}
+              onMouseLeave={enablePreview ? handleStepMouseLeave : undefined}
             >
               <div className="step-number">
                 <span>{String(step.id).padStart(2, "0")}</span>
@@ -224,21 +276,18 @@ const StepComponent: React.FC = () => {
           ))}
         </div>
 
-        {hoveredStep !== null && (
-          <div
-            className="step-image"
-            style={{
-              left: `${mousePosition.x}px`,
-              top: `${mousePosition.y}px`,
-            }}
-          >
-            <video
-              src={steps.find((s) => s.id === hoveredStep)?.image}
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
+        {enablePreview && hoveredStep !== null && (
+          <div className="step-image" ref={previewRef}>
+            <div className="step-image-inner">
+              <video
+                src={steps.find((s) => s.id === hoveredStep)?.image}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+              />
+            </div>
           </div>
         )}
       </div>

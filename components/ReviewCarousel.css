@@ -28,18 +28,22 @@
 .carousel-track-wrapper {
   flex: 1;
   position: relative;
-  height: 500px;
+  min-height: 500px;
+  /* Remove overflow: hidden to prevent shadow and card clipping */
   overflow: visible;
+  padding: 40px 0; /* Vertical padding for shadows */
 }
 
 .carousel-track {
   position: relative;
   height: 100%;
   width: 100%;
-  perspective: 2000px;
-  transform-style: preserve-3d;
   cursor: grab;
-  touch-action: pan-y pinch-zoom; /* Allow vertical scroll but handle horizontal drag */
+  touch-action: pan-y pinch-zoom;
+  /* Ensure track doesn't clip its children */
+  overflow: visible;
+  display: flex;
+  align-items: center;
 }
 
 .carousel-track:active {
@@ -48,14 +52,15 @@
 
 /* Card Base */
 .review-card {
-  position: absolute;
-  top: 0;
-  left: 50%;
+  position: relative;
+  margin: 0 auto;
   width: 100%;
   max-width: 1000px;
-  will-change: transform, opacity;
   backface-visibility: hidden;
   user-select: none;
+}
+.review-card.active {
+  will-change: transform, opacity;
 }
 .section-title-sub {
   max-width: 40rem;
@@ -68,10 +73,21 @@
   border-radius: 2.5rem;
   background: rgba(18, 20, 27, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 35px 100px rgba(109, 40, 217, 0.1);
+  box-shadow: 0 18px 60px rgba(109, 40, 217, 0.08);
   position: relative;
   overflow: hidden;
   transition: all 0.4s ease;
+}
+
+/* When the user is actively scrolling, drop expensive compositing. */
+.carousel-section.is-scrolling .carousel-track {
+  cursor: default;
+}
+.carousel-section.is-scrolling .card-inner {
+  box-shadow: none;
+}
+.carousel-section.is-scrolling .review-card.active {
+  will-change: auto;
 }
 
 .quote-icon {
@@ -236,7 +252,7 @@
     height: 2rem;
   }
   .carousel-track {
-    height: 400px;
+    height: 450px; /* Increased to prevent clipping */
   }
   .reviewer img {
     width: 2.5rem;
@@ -262,7 +278,7 @@
     min-height: 250px;
   }
   .carousel-track {
-    height: 475px;
+    height: 400px; /* Increased to prevent clipping */
   }
   .pagination {
     display: flex;
@@ -302,6 +318,9 @@
     border-radius: 1.5rem;
     padding: 2rem;
   }
+  .carousel-track {
+    height: 440px; /* Increased to prevent clipping */
+  }
   .review-text {
     line-height: 1.4;
     font-size: 0.75rem;
@@ -322,7 +341,7 @@
     display: none;
   }
   .carousel-track-wrapper {
-    height: 500px;
+    height: 550px; /* Increased to prevent clipping */
   }
   .reviewer-details span {
     font-size: 0.75rem;

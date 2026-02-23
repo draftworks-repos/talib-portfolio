@@ -56,55 +56,40 @@ const StarRating = React.memo(({ rating }: { rating: number }) => (
   </div>
 ));
 
-// Variants for card positions in the stack
-const cardVariants = {
-  active: {
-    x: "-50%",
-    y: 0,
-    scale: 1,
-    opacity: 1,
-    zIndex: 10,
-    pointerEvents: "auto" as const,
-  },
-  next: {
-    x: "-50%",
-    y: 20,
-    scale: 0.94,
-    opacity: 0.5,
-    zIndex: 5,
-    pointerEvents: "none" as const,
-  },
-  next2: {
-    x: "-50%",
-    y: 40,
-    scale: 0.88,
-    opacity: 0.25,
-    zIndex: 2,
-    pointerEvents: "none" as const,
-  },
-  hidden: {
-    x: "-50%",
-    y: 60,
-    scale: 0.82,
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 40 : -40,
     opacity: 0,
-    zIndex: 0,
-    pointerEvents: "none" as const,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
   },
+  exit: (direction: number) => ({
+    x: direction > 0 ? -40 : 40,
+    opacity: 0,
+  }),
 };
 
 export default function ReviewCarousel() {
   const [index, setIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const [isScrolling, setIsScrolling] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const scrollTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1024);
+    const onScroll = () => {
+      setIsScrolling(true);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = setTimeout(() => setIsScrolling(false), 140);
     };
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -130,23 +115,23 @@ export default function ReviewCarousel() {
   }, []);
 
   const prevCard = useCallback(() => {
+    setDirection(-1);
     setIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
   }, []);
 
   const nextCard = useCallback(() => {
+    setDirection(1);
     setIndex((prev) => (prev + 1) % reviews.length);
   }, []);
 
-  const getCardStatus = (i: number) => {
-    const diff = (i - index + reviews.length) % reviews.length;
-    if (diff === 0) return "active";
-    if (diff === 1) return "next";
-    if (diff === 2) return "next2";
-    return "hidden";
-  };
+  const activeReview = reviews[index]!;
 
   return (
-    <div className="carousel-section" id="reviews" ref={sectionRef}>
+    <div
+      className={`carousel-section ${isScrolling ? "is-scrolling" : ""}`}
+      id="reviews"
+      ref={sectionRef}
+    >
       <div className="section-header">
         <div
           className="services-badge anim-on-scroll anim-bento-entrance"
@@ -188,61 +173,53 @@ export default function ReviewCarousel() {
         <div className="carousel-track-wrapper">
           <motion.div
             className="carousel-track"
-            drag="x"
+            drag={isScrolling ? false : "x"}
             dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={0.2}
+            dragElastic={isScrolling ? 0 : 0.2}
             onDragEnd={(_, info) => {
               const threshold = 50;
               if (info.offset.x < -threshold) nextCard();
               else if (info.offset.x > threshold) prevCard();
             }}
           >
-            <AnimatePresence mode="popLayout" initial={false}>
-              {reviews.map((review, i) => {
-                const status = getCardStatus(i);
+            <AnimatePresence mode="wait" initial={false} custom={direction}>
+              <motion.div
+                key={activeReview.id}
+                className="review-card active"
+                custom={direction}
+                variants={slideVariants}
+                initial={isScrolling ? "center" : "enter"}
+                animate="center"
+                exit={isScrolling ? undefined : "exit"}
+                transition={
+                  isScrolling
+                    ? { duration: 0 }
+                    : { duration: 0.26, ease: "easeOut" }
+                }
+              >
+                <div className="card-inner">
+                  <Quote className="quote-icon" size={40} />
+                  <p className="review-text">{activeReview.review}</p>
 
-                // If on mobile/tablet, only render the active card for performance
-                if (isMobile && status !== "active") return null;
-
-                return (
-                  <motion.div
-                    key={review.id}
-                    className={`review-card ${status === "active" ? "active" : ""}`}
-                    variants={cardVariants}
-                    animate={status}
-                    initial={isMobile ? { opacity: 0, x: 0 } : status}
-                    exit={isMobile ? { opacity: 0, x: 0 } : undefined}
-                    transition={{
-                      type: "spring",
-                      stiffness: 300,
-                      damping: 30,
-                    }}
-                  >
-                    <div className="card-inner">
-                      <Quote className="quote-icon" size={40} />
-                      <p className="review-text">{review.review}</p>
-
-                      <div className="review-footer">
-                        <div className="reviewer">
-                          <img
-                            src={review.image}
-                            alt={review.name}
-                            loading="lazy"
-                            width={48}
-                            height={48}
-                          />
-                          <div className="reviewer-details">
-                            <h4>{review.name}</h4>
-                            <span>{review.role}</span>
-                          </div>
-                        </div>
-
-                        <StarRating rating={review.rating} />
+                  <div className="review-footer">
+                    <div className="reviewer">
+                      <img
+                        src={activeReview.image}
+                        alt={activeReview.name}
+                        loading="lazy"
+                        width={48}
+                        height={48}
+                      />
+                      <div className="reviewer-details">
+                        <h4>{activeReview.name}</h4>
+                        <span>{activeReview.role}</span>
                       </div>
                     </div>
-                  </motion.div>
-                );
-              })}
+
+                    <StarRating rating={activeReview.rating} />
+                  </div>
+                </div>
+              </motion.div>
             </AnimatePresence>
           </motion.div>
         </div>

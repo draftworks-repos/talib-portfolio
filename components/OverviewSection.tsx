@@ -574,6 +574,8 @@ export const OverviewSection: React.FC = React.memo(() => {
     null,
   );
   const isCompleteRef = useRef(false);
+  const sectionInViewRef = useRef(true);
+  const listenerAttachedRef = useRef(true);
 
   const updateLayoutData = useCallback(() => {
     const markers = markerRefs.current.filter(Boolean);
@@ -594,8 +596,10 @@ export const OverviewSection: React.FC = React.memo(() => {
 
   useEffect(() => {
     let ticking = false;
+    let handleScroll: () => void;
 
     const updateProgress = () => {
+      if (!sectionInViewRef.current) return;
       if (!layoutDataRef.current) {
         updateLayoutData();
       }
@@ -629,15 +633,13 @@ export const OverviewSection: React.FC = React.memo(() => {
           if (isActive) {
             item.classList.add("item-active");
             marker?.classList.add("marker-active");
-            if (marker) {
-              marker.style.boxShadow = `0 0 20px ${EXPERIENCES[i].color}aa`;
-            }
           }
         });
 
         // Stop listening once complete
         if (clampedProgress >= 1 && !isCompleteRef.current) {
           isCompleteRef.current = true;
+          listenerAttachedRef.current = false;
           window.removeEventListener("scroll", handleScroll);
         }
       }
@@ -645,7 +647,7 @@ export const OverviewSection: React.FC = React.memo(() => {
       ticking = false;
     };
 
-    const handleScroll = () => {
+    handleScroll = () => {
       if (!ticking) {
         window.requestAnimationFrame(updateProgress);
         ticking = true;
@@ -653,24 +655,37 @@ export const OverviewSection: React.FC = React.memo(() => {
     };
 
     const handleResize = () => {
-      // Reset on resize so layout recalculates
       isCompleteRef.current = false;
       scrollProgressRef.current = 0;
       updateLayoutData();
       updateProgress();
+      if (!listenerAttachedRef.current) {
+        listenerAttachedRef.current = true;
+        window.addEventListener("scroll", handleScroll, { passive: true });
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize, { passive: true });
 
+    const sectionObserver = new IntersectionObserver(
+      ([entry]) => {
+        sectionInViewRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) updateProgress();
+      },
+      { threshold: 0, rootMargin: "50px 0px" },
+    );
+    if (sectionRef.current) sectionObserver.observe(sectionRef.current);
+
     const timer = setTimeout(() => {
       updateLayoutData();
       updateProgress();
-    }, 100);
+    }, 150);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
+      sectionObserver.disconnect();
       clearTimeout(timer);
     };
   }, [updateLayoutData]);
