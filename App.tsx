@@ -1,30 +1,15 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
-import Contact from "./pages/Contact";
-import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
 import Analytics from "./Analytics";
-import NotFound from "./components/security/NotFound";
-// declare global {
-//   interface Window {
-//     gtag: (...args: any[]) => void;
-//   }
-// }
+import Preloader from "./components/loader/PreLoader";
 
-// function RouteTracker() {
-//   const location = useLocation();
-
-//   useEffect(() => {
-//     if (window.gtag) {
-//       window.gtag("config", "G-X2YD0EHSTS", {
-//         page_path: location.pathname,
-//       });
-//     }
-//   }, [location]);
-
-//   return null;
-// }
+// Lazy-loaded pages
+const Contact = lazy(() => import("./pages/Contact"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const Terms = lazy(() => import("./pages/Terms"));
+const NotFound = lazy(() => import("./components/security/NotFound"));
 
 function AppContent() {
   const location = useLocation();
@@ -34,36 +19,27 @@ function AppContent() {
 
   return (
     <>
-      {/* <RouteTracker /> */}
       <Analytics />
       {!is404 && <Navbar />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/privacy" element={<Privacy />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
 
 function App() {
-  // useEffect(() => {
-  //   const handleMouseMove = (e: MouseEvent) => {
-  //     const x = e.clientX / window.innerWidth - 0.5;
-  //     const y = e.clientY / window.innerHeight - 0.5;
-  //     document.documentElement.style.setProperty("--mouse-x", x.toString());
-  //     document.documentElement.style.setProperty("--mouse-y", y.toString());
-  //   };
-
-  //   window.addEventListener("mousemove", handleMouseMove);
-  //   return () => window.removeEventListener("mousemove", handleMouseMove);
-  // }, []);
-
   return (
     <BrowserRouter>
-      <AppContent />
+      <Preloader>
+        <AppContent />
+      </Preloader>
     </BrowserRouter>
   );
 }

@@ -14,7 +14,10 @@ export const Preloader: React.FC<PreloaderProps> = ({ children }) => {
 
   useEffect(() => {
     const loadAssets = async () => {
-      // 1. Define all critical assets
+      // 1. Define critical assets (MUST block)
+      const criticalHeroAssets = ["/hero/download.webp", "/icons/code.png"];
+
+      // 2. Define non-critical assets (Background preload)
       const logos = Array.from(
         { length: 39 },
         (_, i) => `/marquee-logo/${i + 1}.webp`,
@@ -33,8 +36,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ children }) => {
         "/icons/frammer.png",
         "/icons/mongodb.png",
       ];
-      const heroAssets = ["/hero/download.webp", "/icons/code.png"];
-      const allImages = [...logos, ...techIcons, ...heroAssets];
+      const backgroundAssets = [...logos, ...techIcons];
 
       const vimeoUrls = [
         "https://player.vimeo.com/video/1164707490",
@@ -43,28 +45,32 @@ export const Preloader: React.FC<PreloaderProps> = ({ children }) => {
       ];
 
       try {
-        // 2. Start preloading processes concurrently
+        // 3. Block ONLY on critical assets
         await Promise.all([
           preloadFonts(["Inter"]),
-          warmVideos(vimeoUrls),
-          preloadImages(allImages, (p) => {
-            // Smoothly update progress
-            setProgress(p);
+          preloadImages(criticalHeroAssets, (p) => {
+            // Hero progress
+            setProgress(p * 0.8); // First 80% is Hero
           }),
         ]);
 
-        // 3. Ensure minimum loading time
+        // 4. Ensure minimum loading time and show progress
         const elapsedTime = Date.now() - loadingStartTime.current;
         const remainingTime = Math.max(0, MIN_LOADING_TIME - elapsedTime);
 
         setTimeout(() => {
           setProgress(100);
-          // Small extra delay for the '100%' to be seen and for the fade-out
-          setTimeout(() => setIsReady(true), 200);
+          setTimeout(() => {
+            setIsReady(true);
+            // 5. Start background preloading AFTER Hero is shown
+            requestIdleCallback(() => {
+              preloadImages(backgroundAssets, () => {});
+              warmVideos(vimeoUrls);
+            });
+          }, 200);
         }, remainingTime);
       } catch (err) {
         console.error("Asset preload failed:", err);
-        // Fail-safe: show content anyway
         setIsReady(true);
       }
     };
