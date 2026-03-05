@@ -173,7 +173,15 @@ export const OverviewSectionSimple: React.FC = React.memo(() => {
     };
   }, []);
 
-  const progress = TOTAL > 0 ? (visibleCount / TOTAL) * 100 : 0;
+  let maxProgress = 94; // desktop default
+
+  if (window.innerWidth <= 768) {
+    maxProgress = 90.5; // mobile
+  } else if (window.innerWidth <= 1024) {
+    maxProgress = 91; // tablet
+  }
+
+  const progress = TOTAL > 0 ? (visibleCount / TOTAL) * maxProgress : 0;
 
   return (
     <section className="overview-simple">
@@ -198,7 +206,8 @@ export const OverviewSectionSimple: React.FC = React.memo(() => {
             <div className="overview-simple-track-bg" />
             <div
               className="overview-simple-track-fill"
-              style={{ height: `${Math.max(progress - 6, 0)}%` }}
+              // style={{ height: `${Math.max(progress - 6, 0)}%` }}
+              style={{ height: `${progress}%` }}
             />
           </div>
 
