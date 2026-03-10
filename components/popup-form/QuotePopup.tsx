@@ -207,7 +207,7 @@ export default function QuotePopup({
       <div className={`${styles.card} ${visible ? styles.cardVisible : ""}`}>
         {/* Header */}
         <div className={styles.header}>
-          <span className={styles.badge}>WebMaak</span>
+          <span className={styles.badge}>Talib Ali</span>
           <button
             className={styles.closeBtn}
             onClick={handleClose}
