@@ -329,15 +329,21 @@ export default function QuotePopup({
               {error && <div className={styles.errorText}>{error}</div>}
 
               <div className={styles.field}>
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={SITE_KEY}
-                  onChange={(token) => {
-                    setRobot(!!token);
-                    setRecaptchaToken(token || "");
-                  }}
-                  theme={mode}
-                />
+                {SITE_KEY ? (
+                  <ReCAPTCHA
+                    ref={recaptchaRef}
+                    sitekey={SITE_KEY}
+                    onChange={(token) => {
+                      setRobot(!!token);
+                      setRecaptchaToken(token || "");
+                    }}
+                    theme={mode}
+                  />
+                ) : (
+                  <div className={styles.errorText}>
+                    reCAPTCHA Configuration Missing (VITE_RECAPTCHA_SITE_KEY)
+                  </div>
+                )}
               </div>
             </div>
 
