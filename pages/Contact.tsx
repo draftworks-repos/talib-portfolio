@@ -1,15 +1,18 @@
 "use client";
 
 import { Helmet } from "react-helmet";
-import React from "react";
+import React, { useState } from "react";
 import { AnimatedBackground } from "../components/AnimatedBackground";
 import { ContentArea } from "../components/ContentArea";
 import { Branding } from "../components/Branding";
 import { PageFooter } from "../components/ContactFooter";
+import QuotePopup from "../components/popup-form/QuotePopup";
 import "../components/Contact.css";
 // Parent component
 
 const Contact: React.FC = () => {
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+
   return (
     <>
       <Helmet>
@@ -66,6 +69,23 @@ const Contact: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Right attached 'GET A QUOTE' Badge */}
+      <div className="quote-badge-wrapper">
+        <button
+          className="quote-badge"
+          onClick={() => setIsQuoteOpen(true)}
+          aria-label="Get a Quote"
+        >
+          GET A QUOTE
+        </button>
+      </div>
+
+      <QuotePopup
+        isOpen={isQuoteOpen}
+        onClose={() => setIsQuoteOpen(false)}
+        mode="light"
+      />
     </>
   );
 };
