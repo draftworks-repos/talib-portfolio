@@ -32,7 +32,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       // 1. Verify reCAPTCHA (Skip in development)
       if (process.env.NODE_ENV !== "development") {
-        const secretKey = process.env.NEXT_PUBLIC_SECRET_KEY;
+        const secretKey = process.env.RECAPTCHA_SECRET_KEY;
         const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaToken}`;
 
         const recaptchaRes = await fetch(verifyUrl, { method: "POST" });
