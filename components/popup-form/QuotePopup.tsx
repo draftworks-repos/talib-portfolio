@@ -67,7 +67,7 @@ export default function QuotePopup({
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const scrollYRef = useRef(0);
 
-  const SITE_KEY = `${process.env.RECAPTCHA_SITE_KEY}`;
+  const SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 
   useEffect(() => {
     if (isOpen) {
