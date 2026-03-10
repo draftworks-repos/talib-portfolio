@@ -60,7 +60,7 @@ export default function QuotePopup({
   });
   const [recaptchaToken, setRecaptchaToken] = useState("");
   const [loading, setLoading] = useState(false);
-  const [robot, setRobot] = useState(process.env.NODE_ENV === "development");
+  const [robot, setRobot] = useState(import.meta.env.DEV);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -157,7 +157,9 @@ export default function QuotePopup({
       return;
     }
 
-    if (process.env.NODE_ENV !== "development" && (!robot || !recaptchaToken)) {
+    const isDev = import.meta.env.DEV;
+
+    if (!isDev && (!robot || !recaptchaToken)) {
       setError("Please complete the reCAPTCHA.");
       return;
     }
