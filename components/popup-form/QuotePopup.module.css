@@ -1,0 +1,645 @@
+/* Fonts are now handled via next/font in layout.tsx */
+
+/*
+  Color palette reference:
+  --pink:    #db2777
+  --indigo:  #4f46e5
+  --violet:  #7c3aed
+  --cyan-bg: rgba(34, 211, 238, 0.1)
+  --base:    #0a0a0f
+  --surface: #2b2b2b
+*/
+
+/* ─── CSS Variables ────────────────────────────────────────── */
+.dark {
+  --overlay-bg: rgba(10, 10, 15, 0.82);
+  --card-bg: rgba(15, 18, 40, 0.96);
+  --card-border: rgba(79, 70, 229, 0.28);
+  --card-shine: rgba(34, 211, 238, 0.06);
+  --card-shadow:
+    0 32px 80px rgba(0, 0, 0, 0.75), 0 0 0 1px rgba(79, 70, 229, 0.15),
+    inset 0 1px 0 rgba(34, 211, 238, 0.07);
+
+  --badge-bg: rgba(34, 211, 238, 0.1);
+  --badge-color: #22d3ee;
+  --badge-border: rgba(34, 211, 238, 0.2);
+
+  --close-color: #64748b;
+  --close-hover-bg: rgba(79, 70, 229, 0.15);
+  --close-hover-color: #e2e8f0;
+
+  --label-color: #7dd3fc;
+  --text-primary: #e2e8f0;
+  --text-muted: #64748b;
+
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(79, 70, 229, 0.3);
+  --input-focus-border: rgba(34, 211, 238, 0.6);
+  --input-focus-shadow: rgba(34, 211, 238, 0.1);
+  --input-color: #e2e8f0;
+  --input-placeholder: #334155;
+  --input-option-bg: #0f1228;
+
+  --phone-dropdown-bg: #0f1228;
+  --phone-dropdown-hover: rgba(79, 70, 229, 0.15);
+  --phone-country-name: #e2e8f0;
+  --phone-dial-code: #64748b;
+
+  --robot-bg: rgba(255, 255, 255, 0.03);
+  --robot-border: rgba(79, 70, 229, 0.28);
+  --robot-active-border: rgba(34, 211, 238, 0.5);
+  --robot-text: #64748b;
+
+  --checkbox-border: rgba(79, 70, 229, 0.4);
+  --checkbox-checked-bg: #4f46e5;
+
+  --robot-badge-color: #22d3ee;
+
+  --btn-primary-bg: #4f46e5;
+  --btn-primary-hover: #4338ca;
+  --btn-primary-shadow: rgba(79, 70, 229, 0.45);
+  --btn-primary-color: #fff;
+
+  --btn-reset-border: rgba(79, 70, 229, 0.25);
+  --btn-reset-color: #64748b;
+  --btn-reset-hover-border: rgba(34, 211, 238, 0.45);
+  --btn-reset-hover-color: #e2e8f0;
+
+  --success-bg: rgba(79, 70, 229, 0.08);
+  --success-border: rgba(79, 70, 229, 0.22);
+  --success-icon-bg: linear-gradient(135deg, #4f46e5, #22d3ee);
+  --success-title: #e2e8f0;
+  --success-text: #64748b;
+
+  --error-color: #f87171;
+}
+
+.light {
+  --overlay-bg: rgba(10, 10, 15, 0.5);
+  --card-bg: #ffffff;
+  --card-border: rgba(79, 70, 229, 0.12);
+  --card-shine: transparent;
+  --card-shadow:
+    0 24px 64px rgba(10, 10, 15, 0.14), 0 0 0 1px rgba(79, 70, 229, 0.08);
+
+  --badge-bg: #eef2ff;
+  --badge-color: #4f46e5;
+  --badge-border: rgba(79, 70, 229, 0.18);
+
+  --close-color: #94a3b8;
+  --close-hover-bg: rgba(79, 70, 229, 0.07);
+  --close-hover-color: #1e293b;
+
+  --label-color: #4f46e5;
+  --text-primary: #1e293b;
+  --text-muted: #64748b;
+
+  --input-bg: #f8fafc;
+  --input-border: #e2e8f0;
+  --input-focus-border: #4f46e5;
+  --input-focus-shadow: rgba(79, 70, 229, 0.1);
+  --input-color: #1e293b;
+  --input-placeholder: #94a3b8;
+  --input-option-bg: #fff;
+
+  --phone-dropdown-bg: #fff;
+  --phone-dropdown-hover: #f1f5f9;
+  --phone-country-name: #1e293b;
+  --phone-dial-code: #64748b;
+
+  --robot-bg: #f8fafc;
+  --robot-border: #e2e8f0;
+  --robot-active-border: #4f46e5;
+  --robot-text: #64748b;
+
+  --checkbox-border: #cbd5e1;
+  --checkbox-checked-bg: #4f46e5;
+
+  --robot-badge-color: #4f46e5;
+
+  --btn-primary-bg: #4f46e5;
+  --btn-primary-hover: #4338ca;
+  --btn-primary-shadow: rgba(79, 70, 229, 0.3);
+  --btn-primary-color: #fff;
+
+  --btn-reset-border: #e2e8f0;
+  --btn-reset-color: #94a3b8;
+  --btn-reset-hover-border: #4f46e5;
+  --btn-reset-hover-color: #1e293b;
+
+  --success-bg: #eef2ff;
+  --success-border: rgba(79, 70, 229, 0.2);
+  --success-icon-bg: linear-gradient(135deg, #4f46e5, #22d3ee);
+  --success-title: #1e293b;
+  --success-text: #64748b;
+
+  --error-color: #ef4444;
+}
+
+/* ─── Overlay ─────────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: var(--overlay-bg);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.overlayVisible {
+  opacity: 1;
+}
+
+/* ─── Card ─────────────────────────────────────────────────── */
+.card {
+  width: 100%;
+  max-width: 520px;
+  max-height: 92vh;
+  overflow-y: auto;
+  border-radius: 20px;
+  padding: 32px 36px;
+  font-family: var(--font-inter);
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  /* Subtle inner top-left glow instead of blur */
+  background-image: radial-gradient(
+    ellipse at 20% 0%,
+    var(--card-shine) 0%,
+    transparent 60%
+  );
+  background-attachment: local;
+  transform: translateY(28px) scale(0.96);
+  opacity: 0;
+  transition:
+    transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--input-border) transparent;
+}
+
+.cardVisible {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* ─── Header ───────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.badge {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  border-radius: 20px;
+  background: var(--badge-bg);
+  color: var(--badge-color);
+  border: 1px solid var(--badge-border);
+}
+
+.closeBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 10px;
+  line-height: 0;
+  color: var(--close-color);
+  transition:
+    background 0.2s,
+    color 0.2s;
+}
+
+.closeBtn:hover {
+  background: var(--close-hover-bg);
+  color: var(--close-hover-color);
+}
+
+/* ─── Grid / Fields ────────────────────────────────────────── */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.label {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--label-color);
+}
+
+.errorText {
+  color: var(--error-color);
+  font-size: 12px;
+  grid-column: 1 / -1;
+  margin-top: -8px;
+}
+
+/* ─── Inputs ───────────────────────────────────────────────── */
+.input,
+.select,
+.textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 14px;
+  padding: 11px 14px;
+  outline: none;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--input-color);
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--input-placeholder);
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 3px var(--input-focus-shadow);
+}
+
+.select {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2322d3ee' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 38px;
+}
+
+.light .select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+}
+
+.select option {
+  background: var(--input-option-bg);
+  color: var(--input-color);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 88px;
+  line-height: 1.55;
+}
+
+/* ─── Phone Input ─────────────────────────────────────────── */
+.phoneContainer {
+  width: 100% !important;
+  font-family: var(--font-dm-sans) !important;
+}
+
+.phoneInput {
+  width: 100% !important;
+  height: 43px !important;
+  background: var(--input-bg) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: 10px !important;
+  color: var(--input-color) !important;
+  font-family: inherit !important;
+  font-size: 14px !important;
+  padding-left: 68px !important;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.phoneInput:focus {
+  border-color: var(--input-focus-border) !important;
+  box-shadow: 0 0 0 3px var(--input-focus-shadow) !important;
+}
+
+.phoneButton {
+  background: var(--input-bg) !important;
+  border: 1px solid var(--input-border) !important;
+  border-right: 1px solid var(--input-border) !important;
+  border-radius: 10px 0 0 10px !important;
+  padding: 0 10px 0 12px !important;
+  transition: border-color 0.2s;
+  width: 52px !important;
+  height: 43px !important;
+  z-index: 2 !important;
+}
+
+/* Fix for the partial border/outline on active */
+.phoneButton :global(.selected-flag) {
+  border-radius: 10px 0 0 10px !important;
+  background: transparent !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.phoneButton :global(.selected-flag.open),
+.phoneButton :global(.selected-flag:hover),
+.phoneButton :global(.selected-flag:focus) {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.phoneButton :global(.selected-flag:focus) {
+  outline: none !important;
+}
+
+.phoneContainer:focus-within .phoneButton {
+  border-color: var(--input-focus-border) !important;
+}
+
+.phoneDropdown {
+  background: var(--phone-dropdown-bg) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: 10px !important;
+  margin-top: 4px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+  width: 280px !important;
+  max-height: 280px !important;
+  overflow-y: auto !important;
+  left: 0 !important;
+  z-index: 1000 !important;
+  pointer-events: all !important;
+  touch-action: pan-y !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--input-border) transparent;
+}
+
+.phoneDropdown :global(.country) {
+  padding: 10px 14px !important;
+  transition: background 0.2s;
+}
+
+.phoneDropdown :global(.country:hover) {
+  background: var(--phone-dropdown-hover) !important;
+}
+
+.phoneDropdown :global(.country.highlight) {
+  background: var(--phone-dropdown-hover) !important;
+}
+
+.phoneDropdown :global(.country-name) {
+  color: var(--phone-country-name) !important;
+  font-size: 13px !important;
+}
+
+.phoneDropdown :global(.dial-code) {
+  color: var(--phone-dial-code) !important;
+  font-size: 12px !important;
+}
+
+/* Fix for flag sprite if needed, but react-phone-input-2 usually handles it */
+
+/* ─── Robot Row ────────────────────────────────────────────── */
+.robotRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+  background: var(--robot-bg);
+  border: 1px solid var(--robot-border);
+  transition: border-color 0.2s;
+}
+
+.robotRow:hover,
+.robotChecked {
+  border-color: var(--robot-active-border);
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px solid var(--checkbox-border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: transparent;
+  transition:
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.checkboxChecked {
+  background: var(--checkbox-checked-bg);
+  border-color: var(--checkbox-checked-bg);
+}
+
+.robotText {
+  flex: 1;
+  font-size: 13px;
+  color: var(--robot-text);
+}
+
+.robotBadge {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--robot-badge-color);
+}
+
+/* ─── Actions ──────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.submitBtn {
+  flex: 1;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-color);
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-sora), sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 13px 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px var(--btn-primary-shadow);
+  transition:
+    background 0.2s,
+    transform 0.15s,
+    box-shadow 0.2s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--btn-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px var(--btn-primary-shadow);
+}
+
+.submitBtn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+.resetBtn {
+  background: none;
+  border: 1px solid var(--btn-reset-border);
+  border-radius: 10px;
+  font-family: var(--font-dm-sans), sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 13px 18px;
+  cursor: pointer;
+  color: var(--btn-reset-color);
+  transition:
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.resetBtn:hover {
+  border-color: var(--btn-reset-hover-border);
+  color: var(--btn-reset-hover-color);
+}
+
+/* ─── Success ──────────────────────────────────────────────── */
+.success {
+  text-align: center;
+  padding: 36px 20px;
+  border-radius: 14px;
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+}
+
+.successIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--success-icon-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.4);
+  animation: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes pop {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.successTitle {
+  font-family: var(--font-sora), sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 8px;
+  color: var(--success-title);
+}
+
+.successText {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+  color: var(--success-text);
+}
+
+.success .submitBtn {
+  max-width: 140px;
+  margin: 0 auto;
+}
+
+/* ─── Responsive: 1536px (large laptops) ─────────────────── */
+@media (max-width: 1536px) {
+  .card {
+    max-width: 500px;
+    padding: 30px 34px;
+  }
+}
+
+/* ─── Responsive: 1024px (laptops) ───────────────────────── */
+@media (max-width: 1024px) {
+  .card {
+    max-width: 480px;
+    padding: 28px 30px;
+  }
+
+  .grid {
+    gap: 12px;
+  }
+}
+
+/* ─── Responsive: 768px (tablets / mobile) ───────────────── */
+@media (max-width: 768px) {
+  .overlay {
+    padding: 12px;
+    align-items: flex-end;
+  }
+
+  .card {
+    max-width: 100%;
+    max-height: 94vh;
+    border-radius: 20px 20px 14px 14px;
+    padding: 22px 18px 28px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .full {
+    grid-column: 1;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .resetBtn {
+    padding: 12px;
+    text-align: center;
+  }
+
+  /* Prevents iOS auto-zoom on focus */
+  .input,
+  .select,
+  .textarea {
+    font-size: 16px;
+  }
+}
