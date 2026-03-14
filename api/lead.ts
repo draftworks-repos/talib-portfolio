@@ -142,7 +142,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       console.error("Safe Error Details:", safeError);
 
       return res.status(500).json({
-        error: "Internal Server Error",
+        error: error?.message || "Internal Server Error",
         debug: {
           message: error?.message || "Unknown error",
           nodeVersion: process.version,
