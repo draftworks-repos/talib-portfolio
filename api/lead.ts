@@ -34,15 +34,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     );
 
     try {
-      const {
-        fullName,
-        email,
-        phone,
-        service,
-        message,
-        source,
-        recaptchaToken,
-      } = req.body;
+      const { fullName, email, phone, service, message, recaptchaToken } =
+        req.body;
 
       console.log("Payload:", { fullName, email, phone, service, message });
 
@@ -77,7 +70,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         phone,
         service,
         message,
-        source: source || "website", // fallback if not provided
+        source: "Talib", // fallback if not provided
       });
       await newLead.save();
       console.log("Lead saved successfully to DB");
@@ -119,7 +112,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               </tr>
               <tr>
                 <td style="padding: 10px; border-bottom: 1px solid #eee; font-weight: bold;">Source:</td>
-                <td style="padding: 10px; border-bottom: 1px solid #eee;">${source || "Talib"}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee;">Talib</td>
               </tr>
             </table>
             <div style="margin-top: 20px; padding: 15px; background-color: #f9fafb; border-radius: 5px;">

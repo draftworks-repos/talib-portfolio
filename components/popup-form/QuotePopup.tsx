@@ -10,7 +10,6 @@ interface QuotePopupProps {
   isOpen: boolean;
   onClose: () => void;
   mode?: "dark" | "light";
-  source?: string;
 }
 
 const services = ["Design Services", "IT Services", "Media Services", "Other"];
@@ -50,7 +49,6 @@ export default function QuotePopup({
   isOpen,
   onClose,
   mode = "dark",
-  source = "Talib",
 }: QuotePopupProps) {
   const [visible, setVisible] = useState(false);
   const [form, setForm] = useState({
@@ -176,7 +174,7 @@ export default function QuotePopup({
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, recaptchaToken, source }),
+        body: JSON.stringify({ ...form, recaptchaToken }),
       });
 
       if (!res.ok) {
