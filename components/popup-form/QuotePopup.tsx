@@ -139,31 +139,30 @@ export default function QuotePopup({
     e.preventDefault();
     setError("");
 
-    // 1. Validate Phone (Exactly 10 digits after country code)
-    // react-phone-input-2: form.phone includes the country code.
-    // We need to check the length of the number without the dial code.
-    // For India (+91), dial code length is 2.
-    // This is a bit tricky without a proper lib, but we can assume the user enters 10 digits.
-    // A simpler check: stripping non-numeric chars and checking total length or just trusting the input.
-    // The user specifically said "max 10 limit on number disincluding the country code".
-
-    // We'll strip the country code if it starts with '91' (default) or just check length.
-    // Let's assume the user wants 10 digits for the actual number.
+    // ── DEBUG: Step 1 — Phone validation ──────────────────────────
     const digitsOnly = form.phone.replace(/\D/g, "");
-    // If it starts with '91' and has 12 digits, it's 2 (code) + 10 (number).
-    // If it's just 10 digits, it's just the number.
+    alert(
+      `[DEBUG] STEP 1 — Phone Validation\nRaw phone value: "${form.phone}"\nDigits only: "${digitsOnly}"\nLength: ${digitsOnly.length} (need ≥ 10)`,
+    );
     if (digitsOnly.length < 10) {
       setError("Please enter a valid 10-digit phone number.");
       return;
     }
 
+    // ── DEBUG: Step 2 — reCAPTCHA check ──────────────────────────
     const isDev = import.meta.env.DEV;
-
+    alert(
+      `[DEBUG] STEP 2 — reCAPTCHA Check\nisDev: ${isDev}\nrobot (reCAPTCHA solved): ${robot}\nrecaptchaToken present: ${!!recaptchaToken}\nToken (first 20 chars): "${recaptchaToken.slice(0, 20)}..."`,
+    );
     if (!isDev && (!robot || !recaptchaToken)) {
       setError("Please complete the reCAPTCHA.");
       return;
     }
 
+    // ── DEBUG: Step 3 — Starting fetch ───────────────────────────
+    alert(
+      `[DEBUG] STEP 3 — About to POST to /api/lead\nPayload: ${JSON.stringify({ ...form, recaptchaToken: recaptchaToken ? "[TOKEN PRESENT]" : "[MISSING]" }, null, 2)}`,
+    );
     setLoading(true);
 
     try {
@@ -173,6 +172,17 @@ export default function QuotePopup({
         body: JSON.stringify({ ...form, recaptchaToken }),
       });
 
+      // ── DEBUG: Step 4 — Got a response ───────────────────────────
+      let rawText = "";
+      try {
+        rawText = await res.clone().text();
+      } catch {
+        rawText = "[could not read response body]";
+      }
+      alert(
+        `[DEBUG] STEP 4 — Got HTTP Response\nStatus: ${res.status} ${res.statusText}\nOK: ${res.ok}\nRaw body (first 500 chars):\n${rawText.slice(0, 500)}`,
+      );
+
       const data = await res.json();
 
       if (res.ok) {
@@ -180,8 +190,12 @@ export default function QuotePopup({
       } else {
         setError(data.error || "Something went wrong. Please try again.");
       }
-    } catch (err) {
-      setError("Failed to send message. Please check your connection.");
+    } catch (err: any) {
+      // ── DEBUG: Step 4 (catch) — Network / parse error ─────────
+      alert(
+        `[DEBUG] STEP 4 — CAUGHT ERROR (fetch failed or JSON parse failed)\nError name: ${err?.name}\nError message: ${err?.message}\nFull error: ${String(err)}`,
+      );
+      setError(`Network error: ${err?.message || String(err)}`);
     } finally {
       setLoading(false);
     }
