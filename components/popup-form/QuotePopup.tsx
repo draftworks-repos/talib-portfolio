@@ -139,30 +139,19 @@ export default function QuotePopup({
     e.preventDefault();
     setError("");
 
-    // ── DEBUG: Step 1 — Phone validation ──────────────────────────
     const digitsOnly = form.phone.replace(/\D/g, "");
-    alert(
-      `[DEBUG] STEP 1 — Phone Validation\nRaw phone value: "${form.phone}"\nDigits only: "${digitsOnly}"\nLength: ${digitsOnly.length} (need ≥ 10)`,
-    );
     if (digitsOnly.length < 10) {
       setError("Please enter a valid 10-digit phone number.");
       return;
     }
 
-    // ── DEBUG: Step 2 — reCAPTCHA check ──────────────────────────
     const isDev = import.meta.env.DEV;
-    alert(
-      `[DEBUG] STEP 2 — reCAPTCHA Check\nisDev: ${isDev}\nrobot (reCAPTCHA solved): ${robot}\nrecaptchaToken present: ${!!recaptchaToken}\nToken (first 20 chars): "${recaptchaToken.slice(0, 20)}..."`,
-    );
+
     if (!isDev && (!robot || !recaptchaToken)) {
       setError("Please complete the reCAPTCHA.");
       return;
     }
 
-    // ── DEBUG: Step 3 — Starting fetch ───────────────────────────
-    alert(
-      `[DEBUG] STEP 3 — About to POST to /api/lead\nPayload: ${JSON.stringify({ ...form, recaptchaToken: recaptchaToken ? "[TOKEN PRESENT]" : "[MISSING]" }, null, 2)}`,
-    );
     setLoading(true);
 
     try {
@@ -172,29 +161,22 @@ export default function QuotePopup({
         body: JSON.stringify({ ...form, recaptchaToken }),
       });
 
-      // ── DEBUG: Step 4 — Got a response ───────────────────────────
-      let rawText = "";
-      try {
-        rawText = await res.clone().text();
-      } catch {
-        rawText = "[could not read response body]";
+      const rawText = await res.clone().text();
+
+      if (!res.ok) {
+        alert(`ERROR ${res.status} ${res.statusText}:\n\n${rawText}`);
+        setError(rawText || "Something went wrong. Please try again.");
+        return;
       }
-      alert(
-        `[DEBUG] STEP 4 — Got HTTP Response\nStatus: ${res.status} ${res.statusText}\nOK: ${res.ok}\nRaw body (first 500 chars):\n${rawText.slice(0, 500)}`,
-      );
 
       const data = await res.json();
-
       if (res.ok) {
         setSubmitted(true);
       } else {
         setError(data.error || "Something went wrong. Please try again.");
       }
     } catch (err: any) {
-      // ── DEBUG: Step 4 (catch) — Network / parse error ─────────
-      alert(
-        `[DEBUG] STEP 4 — CAUGHT ERROR (fetch failed or JSON parse failed)\nError name: ${err?.name}\nError message: ${err?.message}\nFull error: ${String(err)}`,
-      );
+      alert(`FETCH ERROR:\n\nName: ${err?.name}\nMessage: ${err?.message}\n\n${String(err)}`);
       setError(`Network error: ${err?.message || String(err)}`);
     } finally {
       setLoading(false);
