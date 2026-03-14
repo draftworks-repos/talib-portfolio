@@ -161,19 +161,24 @@ export default function QuotePopup({
         body: JSON.stringify({ ...form, recaptchaToken }),
       });
 
-      const rawText = await res.clone().text();
+      const rawText = await res.text();
 
       if (!res.ok) {
-        alert(`ERROR ${res.status} ${res.statusText}:\n\n${rawText}`);
-        setError(rawText || "Something went wrong. Please try again.");
+        let errorMsg = `HTTP ${res.status}`;
+        try {
+          const errData = JSON.parse(rawText);
+          errorMsg = errData.error || errData.message || rawText;
+        } catch {
+          errorMsg = rawText || `HTTP ${res.status}`;
+        }
+        alert(`SERVER ERROR:\n\n${errorMsg}`);
+        setError(errorMsg);
         return;
       }
 
-      const data = await res.json();
-      if (res.ok) {
+      const data = JSON.parse(rawText);
+      if (data) {
         setSubmitted(true);
-      } else {
-        setError(data.error || "Something went wrong. Please try again.");
       }
     } catch (err: any) {
       alert(`FETCH ERROR:\n\nName: ${err?.name}\nMessage: ${err?.message}\n\n${String(err)}`);
