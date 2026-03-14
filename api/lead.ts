@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import dbConnect from "../lib/db";
-import Lead from "../models/Lead";
+import dbConnect from "../lib/db.js";
+import Lead from "../models/Lead.js";
 import nodemailer from "nodemailer";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
