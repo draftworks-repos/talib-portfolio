@@ -26,27 +26,44 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (req.method === "POST") {
+    console.log("--- Lead API: Request Received ---");
+    console.log("Runtime Info - Node Version:", process.version);
+    console.log(
+      "Runtime Info - Fetch Available:",
+      typeof fetch !== "undefined",
+    );
+
     try {
       const { fullName, email, phone, service, message, recaptchaToken } =
         req.body;
 
+      console.log("Payload:", { fullName, email, phone, service, message });
+
       // 1. Verify reCAPTCHA (Skip in development)
       if (process.env.NODE_ENV !== "development") {
+        console.log("Verifying reCAPTCHA...");
         const secretKey = process.env.RECAPTCHA_SECRET_KEY;
         const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${recaptchaToken}`;
 
         const recaptchaRes = await fetch(verifyUrl, { method: "POST" });
         const recaptchaData = await recaptchaRes.json();
+        console.log("reCAPTCHA response:", recaptchaData);
 
         if (!recaptchaData.success) {
+          console.error("reCAPTCHA verification failed");
           return res
             .status(400)
             .json({ error: "ReCAPTCHA verification failed." });
         }
+      } else {
+        console.log("reCAPTCHA verification skipped in development");
       }
 
       // 2. Save to MongoDB
+      console.log("Connecting to MongoDB...");
       await dbConnect();
+      console.log("Connected to MongoDB. Saving lead...");
+
       const newLead = new Lead({
         fullName,
         email,
@@ -55,8 +72,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         message,
       });
       await newLead.save();
+      console.log("Lead saved successfully to DB");
 
       // 3. Send Email Notification
+      console.log("Preparing email notification...");
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -100,14 +119,35 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         `,
       };
 
+      console.log("Sending email...");
       await transporter.sendMail(mailOptions);
+      console.log("Email sent successfully");
 
       return res
         .status(200)
         .json({ message: "Lead saved and notification sent successfully." });
     } catch (error: any) {
-      console.error("Lead API Error:", error);
-      return res.status(500).json({ error: "Internal Server Error" });
+      console.error("!!! Lead API CRITICAL ERROR !!!");
+      console.error("Error Message:", error?.message || "No message found");
+      console.error("Error Stack:", error?.stack || "No stack trace found");
+
+      // Log specific error properties manually since Errors are not enumerable
+      const safeError = {
+        name: error?.name,
+        message: error?.message,
+        code: error?.code,
+        status: error?.status,
+        stack: error?.stack,
+      };
+      console.error("Safe Error Details:", safeError);
+
+      return res.status(500).json({
+        error: "Internal Server Error",
+        debug: {
+          message: error?.message || "Unknown error",
+          nodeVersion: process.version,
+        },
+      });
     }
   }
 

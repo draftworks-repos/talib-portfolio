@@ -81,6 +81,14 @@
     padding: 7rem 1rem 1rem;
   }
 }
+@media (max-width: 768px) {
+  .about-content-card {
+    padding: 0;
+    border: transparent;
+    background: transparent;
+    box-shadow: none;
+  }
+}
 
 /* Quote Badge Styles */
 .quote-badge-wrapper {
@@ -96,7 +104,7 @@
   position: absolute;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: #2db2ffdd;
   backdrop-filter: blur(60px);
   color: #fff;
   padding: 14px 28px;
@@ -109,13 +117,14 @@
   transform: rotate(-90deg) translateX(50%);
   white-space: nowrap;
   box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
-  transition: background 0.3s ease;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.3s ease;
+  border: 1px solid #434342;
   border-bottom: none;
 }
 
 .quote-badge:hover {
-  background: rgba(0, 0, 0, 0.6);
+  background: #2db1ff;
+  color: #fff;
 }
 
 @media (max-width: 768px) {

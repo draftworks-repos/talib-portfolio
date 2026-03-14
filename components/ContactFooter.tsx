@@ -43,7 +43,7 @@ export const PageFooter: React.FC = () => {
           aria-label="connect on phone"
           className="footer-contact"
         >
-          <span className="footer-contact-label">Connect on Phone</span>
+          <span className="footer-contact-label">Phone/WhatsApp</span>
           <span className="footer-contact-email">+91 8256012345</span>
         </a>
         <a
@@ -51,7 +51,7 @@ export const PageFooter: React.FC = () => {
           aria-label="connect on email"
           className="footer-contact"
         >
-          <span className="footer-contact-label">Connect on Email</span>
+          <span className="footer-contact-label">Email</span>
           <span className="footer-contact-email">hello@talibali.in</span>
         </a>
       </div>
