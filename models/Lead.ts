@@ -6,6 +6,7 @@ export interface ILead extends Document {
   phone: string;
   service: string;
   message: string;
+  source: string;
   createdAt: Date;
 }
 
@@ -15,6 +16,7 @@ const LeadSchema: Schema = new Schema({
   phone: { type: String, required: true },
   service: { type: String, required: true },
   message: { type: String, required: false },
+  source: { type: String, required: false },
   createdAt: { type: Date, default: Date.now },
 });
 

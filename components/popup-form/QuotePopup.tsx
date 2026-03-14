@@ -10,6 +10,7 @@ interface QuotePopupProps {
   isOpen: boolean;
   onClose: () => void;
   mode?: "dark" | "light";
+  source?: string;
 }
 
 const services = ["Design Services", "IT Services", "Media Services", "Other"];
@@ -49,6 +50,7 @@ export default function QuotePopup({
   isOpen,
   onClose,
   mode = "dark",
+  source = "Talib",
 }: QuotePopupProps) {
   const [visible, setVisible] = useState(false);
   const [form, setForm] = useState({
@@ -139,9 +141,25 @@ export default function QuotePopup({
     e.preventDefault();
     setError("");
 
+    if (!form.fullName || form.fullName.trim().length < 2) {
+      setError("Please enter a valid full name.");
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!form.email || !emailRegex.test(form.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
     const digitsOnly = form.phone.replace(/\D/g, "");
     if (digitsOnly.length < 10) {
-      setError("Please enter a valid 10-digit phone number.");
+      setError("Please enter a valid phone number (minimum 10 digits).");
+      return;
+    }
+
+    if (!form.service) {
+      setError("Please select a service.");
       return;
     }
 
@@ -158,31 +176,20 @@ export default function QuotePopup({
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, recaptchaToken }),
+        body: JSON.stringify({ ...form, recaptchaToken, source }),
       });
 
-      const rawText = await res.text();
-
       if (!res.ok) {
-        let errorMsg = `HTTP ${res.status}`;
-        try {
-          const errData = JSON.parse(rawText);
-          errorMsg = errData.error || errData.message || rawText;
-        } catch {
-          errorMsg = rawText || `HTTP ${res.status}`;
-        }
-        alert(`SERVER ERROR:\n\n${errorMsg}`);
-        setError(errorMsg);
+        setError("Something went wrong. Please try again.");
         return;
       }
 
-      const data = JSON.parse(rawText);
+      const data = await res.json();
       if (data) {
         setSubmitted(true);
       }
     } catch (err: any) {
-      alert(`FETCH ERROR:\n\nName: ${err?.name}\nMessage: ${err?.message}\n\n${String(err)}`);
-      setError(`Network error: ${err?.message || String(err)}`);
+      setError("Failed to send message. Please check your connection.");
     } finally {
       setLoading(false);
     }
