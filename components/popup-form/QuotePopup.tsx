@@ -54,7 +54,7 @@ export default function QuotePopup({
   const [form, setForm] = useState({
     fullName: "",
     email: "",
-    phone: "",
+    phoneNumber: "",
     service: "",
     message: "",
   });
@@ -124,7 +124,7 @@ export default function QuotePopup({
   };
 
   const handlePhoneChange = (value: string) => {
-    setForm((f) => ({ ...f, phone: value }));
+    setForm((f) => ({ ...f, phoneNumber: value }));
   };
 
   const handleChange = (
@@ -150,7 +150,7 @@ export default function QuotePopup({
       return;
     }
 
-    const digitsOnly = form.phone.replace(/\D/g, "");
+    const digitsOnly = form.phoneNumber.replace(/\D/g, "");
     if (digitsOnly.length < 10) {
       setError("Please enter a valid phone number (minimum 10 digits).");
       return;
@@ -174,7 +174,12 @@ export default function QuotePopup({
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, recaptchaToken }),
+        body: JSON.stringify({
+          ...form,
+          service: [form.service],
+          source: "Webmaak",
+          recaptchaToken,
+        }),
       });
 
       if (!res.ok) {
@@ -194,7 +199,13 @@ export default function QuotePopup({
   };
 
   const handleReset = () => {
-    setForm({ fullName: "", email: "", phone: "", service: "", message: "" });
+    setForm({
+      fullName: "",
+      email: "",
+      phoneNumber: "",
+      service: "",
+      message: "",
+    });
     setRobot(false);
     setSubmitted(false);
     recaptchaRef.current?.reset();
@@ -290,7 +301,7 @@ export default function QuotePopup({
                 <label className={styles.label}>Phone / WhatsApp</label>
                 <PhoneInput
                   country={"in"}
-                  value={form.phone}
+                  value={form.phoneNumber}
                   onChange={handlePhoneChange}
                   containerClass={styles.phoneContainer}
                   inputClass={styles.phoneInput}
